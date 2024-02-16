@@ -1,5 +1,15 @@
 package com.example.demo.Servicio;
 
-public class servicioPerro {
+import java.util.Collection;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Entidad.Perro;
+
+
+public interface ServicioPerro {
     
+    public Perro SearchById(int id);
+
+    public Collection<Perro> SearchAll();
 }
