@@ -7,6 +7,7 @@ public class Perro {
     private int edad;
     private boolean actividad;
     private int numeroAtenciones;
+    
     public Perro(int id, String raza, int edad, boolean actividad, int numeroAtenciones) {
         this.id = id;
         this.raza = raza;

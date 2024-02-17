@@ -25,7 +25,7 @@ public class ControladorPerro {
     @GetMapping("/all")
     public String mostrarPerros(Model model) {
         model.addAttribute("perros", servicioPerro.SearchAll());
-        return "LandingPage";
+        return "MostrarPerros.html";
     }
 
 
@@ -33,7 +33,7 @@ public class ControladorPerro {
     public String mostrarinfoPerro(Model model, @PathVariable("id") int id){
 
         model.addAttribute("perro", servicioPerro.SearchById(id));
-        return "LandingPage";
+        return "MostrarPerro";
     }
 
 

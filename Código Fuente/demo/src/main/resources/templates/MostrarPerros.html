@@ -58,7 +58,7 @@
 
     <section class="sectionTarjetones">
         <div class="divTarjetones">
-            <button class="btnTarjeton" type="button"> <!--Por cada nuevo perro se crea desde aqui-->
+            <button class="btnTarjeton" type="button" th:each="perro : ${perros}"> <!--Por cada nuevo perro se crea desde aqui-->
                 <div class="card">
                     <div class="card-image-container">
                         <img th:url="${perro.imagen}" alt="Perro" />
