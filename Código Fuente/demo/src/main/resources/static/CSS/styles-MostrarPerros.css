@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap");
 
-
 /**======Header y Body====== */
 header {
   margin: 0;
@@ -96,9 +95,9 @@ nav {
 
 .btnPerfil {
   border: none;
-  outline: none; 
-  background-color: transparent; 
-  padding: 0; 
+  outline: none;
+  background-color: transparent;
+  padding: 0;
   height: 50px;
   width: 50px;
 }
@@ -153,7 +152,7 @@ body {
   height: auto;
   align-items: center;
   font-size: 15px;
-  color: white;;
+  color: white;
 }
 
 .navbar {
@@ -267,14 +266,13 @@ body {
 
 /** ====== Titulo ======*/
 
-#sectionTitulo{
+#sectionTitulo {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
 
-
-#titulo{
+#titulo {
   font-family: "Macondo", cursive;
   font-weight: 900;
   font-style: normal;
@@ -284,17 +282,14 @@ body {
   color: #171a4a;
 }
 
-
 /** ====== Tarjetones del perro ======*/
 
-.sectionTarjetones{
+.sectionTarjetones {
   display: flex;
   flex-direction: row;
   margin: 40px;
   justify-content: space-evenly;
 }
-
-
 
 .card {
   display: flex;
@@ -345,14 +340,14 @@ body {
   color: white;
 }
 
-.btnTarjeton{
+.btnTarjeton {
   margin: 5px 5px;
   border-radius: 15px;
 }
 
 /* Estilos para Hover en .card dentro de .carousel-button */
-.btnTarjeton:focus .card, .btnTarjeton:hover .card {
+.btnTarjeton:focus .card,
+.btnTarjeton:hover .card {
   transform: scale(1.05);
   z-index: 10;
-
 }

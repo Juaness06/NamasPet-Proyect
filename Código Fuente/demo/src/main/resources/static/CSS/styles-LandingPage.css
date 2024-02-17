@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap");
 
 header {
   margin: 0;
@@ -15,7 +15,7 @@ header {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-margin-top:30px;
+  scroll-margin-top: 30px;
 }
 
 #contenedorMenuDesplegable {
@@ -82,8 +82,7 @@ nav {
   display: flex;
   bottom: 0;
   padding-top: 10px;
-  background-color: #64C27B;
-
+  background-color: #64c27b;
 }
 
 .titulo {
@@ -170,7 +169,7 @@ main .contenedor {
   align-items: center;
 }
 
-#contenedorLogoTitulo{
+#contenedorLogoTitulo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,12 +183,11 @@ main .contenedor {
   align-items: center;
   font-size: 15px;
   color: #d8d9e7;
-
 }
 
 /* *  ============ Cambio de la barra de navegacion =========== */
 
-.btnPerfil{
+.btnPerfil {
   border: none;
   outline: none; /* Esto elimina el contorno al hacer clic */
   background-color: transparent; /* Esto hace que el fondo del botón sea transparente */
@@ -197,7 +195,6 @@ main .contenedor {
   height: 50px;
   width: 50px;
 }
-
 
 .navbar {
   background: #2f2c79;
@@ -271,7 +268,6 @@ main .contenedor {
 .footerin {
   list-style: none;
   padding: 0;
-
 }
 
 .footerin li {
@@ -323,20 +319,36 @@ main .contenedor {
 }
 
 @keyframes slide {
-  0% { margin-left: 0;}
-  25% {margin-left: 0;}
-  30% {margin-left: -100%;}
-  55% {margin-left: -100%;}
-  60% {margin-left: -200%;}
-  85% {margin-left: -200%;}
-  90% {margin-left: -300%;}
-  100% {margin-left: -300%;}
+  0% {
+    margin-left: 0;
+  }
+  25% {
+    margin-left: 0;
+  }
+  30% {
+    margin-left: -100%;
+  }
+  55% {
+    margin-left: -100%;
+  }
+  60% {
+    margin-left: -200%;
+  }
+  85% {
+    margin-left: -200%;
+  }
+  90% {
+    margin-left: -300%;
+  }
+  100% {
+    margin-left: -300%;
+  }
 }
 
-.nombrePerrito{
- font-family: "Patua One", serif;
- font-weight: 400;
- font-style: normal;
+.nombrePerrito {
+  font-family: "Patua One", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .contenido {
@@ -356,61 +368,58 @@ main .contenedor {
   font-size: 25px; /* Ajusta el tamaño de la letra para el texto */
 }
 
-
-#quienesSomos{
+#quienesSomos {
   margin-top: 80px;
   width: 100%;
   height: 400px;
   margin-bottom: 200px;
   position: relative;
 }
-#quienesSomos p{
- margin-right: 500px;
+#quienesSomos p {
+  margin-right: 500px;
 }
-#quienesSomos img{
+#quienesSomos img {
   position: absolute;
-  float:right;
+  float: right;
   right: 0;
   margin-left: 20px;
   z-index: 2;
-  
 }
-#especiolizacion h3{
+#especiolizacion h3 {
   margin-left: 480px;
-  right: 0; 
+  right: 0;
 }
-#especiolizacion{
+#especiolizacion {
   width: 100%;
   height: 400px;
   margin-bottom: 200px;
   position: relative;
 }
-#especiolizacion p{
+#especiolizacion p {
   margin-left: 500px;
 }
-#especiolizacion img{
+#especiolizacion img {
   position: absolute;
-  float:left;
+  float: left;
   left: 0;
   margin-right: 20px;
   z-index: 2;
   margin-bottom: 130px;
-  
 }
-#dondeEstamos{
+#dondeEstamos {
   width: 100%;
   height: 400px;
   margin-bottom: 200px;
 }
-#dondeEstamos iframe{
+#dondeEstamos iframe {
   right: 0;
 }
 
-.osquitar{
+.osquitar {
   color: #171a4a;
 }
 
-.ruleta{
+.ruleta {
   font-family: "Dosis", sans-serif;
   font-optical-sizing: auto;
   font-weight: 800;
@@ -418,12 +427,11 @@ main .contenedor {
   font-size: 18px;
 }
 
-.cocco{
+.cocco {
   color: #171a4a;
 }
 
-
-.temas{
+.temas {
   font-family: "Dosis", sans-serif;
   font-optical-sizing: auto;
   font-weight: 900;
@@ -431,8 +439,7 @@ main .contenedor {
   color: #171a4a;
 }
 
-
-.textoTemas{
+.textoTemas {
   font-family: "Dosis", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
@@ -462,10 +469,9 @@ main .contenedor {
 }
 
 .custom-shape-divider-bottom-1707855607 .shape-fill {
-  fill: #64C27B;
+  fill: #64c27b;
 }
 
-.textoFoterin{
+.textoFoterin {
   font-family: "Dosis", sans-serif;
 }
-

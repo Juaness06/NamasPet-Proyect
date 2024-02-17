@@ -94,9 +94,9 @@ nav {
 
 .btnPerfil {
   border: none;
-  outline: none; 
-  background-color: transparent; 
-  padding: 0; 
+  outline: none;
+  background-color: transparent;
+  padding: 0;
   height: 50px;
   width: 50px;
 }
@@ -151,7 +151,7 @@ body {
   height: auto;
   align-items: center;
   font-size: 15px;
-  color: white;;
+  color: white;
 }
 
 .navbar {
@@ -346,5 +346,3 @@ body {
   margin-bottom: 28px;
   font-size: 23px;
 }
-
-

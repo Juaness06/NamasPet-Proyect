@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap");
 
-
 /**======Header y Body====== */
 header {
   margin: 0;
@@ -267,7 +266,7 @@ body {
 
 /* *  ============ section tabla =========== */
 
-#sectionTabla{
+#sectionTabla {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,7 +275,7 @@ body {
   margin-bottom: 50px;
 }
 
-#divTitulo{
+#divTitulo {
   margin-bottom: 30px;
   font-family: "Macondo", cursive;
   font-weight: 12000;
@@ -284,9 +283,7 @@ body {
   color: #171a4a;
 }
 
-
 /* *  ============ tabla =========== */
-
 
 table th {
   font-family: "Patua One", serif;
@@ -297,12 +294,12 @@ table th {
   color: white;
 }
 
-td{
+td {
   color: white;
   font-family: "Patua One", serif;
-  text-align: center; 
-  vertical-align: middle; 
-  max-width: 150px; 
+  text-align: center;
+  vertical-align: middle;
+  max-width: 150px;
   height: 100px;
   overflow: hidden;
   word-wrap: break-word;
@@ -318,7 +315,8 @@ table {
   overflow: hidden;
 }
 
-td, th {
+td,
+th {
   border: 1px solid #64c27b;
 }
 
@@ -344,4 +342,3 @@ td span {
   max-height: 100%; /* El texto no excederá la altura de la celda */
   font-size: 16px; /* Tamaño de fuente inicial */
 }
-
