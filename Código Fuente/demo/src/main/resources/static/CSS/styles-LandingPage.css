@@ -7,7 +7,7 @@ header {
   padding: 0;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: #2f2c79;
 }
 
@@ -48,7 +48,7 @@ nav {
 }
 
 .menuHorizontal li:hover {
-  background-color: #64c27b;
+  background-color: transparent;
   color: #2f2c79;
 }
 
@@ -189,6 +189,16 @@ main .contenedor {
 
 /* *  ============ Cambio de la barra de navegacion =========== */
 
+.btnPerfil{
+  border: none;
+  outline: none; /* Esto elimina el contorno al hacer clic */
+  background-color: transparent; /* Esto hace que el fondo del botón sea transparente */
+  padding: 0; /* Esto elimina el relleno interior del botón */
+  height: 50px;
+  width: 50px;
+}
+
+
 .navbar {
   background: #2f2c79;
 }
@@ -232,6 +242,7 @@ main .contenedor {
 }
 
 #terminos {
+  font-family: "Dosis", sans-serif;
   margin-top: 20px;
   color: black;
   align-items: center;
@@ -454,21 +465,7 @@ main .contenedor {
   fill: #64C27B;
 }
 
-/*
-.roll-in-top{
-  animation: roll-in-top 0.6s ease-out both;
-  background-color: #2f2c79 ;
+.textoFoterin{
+  font-family: "Dosis", sans-serif;
 }
 
-@keyframes roll-in-top {
-  0% {
-    transform: translateY(-800px) rotate(-540deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-}
-
-*/
