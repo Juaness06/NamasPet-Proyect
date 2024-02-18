@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -57,28 +57,27 @@
         <div id="divTabla">
             <table>
                 <thead>
+                    <tr>
                     <th>ID</th>
                     <th>RAZA</th>
                     <th>EDAD</th>
                     <th>ACTIVIDAD</th>
                     <th>PESO</th>
-                    <th>ENFERMEDADES</th>
-                    <th>FOTO</th>
-                    <th>DROGA</th>
                     <th># DE ATENCIONES</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr> <!--Revisar que los atributos tengan los mismo nombres-->
-                        <td th:text="${perro.id}"></td>
-                        <td th:text="${perro.raza}"></td>
-                        <td th:text="${perro.edad}"></td>
-                        <td th:text="${perro.actividad}"></td>
-                        <td th:text="${perro.peso}"></td>
+                    <tr th:each="perros : ${perros}"> <!--Revisar que los atributos tengan los mismo nombres-->
+                        <td th:text="${perros.id}"></td>
+                        <td th:text="${perros.raza}"></td>
+                        <td th:text="${perros.edad}"></td>
+                        <td th:text="${perros.actividad}"></td>
+                        <td th:text="${perros.peso}"></td>
                         <!--<td><span th:text="${perro.enfermedades}"></span></td>
-                        <td><span th:text="${perro.foto}"></span></td> Avisar si sale mal,(se desborda mucho el texto)-->
+                        <td><span th:text="${perro.foto}"></span></td>  Avisar si sale mal,(se desborda mucho el texto)-->
                         <!--<td><span th:url="${perro.foto}"></span></td>
                         <td th:text="${perro.drogas}"></td>-->
-                        <td th:text="${perro.atenciones}"></td> 
+                        <td th:text="${perros.numeroAtenciones}"></td> 
                     </tr>
                 </tbody>
             </table>

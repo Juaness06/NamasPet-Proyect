@@ -22,18 +22,25 @@ public class ControladorPerro {
     @Autowired
     private ServicioPerro servicioPerro;
 
+    //http://localhost:8090/perro/all
     @GetMapping("/all")
     public String mostrarPerros(Model model) {
         model.addAttribute("perros", servicioPerro.SearchAll());
-        return "MostrarPerros.html";
+        return "ListaPerros";
     }
 
-
+    //http://localhost:8090/perro/find/1
     @GetMapping("/find/{id}")
     public String mostrarinfoPerro(Model model, @PathVariable("id") int id){
 
         model.addAttribute("perro", servicioPerro.SearchById(id));
         return "MostrarPerro";
+    }
+    //http://localhost:8090/perro/targeton
+    @GetMapping("/targeton")
+    public String TmostrarPerros(Model model) {
+        model.addAttribute("perros", servicioPerro.SearchAll());
+        return "MostrarPerros";
     }
 
 
