@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAMASPET</title>
-    <link rel="stylesheet" href="../static/CSS/styles-ListaPerros.css">
+    <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
 </head>
 
 <body>
     <header>
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
-                <img id="logo" src="../static/Imagenes/logo-blanco.png" alt="Logo NamasPet" width="100" height="100" />
+                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
             </div>
             <div id="contenedorTitulo">
                 <h1 class="titulo">NAMASPET</h1>
@@ -30,9 +30,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="Local.html">Mascotas</a>
+                        <a href="ListaPerros.html">Mascotas</a>
                         <ul class="menuVertical">
-                            <li><a href="Local.html">Perros</a></li>
+                            <li><a href="MostrarPerros.html">Perros</a></li>
                         </ul>
                     </li>
                     <li>
@@ -44,7 +44,7 @@
                     </li>
                     <li><a href="Contacto.html">Contacto</a></li>
                     <li id="btnItem"><button type="button" class="btnPerfil"><img class="btnPerfil"
-                                src="../static/Imagenes/logo_corrected.png"></button></li>
+                                th:src="@{/Imagenes/logo_corrected.png}"></button></li>
                 </ul>
             </nav>
         </div>
@@ -73,10 +73,9 @@
                         <td th:text="${perros.edad}"></td>
                         <td th:text="${perros.actividad}"></td>
                         <td th:text="${perros.peso}"></td>
-                        <!--<td><span th:text="${perro.enfermedades}"></span></td>
-                        <td><span th:text="${perro.foto}"></span></td>  Avisar si sale mal,(se desborda mucho el texto)-->
-                        <!--<td><span th:url="${perro.foto}"></span></td>
-                        <td th:text="${perro.drogas}"></td>-->
+                        <!--<td><span th:text="${perro.enfermedades}"></span></td> -->
+                        <td><span th:text="${perros.imagen}"></span></td>
+                        <!--<td th:text="${perro.drogas}"></td>-->
                         <td th:text="${perros.numeroAtenciones}"></td> 
                     </tr>
                 </tbody>
@@ -102,13 +101,13 @@
         <div class="info">
             <div id="redes">
                 <div id="tituloLogo">
-                    <img src="../static/Imagenes/logo-negro.png" alt="Logo NamasPet" width="100" height="100" />
+                    <img th:src="@{/Imagenes/logo-negro.png}" alt="Logo NamasPet" width="100" height="100" />
                     <h1 class="titulo">NAMASPET</h1>
                 </div>
                 <div id="contenedorRedes">
-                    <img src="../static/Imagenes/instragram.png" alt="Instragram" width="40" height="30" />
-                    <img src="../static/Imagenes/Facebook.png" alt="Facebook" width="30" height="30" />
-                    <img src="../static/Imagenes/twitter.png" alt="X" width="30" height="30" />
+                    <img th:src="@{/Imagenes/instragram.png}" alt="Instragram" width="40" height="30" />
+                    <img th:src="@{/Imagenes/Facebook.png}" alt="Facebook" width="30" height="30" />
+                    <img th:src="@{/Imagenes/twitter.png}" alt="X" width="30" height="30" />
                 </div>
             </div>
             <div id="Información">
