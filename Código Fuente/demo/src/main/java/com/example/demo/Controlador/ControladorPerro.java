@@ -41,10 +41,11 @@ public class ControladorPerro {
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "MostrarPerros";
     }
+
+    // http://localhost:8090/perro/index
     @GetMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("perros", servicioPerro.SearchAll());
-        return "MostrarPerros";	
+    public String index() {
+        return "LandingPage";	
     }
     
 
