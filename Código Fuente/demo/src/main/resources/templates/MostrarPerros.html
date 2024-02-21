@@ -63,7 +63,7 @@
                     <div class="card-image-container">
                         <img th:src="${perros.imagen}" alt="Perro" />
                     </div>
-                    <p class="card-title" th:text="${perros.id}"></p>
+                    <p class="card-title" th:text="${perros.id} + ' ' + ${perros.nombre}"></p>
                 </div>
             </button> <!--Hasta aqui-->
         </div>

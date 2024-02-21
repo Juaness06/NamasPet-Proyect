@@ -59,6 +59,7 @@
                 <thead>
                     <tr>
                     <th>ID</th>
+                    <th>NOMBRE</th>
                     <th>RAZA</th>
                     <th>EDAD</th>
                     <th>ACTIVIDAD</th>
@@ -70,6 +71,7 @@
                 <tbody>
                     <tr th:each="perros : ${perros}"> <!--Revisar que los atributos tengan los mismo nombres-->
                         <td th:text="${perros.id}"></td>
+                        <td th:text="${perros.nombre}"></td>
                         <td th:text="${perros.raza}"></td>
                         <td th:text="${perros.edad}"></td>
                         <td th:text="${perros.actividad}"></td>

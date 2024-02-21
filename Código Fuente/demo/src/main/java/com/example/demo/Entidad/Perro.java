@@ -4,14 +4,16 @@ public class Perro {
 
     private String imagen;
     private int id;
+    private String nombre;
     private String raza;
     private int edad;
     private boolean actividad;
     private double peso;
     private int numeroAtenciones;
 
-    public Perro(String imagen, int id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
+    public Perro(String imagen,String nombre, int id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
+        this.nombre = nombre;
         this.id = id;
         this.raza = raza;
         this.edad = edad;
@@ -76,4 +78,11 @@ public class Perro {
         this.peso = peso;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

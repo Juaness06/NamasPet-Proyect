@@ -57,6 +57,7 @@
             </div>
         </div>
         <div id="divInformacionPerrito"> <!--Aqui van los atributos del perro, mirar que los nombres coincidan-->
+            <h1 th:text=" 'nombre:' +  ${perro.nombre}"></h1>
             <h3 th:text="'ID:' + ${perro.id}"> </h3>
             <h3>Raza</h3>
             <h3 th:text="${perro.raza}"></h3>
