@@ -239,6 +239,20 @@ body {
   margin-bottom: 10px;
 }
 
+.img-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Ajusta este valor según necesites */
+  margin-right: 50px;
+}
+td img {
+  display: block; /* Centra la imagen horizontalmente */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; /* Asegura que la imagen no sea más ancha que la celda */
+  height: auto; /* Asegura que la altura de la imagen se ajuste proporcionalmente */
+}
+
 /* *  ============ custom shape footer =========== */
 
 .custom-shape-divider-bottom-1707855607 {

@@ -75,7 +75,9 @@
                         <td th:text="${perros.actividad}"></td>
                         <td th:text="${perros.peso}"></td>
                         <!--<td><span th:text="${perro.enfermedades}"></span></td> -->
-                        <td><span th:text="${perros.imagen}"></span></td>
+                        <td>
+                            <img th:src="${perros.imagen}" alt="Imagen de la mascota" style="max-width:100%; height:auto;"/>
+                        </td>
                         <!--<td th:text="${perro.drogas}"></td>-->
                         <td th:text="${perros.numeroAtenciones}"></td> 
                     </tr>
