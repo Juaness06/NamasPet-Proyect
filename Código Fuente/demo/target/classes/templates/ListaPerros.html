@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAMASPET</title>
+    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
 </head>
 
@@ -21,7 +22,7 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a href="LandingPage.html">Inicio</a></li>
+                    <li><a th:href="@{/perro/index}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
                         <ul class="menuVertical">
@@ -30,9 +31,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="ListaPerros.html">Mascotas</a>
+                        <a th:href="@{/perro/all}">Mascotas</a>
                         <ul class="menuVertical">
-                            <li><a href="MostrarPerros.html">Perros</a></li>
+                            <li><a th:href="@{/perro/targeton}">Perros</a></li>
                         </ul>
                     </li>
                     <li>

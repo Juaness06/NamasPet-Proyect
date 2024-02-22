@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
+    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-MostrarPerro.css}" rel="stylesheet" />
 </head>
 
@@ -21,7 +22,7 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a href="LandingPage.html">Inicio</a></li>
+                    <li><a th:href="@{/perro/index}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
                         <ul class="menuVertical">
@@ -30,9 +31,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="ListaPerros.html">Mascotas</a>
+                        <a th:href="@{/perro/all}">Mascotas</a>
                         <ul class="menuVertical">
-                            <li><a href="MostrarPerro.html">Perros</a></li>
+                            <li><a th:href="@{/perro/targeton}">Perros</a></li>
                         </ul>
                     </li>
                     <li>
@@ -44,7 +45,7 @@
                     </li>
                     <li><a href="Contacto.html">Contacto</a></li>
                     <li id="btnItem"><button type="button" class="btnPerfil"><img class="btnPerfil"
-                                thsrc="@{/Imagenes/logo_corrected.png}"></button></li>
+                                th:src="@{/Imagenes/logo_corrected.png}"></button></li>
                 </ul>
             </nav>
         </div>
@@ -57,18 +58,13 @@
             </div>
         </div>
         <div id="divInformacionPerrito"> <!--Aqui van los atributos del perro, mirar que los nombres coincidan-->
-            <h1 th:text=" 'nombre:' +  ${perro.nombre}"></h1>
-            <h3 th:text="'ID:' + ${perro.id}"> </h3>
-            <h3>Raza</h3>
-            <h3 th:text="${perro.raza}"></h3>
-            <h3>Edad</h3>
-            <h3 th:text="${perro.edad}"></h3>
-            <h3>Actividad</h3>
-            <h3 th:text="${perro.actividad}"></h3>
-            <h3>Peso</h3>
-            <h3 th:text="${perro.peso}"></h3>
-            <h3># Atenciones</h3>
-            <h3 th:text="${perro.numeroAtenciones}"></h3>
+            <h1 th:text="${perro.nombre}"></h1>
+            <h3 th:text="'ID: ' + ${perro.id}"> </h3>
+            <h3 th:text="'Raza: ' + ${perro.raza}"></h3>
+            <h3 th:text="'Edad: ' + ${perro.edad} + ' años'"></h3>
+            <h3 th:text="'Actividad: ' + ${perro.actividad}"></h3>
+            <h3 th:text="'Peso: ' + ${perro.peso} + ' kg'"></h3>
+            <h3 th:text="'# Atenciones: ' + ${perro.numeroAtenciones}"></h3>
         </div>
     </section>
 
