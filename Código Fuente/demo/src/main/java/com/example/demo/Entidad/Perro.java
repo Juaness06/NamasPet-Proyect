@@ -10,17 +10,36 @@ public class Perro {
     private boolean actividad;
     private double peso;
     private int numeroAtenciones;
+    private Cliente cliente;
 
-    public Perro(String imagen,String nombre, int id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
+   
+
+    public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso,
+            int numeroAtenciones, Cliente cliente) {
         this.imagen = imagen;
-        this.nombre = nombre;
         this.id = id;
+        this.nombre = nombre;
+        this.raza = raza;
+        this.edad = edad;
+        this.actividad = actividad;
+        this.peso = peso;
+        this.numeroAtenciones = numeroAtenciones;
+        this.cliente = cliente;
+    }
+    
+
+    public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso,
+            int numeroAtenciones) {
+        this.imagen = imagen;
+        this.id = id;
+        this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.actividad = actividad;
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
     }
+
 
     public String getImagen() {
         return imagen;
@@ -84,5 +103,13 @@ public class Perro {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
