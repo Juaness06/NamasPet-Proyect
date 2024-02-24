@@ -22,48 +22,71 @@ public class Cliente { ;
         this.contrasena = contrasena;
         this.listaPerros = listaPerros;
     }
+   
+    public Cliente(int cedula, String nombre, String usuario, String contrasena) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.Usuario = usuario;
+        this.contrasena = contrasena;
+    }
+
     public int getCedula() {
         return cedula;
     }
+
     public void setCedula(int cedula) {
         this.cedula = cedula;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getCorreo() {
         return correo;
     }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
     public int getCelular() {
         return celular;
     }
+
     public void setCelular(int celular) {
         this.celular = celular;
     }
+
     public String getUsuario() {
         return Usuario;
     }
+
     public void setUsuario(String usuario) {
         Usuario = usuario;
     }
+
     public String getContrasena() {
         return contrasena;
     }
+
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    public List<Perro> getListaPerros() {
+
+    public List<String> getListaPerros() {
         return listaPerros;
     }
-    public void setListaPerros(List<Perro> listaPerros) {
+
+    public void setListaPerros(List<String> listaPerros) {
         this.listaPerros = listaPerros;
     }
+
+   
     
 
 

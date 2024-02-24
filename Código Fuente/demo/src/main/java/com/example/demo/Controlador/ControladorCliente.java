@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
-import com.example.demo.Entidad.Perro;
-import com.example.demo.Servicio.ServicioPerro;
+import com.example.demo.Entidad.Cliente;
+import com.example.demo.Servicio.ClienteService;
 
 
 
@@ -21,70 +21,70 @@ import com.example.demo.Servicio.ServicioPerro;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@RequestMapping("/perro")
+@RequestMapping("/cliente")
 @Controller
-public class ControladorPerro {
+public class ControladorCliente {
 
     @Autowired
-    private ServicioPerro servicioPerro;
+    private ClienteService servicioCliente;
 
-    // http://localhost:8090/perro/all
+    // http://localhost:8090/cliente/all
     @GetMapping("/all")
     public String mostrarPerros(Model model) {
-        model.addAttribute("perros", servicioPerro.SearchAll());
+        model.addAttribute("Clientes", servicioCliente.SearchAll());
         return "ListaPerros";
     }
 
-    // http://localhost:8090/perro/find/1
+    // http://localhost:8090/cliente/find/1
     @GetMapping("/find/{id}")
     public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
 
-        model.addAttribute("perro", servicioPerro.SearchById(id));
-        return "MostrarPerro";
+        model.addAttribute("cliente", servicioCliente.SearchById(id));
+        return "MostrarPerro"; //nueva pagina granni
     }
 
-    // http://localhost:8090/perro/targeton
+    // http://localhost:8090/cliente/targeton
     @GetMapping("/targeton")
     public String TmostrarPerros(Model model) {
-        model.addAttribute("perros", servicioPerro.SearchAll());
-        return "MostrarPerros";
+        model.addAttribute("clientes", servicioCliente.SearchAll());
+        return "MostrarPerros"; //  nueva pagina de granni
     }
 
-    // http://localhost:8090/perro/index
+    // http://localhost:8090/cliente/index
     @GetMapping("/index")
     public String index() {
         return "LandingPage";	
     }
 
-    // http://localhost:8090/perro/add
+    // http://localhost:8090/cliente/add
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        Perro perro = new Perro("",0,"","",0,false,0.0,0);
-        model.addAttribute("perro", perro);
+        Cliente cliente = new Cliente(0,"","","");
+        model.addAttribute("cliente", cliente);
 
 
         return "AddPerro"; //esto se debe cambiar dependiendo como granni llame la pagina paa crear
     }
     
     @PostMapping("/agregar")
-    public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
+    public String AgregarPerro(@ModelAttribute("cliente") Cliente cliente) {
     
 
-        servicioPerro.Add(perro);
-        return "Redirect:/perro/all"; //mirar bien esto
+        servicioCliente.Add(cliente);
+        return "Redirect:/cliente/all"; //mirar bien esto
     }
     
     @GetMapping("/delete/{id}")
     public String BorrarPerro(@PathVariable("id") int id){ {
-        servicioPerro.DeleteByID(id);
-        return "Redirect:/perro/all";
+        servicioCliente.DeleteByID(id);
+        return "Redirect:/cliente/all"; // pagina Faltante
     }
     
     }
 
     @GetMapping("/update/{id}")
-    public String UpdatePerro(@PathVariable("id") int id, @ModelAttribute("perro") Perro perro) {
-        servicioPerro.Update(perro);
-        return "Redirect:/perro/all";
+    public String UpdatePerro(@PathVariable("id") int id, @ModelAttribute("cliente") Cliente cliente) {
+        servicioCliente.Update(cliente);
+        return "Redirect:/cliente/all"; // pagina faltante
     }
 }

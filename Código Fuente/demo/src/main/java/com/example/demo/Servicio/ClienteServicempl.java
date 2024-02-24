@@ -5,26 +5,26 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Entidad.Perro;
-import com.example.demo.Repositorio.RepositorioPerro;
+import com.example.demo.Entidad.Cliente;
+import com.example.demo.Repositorio.ReporsitorioCliente;
 
 @Service
-public class PerroServicempl implements ServicioPerro {
+public class ClienteServicempl implements ClienteService {
 
     @Autowired
-    RepositorioPerro repo;
+    ReporsitorioCliente repo;
 
     @Override
-    public Perro SearchById(int id) {
+    public Cliente SearchById(int id) {
         return repo.findById(id);
     }
 
     @Override
-    public Collection<Perro> SearchAll() {
+    public Collection<Cliente> SearchAll() {
         return repo.findAll();
     }
     @Override
-    public void Add(Perro p) {
+    public void Add(Cliente p) {
         // TODO Auto-generated method stub
         repo.Add(p);
     }
@@ -36,7 +36,7 @@ public class PerroServicempl implements ServicioPerro {
     }
 
     @Override
-    public void Update(Perro p) {
+    public void Update(Cliente p) {
         // TODO Auto-generated method stub
         repo.Update(p);
     }

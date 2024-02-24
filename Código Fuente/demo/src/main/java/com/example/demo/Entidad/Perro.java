@@ -14,7 +14,7 @@ public class Perro {
 
    
 
-    public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso,
+    public Perro(String imagen,String nombre, int id, String raza, int edad, boolean actividad, double peso,
             int numeroAtenciones, Cliente cliente) {
         this.imagen = imagen;
         this.id = id;
@@ -27,6 +27,8 @@ public class Perro {
         this.cliente = cliente;
     }
     
+    
+
 
     public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso,
             int numeroAtenciones) {
@@ -39,6 +41,8 @@ public class Perro {
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
     }
+
+
 
 
     public String getImagen() {
