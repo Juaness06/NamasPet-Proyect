@@ -53,20 +53,19 @@
     </header>
 
     <section id="sectionTitulo">
-        <h1 id="titulo">MASCOTAS</h1>
+        <h1 id="titulo" th:text="${'MASCOTAS DE ' + }"></h1> <!--Modificar aqui-->
     </section>
 
     <section class="sectionTarjetones">
         <div class="divTarjetones">
-            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}" >
+            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}" > <!--Modificar la parte de aca-->
                 <div class="card">
                     <div class="card-image-container">
-                        <img th:src="${perros.imagen}" alt="Perro"/>
+                        <img th:src="${perros.imagen}" alt="Perro"/> <!--Modificar aqui-->
                     </div>
-                    <p class="card-title" th:text="${perros.nombre}"></p>
-                    <p class="card-text" th:text="${'Dueñ@: ' + perros.id}"></p>
+                    <p class="card-title" th:text="${perros.nombre}"></p> <!--Modificar aqui-->
                 </div>
-            </a> <!--Hasta aqui-->
+            </a> 
         </div>
     </section>
     <footer>

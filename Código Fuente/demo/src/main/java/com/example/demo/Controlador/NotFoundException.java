@@ -1,6 +1,7 @@
 package com.example.demo.Controlador;
 
-public class NotFoundException extends RuntimeException{
+public class NotFoundException extends RuntimeException {
+
     private int id;
 
     public NotFoundException(int id){

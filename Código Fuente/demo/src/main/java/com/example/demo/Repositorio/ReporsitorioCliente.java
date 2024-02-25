@@ -14,10 +14,10 @@ public class ReporsitorioCliente {
     private Map<Integer, Cliente> data = new HashMap<>();
 
     public ReporsitorioCliente() {
-        data.put(1, new Cliente(1,"Jairo","jairo man","123"));
-        data.put(2, new Cliente(2,"Esteban","Grandala","222") );
-        data.put(3, new Cliente(3,"Santiago","Killercoolyeah","444"));
-        data.put(4, new Cliente(5,"Juana","Suaracost","555"));
+        data.put(1, new Cliente(1,"Jairo","jairo.man@gamilcom",32416391,"jairo.man","123"));
+        data.put(2, new Cliente(2,"Esteban","esteban.granada@gmail.com",35687654,"Grandala","222"));
+        data.put(3, new Cliente(3,"Santiago", "sanatigo.paez@gmail.com",32176545,"Killercoolyeah","444"));
+        data.put(4, new Cliente(4,"Juana","juana.suaracost@gmail.com",35687654,"Suaracost","555"));
 
     }
     public Cliente findById(int id) {

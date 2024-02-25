@@ -53,8 +53,7 @@ table {
   overflow: hidden;
 }
 
-td,
-th {
+td, th {
   border: 1px solid #64c27b;
 }
 
@@ -67,16 +66,15 @@ thead th:last-child {
 }
 
 thead th {
-  background-color: #171a4a; /* Color de fondo para las celdas del encabezado */
+  background-color: #171a4a;
 }
 
 tbody td {
-  background-color: #171a4a; /* Color de fondo para las celdas del cuerpo */
-}
+  background-color: #171a4a;
 
-td span {
-  display: inline-block;
-  max-width: 100%; /* El texto no excederá el ancho máximo de la celda */
-  max-height: 100%; /* El texto no excederá la altura de la celda */
-  font-size: 16px; /* Tamaño de fuente inicial */
+  td span {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }

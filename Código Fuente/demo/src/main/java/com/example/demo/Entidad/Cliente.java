@@ -3,29 +3,23 @@ package com.example.demo.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Cliente { ;
     private int cedula;
     private String nombre;
     private String correo;
-    private int celular;
+    private long celular;
     private String Usuario;
     private String contrasena;
     List<String> listaPerros =  new ArrayList<>();
 
     
-    public Cliente(int cedula, String nombre, String correo, int celular, String usuario, String contrasena, List<String> listaPerros) {
+    public Cliente(int cedula, String nombre,String correo, long celular, String usuario, String contrasena) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
-        Usuario = usuario;
-        this.contrasena = contrasena;
-        this.listaPerros = listaPerros;
-    }
-   
-    public Cliente(int cedula, String nombre, String usuario, String contrasena) {
-        this.cedula = cedula;
-        this.nombre = nombre;
         this.Usuario = usuario;
         this.contrasena = contrasena;
     }
@@ -54,11 +48,11 @@ public class Cliente { ;
         this.correo = correo;
     }
 
-    public int getCelular() {
+    public long getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 

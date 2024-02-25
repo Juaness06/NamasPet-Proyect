@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
-    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-MostrarPerros.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}">
 </head>
-
 
 <body>
     <header>
@@ -53,22 +52,49 @@
     </header>
 
     <section id="sectionTitulo">
-        <h1 id="titulo">MASCOTAS</h1>
+        <h1 id="titulo">REGISTRAR CLIENTE</h1>
     </section>
 
-    <section class="sectionTarjetones">
-        <div class="divTarjetones">
-            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}" >
-                <div class="card">
-                    <div class="card-image-container">
-                        <img th:src="${perros.imagen}" alt="Perro"/>
-                    </div>
-                    <p class="card-title" th:text="${perros.nombre}"></p>
-                    <p class="card-text" th:text="${'Dueñ@: ' + perros.id}"></p>
+    <section id="sectionForm">
+        <div id="divForm">
+            <form th:object="${cliente}" th:action="@{/cliente/agregar}" method="POST" >
+                <div>
+                    <label for="cedula">Cedula</label>
+                    <input type="text" th:field="*{cedula}" id="cedula">
                 </div>
-            </a> <!--Hasta aqui-->
+
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" th:field="*{nombre}" id="nombre">
+                </div>
+
+                <div>
+                    <label for="correo">Correo</label>
+                    <input type="email" th:field="*{correo}" id="correo">
+                </div>
+
+                <div>
+                    <label for="celular">Celular</label>
+                    <input type="number" th:field="*{celular}" id="celular">
+                </div>
+
+                <div>
+                    <label for="usuario">Usuario</label>
+                    <input type="text" th:field="*{Usuario}" id="Usuario">
+                </div>
+
+                <div>
+                    <label for="contrasena">Contraseña</label>
+                    <input type="text" th:field="*{contrasena}" id="contrasena">
+                </div>
+
+                <div id="btnRegistrar">
+                    <button type="submit">Registrar</button>
+                </div>
+            </form>
         </div>
     </section>
+
     <footer>
         <div class="custom-shape-divider-bottom-1707855607">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
@@ -97,13 +123,13 @@
                 </div>
             </div>
             <div id="Información">
-                <h2 class="textoFoterin">Información</h2>
+                <h2 class="textoFoterin">Informacion</h2>
                 <ul class="footerin">
                     <li class="textoFoterin">Telefono: +57 321 322 8515</li>
                     <li class="textoFoterin">ServicioAlCliente@NamasPet.com.co</li>
                     <li class="textoFoterin">Bogotá D.C., Colombia</li>
                 </ul>
-                <p id="terminos">© 2024 NamasPet. Todos los derechos reservados.</p>
+                <p id="terminos" class="textoFoterin">© 2024 NamasPet. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

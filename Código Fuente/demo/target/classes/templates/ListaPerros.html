@@ -59,14 +59,14 @@
             <table>
                 <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <th>RAZA</th>
-                    <th>EDAD</th>
-                    <th>ACTIVIDAD</th>
-                    <th>PESO</th>
-                    <th>IMAGEN</th>
-                    <th># ATENCIONES</th>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>RAZA</th>
+                        <th>EDAD</th>
+                        <th>ACTIVIDAD</th>
+                        <th>PESO</th>
+                        <th>IMAGEN</th>
+                        <th># ATENCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,10 +79,11 @@
                         <td th:text="${perros.peso}"></td>
                         <!--<td><span th:text="${perro.enfermedades}"></span></td> -->
                         <td>
-                            <img th:src="${perros.imagen}" alt="Imagen de la mascota" style="max-width:100%; height:auto;"/>
+                            <img th:src="${perros.imagen}" alt="Imagen de la mascota"
+                                style="max-width:100%; height:auto;" />
                         </td>
                         <!--<td th:text="${perro.drogas}"></td>-->
-                        <td th:text="${perros.numeroAtenciones}"></td> 
+                        <td th:text="${perros.numeroAtenciones}"></td>
                     </tr>
                 </tbody>
             </table>

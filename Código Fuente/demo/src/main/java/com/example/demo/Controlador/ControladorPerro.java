@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import com.example.demo.Entidad.Perro;
 import com.example.demo.Servicio.ServicioPerro;
 
-
-
-
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RequestMapping("/perro")
 @Controller
@@ -39,9 +34,19 @@ public class ControladorPerro {
     @GetMapping("/find/{id}")
     public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
 
+        Perro perro = servicioPerro.SearchById(id);
+
+        if(perro != null){
+            model.addAttribute("perro", servicioPerro.SearchById(id));
+        }
+        else{
+            throw new NotFoundException(id);
+        }
+
         model.addAttribute("perro", servicioPerro.SearchById(id));
         return "MostrarPerro";
     }
+
 
     // http://localhost:8090/perro/targeton
     @GetMapping("/targeton")
@@ -53,33 +58,32 @@ public class ControladorPerro {
     // http://localhost:8090/perro/index
     @GetMapping("/index")
     public String index() {
-        return "LandingPage";	
+        return "LandingPage";
     }
 
     // http://localhost:8090/perro/add
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        Perro perro = new Perro("",0,"","",0,false,0.0,0);
+        Perro perro = new Perro("", 0, "", "", 0, false, 0.0, 0);
         model.addAttribute("perro", perro);
 
-
-        return "AddPerro"; //esto se debe cambiar dependiendo como granni llame la pagina paa crear
+        return "RegistrarPerro"; 
     }
-    
+
     @PostMapping("/agregar")
     public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
-    
 
         servicioPerro.Add(perro);
-        return "Redirect:/perro/all"; //mirar bien esto
+        return "Redirect:/perro/all"; 
     }
-    
+
     @GetMapping("/delete/{id}")
-    public String BorrarPerro(@PathVariable("id") int id){ {
-        servicioPerro.DeleteByID(id);
-        return "Redirect:/perro/all";
-    }
-    
+    public String BorrarPerro(@PathVariable("id") int id) {
+        {
+            servicioPerro.DeleteByID(id);
+            return "Redirect:/perro/all";
+        }
+
     }
 
     @GetMapping("/update/{id}")

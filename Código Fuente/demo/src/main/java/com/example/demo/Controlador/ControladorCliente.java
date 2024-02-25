@@ -31,22 +31,22 @@ public class ControladorCliente {
     // http://localhost:8090/cliente/all
     @GetMapping("/all")
     public String mostrarPerros(Model model) {
-        model.addAttribute("Clientes", servicioCliente.SearchAll());
-        return "ListaPerros";
+        model.addAttribute("cliente", servicioCliente.SearchAll());
+        return "ListaClientes";
     }
 
     // http://localhost:8090/cliente/find/1
-    @GetMapping("/find/{id}")
-    public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
+    @GetMapping("/find/{cedula}")
+    public String mostrarinfoPerro(Model model, @PathVariable("cedula") int cedula) {
 
-        model.addAttribute("cliente", servicioCliente.SearchById(id));
+        model.addAttribute("cliente", servicioCliente.SearchById(cedula));
         return "MostrarPerro"; //nueva pagina granni
     }
 
     // http://localhost:8090/cliente/targeton
     @GetMapping("/targeton")
     public String TmostrarPerros(Model model) {
-        model.addAttribute("clientes", servicioCliente.SearchAll());
+        model.addAttribute("cliente", servicioCliente.SearchAll());
         return "MostrarPerros"; //  nueva pagina de granni
     }
 
@@ -59,32 +59,38 @@ public class ControladorCliente {
     // http://localhost:8090/cliente/add
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        Cliente cliente = new Cliente(0,"","","");
+        Cliente cliente = new Cliente(0,"","",0,"","");
         model.addAttribute("cliente", cliente);
 
 
-        return "AddPerro"; //esto se debe cambiar dependiendo como granni llame la pagina paa crear
+        return "RegistrarCliente"; //esto se debe cambiar dependiendo como granni llame la pagina paa crear
     }
     
     @PostMapping("/agregar")
     public String AgregarPerro(@ModelAttribute("cliente") Cliente cliente) {
     
-
         servicioCliente.Add(cliente);
-        return "Redirect:/cliente/all"; //mirar bien esto
+        return "redirect:/cliente/all"; //mirar bien esto
     }
     
-    @GetMapping("/delete/{id}")
-    public String BorrarPerro(@PathVariable("id") int id){ {
+
+    @GetMapping("/delete/{cedula}")
+    public String BorrarPerro(@PathVariable("cedula") int id){ {
         servicioCliente.DeleteByID(id);
-        return "Redirect:/cliente/all"; // pagina Faltante
+        return "redirect:/cliente/all"; 
     }
     
     }
 
-    @GetMapping("/update/{id}")
-    public String UpdatePerro(@PathVariable("id") int id, @ModelAttribute("cliente") Cliente cliente) {
+    @GetMapping("/edit/{cedula}")
+    public String modificarCliente(@PathVariable("cedula") int cedula, Model model) {
+        model.addAttribute("cliente", servicioCliente.SearchById(cedula));
+        return "ModificarCliente"; 
+    }
+
+    @PostMapping("/edit/{cedula}")
+    public String UpdateCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
         servicioCliente.Update(cliente);
-        return "Redirect:/cliente/all"; // pagina faltante
+        return "redirect:/cliente/all"; 
     }
 }

@@ -4,11 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NamasPet</title>
+    <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-MostrarPerros.css}" rel="stylesheet" />
-</head>
-
+    <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
 
 <body>
     <header>
@@ -52,23 +50,40 @@
         </div>
     </header>
 
-    <section id="sectionTitulo">
-        <h1 id="titulo">MASCOTAS</h1>
+    <section id="sectionTabla">
+        <div id="divTitulo">
+            <h1>CLIENTES</h1>
+        </div>
+        <div id="divTabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>CEDULA</th>
+                        <th>NOMBRE</th>
+                        <th>CORREO</th>
+                        <th>CELULAR</th>
+                        <th>USUARIO</th>
+                        <th>CONTRASEÑA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${cliente}">
+                        <td th:text="${cliente.cedula}"></td>
+                        <td th:text="${cliente.nombre}"></td>
+                        <td th:text="${cliente.correo}"></td>
+                        <td th:text="${cliente.celular}"></td>
+                        <td th:text="${cliente.usuario}"></td>
+                        <td th:text="${cliente.contrasena}"></td>
+                        <td>
+                            <a th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
+                            <a th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                     
     </section>
 
-    <section class="sectionTarjetones">
-        <div class="divTarjetones">
-            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}" >
-                <div class="card">
-                    <div class="card-image-container">
-                        <img th:src="${perros.imagen}" alt="Perro"/>
-                    </div>
-                    <p class="card-title" th:text="${perros.nombre}"></p>
-                    <p class="card-text" th:text="${'Dueñ@: ' + perros.id}"></p>
-                </div>
-            </a> <!--Hasta aqui-->
-        </div>
-    </section>
     <footer>
         <div class="custom-shape-divider-bottom-1707855607">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
