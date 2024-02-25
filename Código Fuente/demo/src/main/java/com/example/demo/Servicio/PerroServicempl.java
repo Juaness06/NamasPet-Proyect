@@ -1,6 +1,8 @@
 package com.example.demo.Servicio;
 
+import java.security.PublicKey;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,10 @@ public class PerroServicempl implements ServicioPerro {
     public void Update(Perro p) {
         // TODO Auto-generated method stub
         repo.Update(p);
+    }
+    @Override
+    public List<Perro> PerrosClientePerros(int cedula) {
+        return repo.PerrosClientePerros(cedula);
     }
     
 }

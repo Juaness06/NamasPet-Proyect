@@ -1,7 +1,9 @@
 package com.example.demo.Repositorio;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -50,4 +52,15 @@ public class RepositorioPerro {
     }
     
 
+    public List<Perro> PerrosClientePerros(int cedula) {
+        List<Perro> perros = new ArrayList<>();
+        for (Perro perro : data.values()) {
+            if (perro.getCliente().getCedula() == cedula) {
+                perros.add(perro);
+            }
+        }
+        return perros;
+    }
+
+   
 }

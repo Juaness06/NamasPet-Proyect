@@ -1,6 +1,7 @@
 package com.example.demo.Servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,6 @@ public interface ServicioPerro {
     public void DeleteByID(int id);
 
     public void Update(Perro p);
+
+    public List<Perro> PerrosClientePerros(int cedula);
 }

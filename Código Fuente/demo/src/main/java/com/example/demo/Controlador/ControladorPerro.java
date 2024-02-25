@@ -98,4 +98,12 @@ public class ControladorPerro {
         servicioPerro.Update(perro);
         return "redirect:/perro/all"; 
     }
+
+    @GetMapping("/search/{cedula}")
+    public String PerrosClientePerros(@PathVariable("cedula") int cedula, Model model) {
+        servicioPerro.PerrosClientePerros(cedula);
+        return "redirect:/perro/all"; //Cambiar ala nueva pantalla
+
+    }
+    
 }
