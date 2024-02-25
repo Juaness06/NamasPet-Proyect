@@ -34,6 +34,9 @@ public class Perro {
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
     }
+    public Perro(){
+
+    }
 
     public String getImagen() {
         return imagen;
