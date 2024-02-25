@@ -75,8 +75,8 @@
                         <td th:text="${cliente.usuario}"></td>
                         <td th:text="${cliente.contrasena}"></td>
                         <td>
-                            <a th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
-                            <a th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
+                            <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
+                            <a class="btnEli" th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
