@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
 import com.example.demo.Servicio.ServicioPerro;
 
@@ -74,21 +75,27 @@ public class ControladorPerro {
     public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
 
         servicioPerro.Add(perro);
-        return "Redirect:/perro/all"; 
+        return "redirect:/perro/all"; 
     }
 
     @GetMapping("/delete/{id}")
     public String BorrarPerro(@PathVariable("id") int id) {
         {
             servicioPerro.DeleteByID(id);
-            return "Redirect:/perro/all";
+            return "redirect:/perro/all";
         }
 
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/edit/{id}")
     public String UpdatePerro(@PathVariable("id") int id, @ModelAttribute("perro") Perro perro) {
         servicioPerro.Update(perro);
-        return "Redirect:/perro/all";
+        return "ModificarPerro";
+    }
+
+     @PostMapping("/edit/{id}")
+    public String UpdateCliente(@PathVariable("id") int cedula, @ModelAttribute("perro") Perro perro) {
+        servicioPerro.Update(perro);
+        return "redirect:/perro/all"; 
     }
 }

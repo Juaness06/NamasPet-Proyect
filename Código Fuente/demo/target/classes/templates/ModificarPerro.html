@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAMASPET</title>
-    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
+    <title>NamasPet</title>
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}">
 </head>
 
 <body>
@@ -51,47 +51,39 @@
         </div>
     </header>
 
-    <section id="sectionTabla">
-        <div id="divTitulo">
-            <h1>MASCOTAS</h1>
-        </div>
-        <div id="divTabla">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>RAZA</th>
-                        <th>EDAD</th>
-                        <th>ACTIVIDAD</th>
-                        <th>PESO</th>
-                        <th>IMAGEN</th>
-                        <th># ATENCIONES</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="perros : ${perros}"> <!--Revisar que los atributos tengan los mismo nombres-->
-                        <td th:text="${perros.id}"></td>
-                        <td th:text="${perros.nombre}"></td>
-                        <td th:text="${perros.raza}"></td>
-                        <td th:text="${perros.edad}"></td>
-                        <td th:text="${perros.actividad}"></td>
-                        <td th:text="${perros.peso}"></td>
-                        <!--<td><span th:text="${perro.enfermedades}"></span></td> -->
-                        <td>
-                            <img th:src="${perros.imagen}" alt="Imagen de la mascota"
-                                style="max-width:100%; height:auto;" />
-                        </td>
-                        <!--<td th:text="${perro.drogas}"></td>-->
-                        <td th:text="${perros.numeroAtenciones}"></td>
-                        <td>
-                            <a class="btnEdi" th:href="@{/perro/edit/{id}(id=${perros.id})}">Editar</a>
-                            <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
-                    
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <section id="sectionTitulo">
+        <h1 id="titulo">REGISTRAR CLIENTE</h1>
+    </section>
+
+    <section id="sectionForm">
+        <div id="divForm">
+            <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST" >
+                <div>
+                    <label for="id" class="form-label">ID</label>
+                    <input type="text" th:field="*{id}" id="id">
+                </div>
+                <div>
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" th:field="*{nombre}" id="nombre">
+                </div>
+                <div>
+                    <label for="raza" >Raza</label>
+                    <input type="text" th:field="*{raza}" id="raza">
+                </div>
+                <div>
+                    <label for="edad">Edad</label>
+                    <input type="number" th:field="*{edad}" id="edad">
+                </div>
+                <div>
+                    <label for="peso">Peso</label>
+                    <input type="number" th:field="*{peso}" id="peso">
+                </div>
+                <div id="btnModificar">
+                    <button type="submit">Modificar</button>
+                </div>
+
+
+            </form>
         </div>
     </section>
 
@@ -123,13 +115,13 @@
                 </div>
             </div>
             <div id="Información">
-                <h2 class="textoFoterin">Información</h2>
+                <h2 class="textoFoterin">Informacion</h2>
                 <ul class="footerin">
                     <li class="textoFoterin">Telefono: +57 321 322 8515</li>
                     <li class="textoFoterin">ServicioAlCliente@NamasPet.com.co</li>
                     <li class="textoFoterin">Bogotá D.C., Colombia</li>
                 </ul>
-                <p id="terminos">© 2024 NamasPet. Todos los derechos reservados.</p>
+                <p id="terminos" class="textoFoterin">© 2024 NamasPet. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

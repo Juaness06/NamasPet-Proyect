@@ -84,6 +84,11 @@
                         </td>
                         <!--<td th:text="${perro.drogas}"></td>-->
                         <td th:text="${perros.numeroAtenciones}"></td>
+                        <td>
+                            <a class="btnEdi" th:href="@{/perro/edit/{id}(id=${perros.id})}">Editar</a>
+                            <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
+                    
+                        </td>
                     </tr>
                 </tbody>
             </table>
