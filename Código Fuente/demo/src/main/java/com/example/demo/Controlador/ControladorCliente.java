@@ -91,6 +91,6 @@ public class ControladorCliente {
     @PostMapping("/edit/{cedula}")
     public String UpdateCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
         servicioCliente.Update(cliente);
-        return "redirect:/cliente/all"; 
+        return "MostrarPerrosCliente"; 
     }
 }

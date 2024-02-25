@@ -99,10 +99,12 @@ public class ControladorPerro {
         return "redirect:/perro/all"; 
     }
 
+
+    // http://localhost:8090/perro/search/1
     @GetMapping("/search/{cedula}")
     public String PerrosClientePerros(@PathVariable("cedula") int cedula, Model model) {
-        servicioPerro.PerrosClientePerros(cedula);
-        return "redirect:/perro/all"; //Cambiar ala nueva pantalla
+        model.addAttribute("perros", servicioPerro.PerrosClientePerros(cedula));
+        return "MostrarPerrosCliente"; 
 
     }
     

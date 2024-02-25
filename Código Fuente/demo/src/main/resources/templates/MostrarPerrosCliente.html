@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAMASPET</title>
-    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
-
+    <title>NamasPet</title>
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-MostrarPerros.css}">
+</head>
 <body>
     <header>
         <div id="contenedorLogoTitulo">
@@ -50,43 +49,11 @@
         </div>
     </header>
 
-    <section id="sectionTabla">
-        <div id="divTitulo">
-            <h1>CLIENTES</h1>
-        </div>
-        <div id="divTabla">
-            <table>
-                <thead>
-                    <tr>
-                        <th>CEDULA</th>
-                        <th>NOMBRE</th>
-                        <th>CORREO</th>
-                        <th>CELULAR</th>
-                        <th>USUARIO</th>
-                        <th>CONTRASEÑA</th>
-                        <th>MASCOTAS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="cliente : ${cliente}">
-                        <td th:text="${cliente.cedula}"></td>
-                        <td th:text="${cliente.nombre}"></td>
-                        <td th:text="${cliente.correo}"></td>
-                        <td th:text="${cliente.celular}"></td>
-                        <td th:text="${cliente.usuario}"></td>
-                        <td th:text="${cliente.contrasena}"></td>
-                        <td>
-                            <a th:href="@{/perro/search/{cedula}(cedula=${cliente.cedula})}">PERROS</a>
-                        </td>
-                        <td>
-                            <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
-                            <a class="btnEli" th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-                     
+    <section id="sectionTitulo">
+        <h1 id="titulo" th:text="'ID: ' + ${perros.cliente.nombre}"></h1>
     </section>
+
+
 
     <footer>
         <div class="custom-shape-divider-bottom-1707855607">
@@ -127,5 +94,4 @@
         </div>
     </footer>
 </body>
-
 </html>

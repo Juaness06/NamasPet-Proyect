@@ -64,6 +64,7 @@
                         <th>CELULAR</th>
                         <th>USUARIO</th>
                         <th>CONTRASEÑA</th>
+                        <th>MASCOTAS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +75,9 @@
                         <td th:text="${cliente.celular}"></td>
                         <td th:text="${cliente.usuario}"></td>
                         <td th:text="${cliente.contrasena}"></td>
+                        <td>
+                            <a th:href="@{/perro/search/{cedula}(cedula=${cliente.cedula})}">PERROS</a>
+                        </td>
                         <td>
                             <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
                             <a class="btnEli" th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
