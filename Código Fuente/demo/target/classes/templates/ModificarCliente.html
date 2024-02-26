@@ -52,12 +52,12 @@
     </header>
 
     <section id="sectionTitulo">
-        <h1 id="titulo">REGISTRAR CLIENTE</h1>
+        <h1 id="titulo">MODIFICAR CLIENTE</h1>
     </section>
 
     <section id="sectionForm">
         <div id="divForm">
-            <form th:object="${cliente}" th:action="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}" method="POST" >
+            <form th:object="${cliente}" th:action="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}" method="POST">
                 <div>
                     <label for="cedula">Cedula</label>
                     <input type="text" th:field="*{cedula}" id="cedula">
@@ -91,15 +91,6 @@
                 <div id="btnRegistrar">
                     <button type="submit">Modificar</button>
                 </div>
-
-                
-
-                
-
-                
-
-
-
             </form>
         </div>
     </section>

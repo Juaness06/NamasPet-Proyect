@@ -7,6 +7,7 @@
     <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -67,6 +68,7 @@
                         <th>PESO</th>
                         <th>IMAGEN</th>
                         <th># ATENCIONES</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +89,6 @@
                         <td>
                             <a class="btnEdi" th:href="@{/perro/edit/{id}(id=${perros.id})}">Editar</a>
                             <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
-                    
                         </td>
                     </tr>
                 </tbody>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
     <link rel="stylesheet" th:href="@{/CSS/styles-MostrarPerros.css}">
 </head>
+
 <body>
     <header>
         <div id="contenedorLogoTitulo">
@@ -50,10 +52,22 @@
     </header>
 
     <section id="sectionTitulo">
-        <h1 id="titulo" th:text="'ID: ' + ${perros.cliente.nombre}"></h1>
+        <h1 id="titulo" th:text="${'Perros del cliente: ' + perros[0].cliente.nombre}"></h1>
+        <!-- asi se hace para llamar el nombre del cliente -->
     </section>
 
-
+    <section class="sectionTarjetones">
+        <div class="divTarjetones">
+            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}">
+                <div class="card">
+                    <div class="card-image-container">
+                        <img th:src="${perros.imagen}" alt="Perro" />
+                    </div>
+                    <p class="card-title" th:text="${perros.nombre}"></p>
+                </div>
+            </a>
+        </div>
+    </section>
 
     <footer>
         <div class="custom-shape-divider-bottom-1707855607">
@@ -94,4 +108,5 @@
         </div>
     </footer>
 </body>
+
 </html>

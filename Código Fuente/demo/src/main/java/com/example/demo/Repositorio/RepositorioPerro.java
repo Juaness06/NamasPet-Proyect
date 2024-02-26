@@ -52,8 +52,8 @@ public class RepositorioPerro {
     }
     
 
-    public List<Perro> PerrosClientePerros(int cedula) {
-        List<Perro> perros = new ArrayList<>();
+    public Collection<Perro> PerrosClientePerros(int cedula) {
+        Collection<Perro> perros = new ArrayList<>();
         for (Perro perro : data.values()) {
             if (perro.getCliente().getCedula() == cedula) {
                 perros.add(perro);

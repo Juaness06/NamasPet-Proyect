@@ -57,7 +57,7 @@
 
     <section id="sectionForm">
         <div id="divForm">
-            <form th:object="${cliente}" th:action="@{/cliente/agregar}" method="POST" >
+            <form th:object="${cliente}" th:action="@{/cliente/agregar}" method="POST">
                 <div>
                     <label for="cedula">Cedula</label>
                     <input type="text" th:field="*{cedula}" id="cedula">

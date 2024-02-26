@@ -52,12 +52,12 @@
     </header>
 
     <section id="sectionTitulo">
-        <h1 id="titulo">REGISTRAR CLIENTE</h1>
+        <h1 id="titulo">MODIFICAR PERRO</h1>
     </section>
 
     <section id="sectionForm">
         <div id="divForm">
-            <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST" >
+            <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST">
                 <div>
                     <label for="id" class="form-label">ID</label>
                     <input type="text" th:field="*{id}" id="id">
@@ -67,7 +67,7 @@
                     <input type="text" th:field="*{nombre}" id="nombre">
                 </div>
                 <div>
-                    <label for="raza" >Raza</label>
+                    <label for="raza">Raza</label>
                     <input type="text" th:field="*{raza}" id="raza">
                 </div>
                 <div>
@@ -76,9 +76,14 @@
                 </div>
                 <div>
                     <label for="peso">Peso</label>
-                    <input type="number" th:field="*{peso}" id="peso">
+                    <input type="number" th:field="*{peso}" id="peso" step="0.01">
                 </div>
-                
+                <div>
+                    <label for="imagen">Imagen</label>
+                    <input type="url" th:field="*{imagen}" id="imagen">
+                </div>
+
+
                 <div id="btnModificar">
                     <button type="submit">Modificar</button>
                 </div>

@@ -58,15 +58,15 @@
 
     <section class="sectionTarjetones">
         <div class="divTarjetones">
-            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}" >
+            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}">
                 <div class="card">
                     <div class="card-image-container">
-                        <img th:src="${perros.imagen}" alt="Perro"/>
+                        <img th:src="${perros.imagen}" alt="Perro" />
                     </div>
                     <p class="card-title" th:text="${perros.nombre}"></p>
-                    <p class="card-text" th:text="${'Dueñ@: ' + perros.id}"></p>
+                    <p class="card-text" th:text="${'Dueñ@: ' + perros.cliente.nombre}"></p>
                 </div>
-            </a> <!--Hasta aqui-->
+            </a>
         </div>
     </section>
     <footer>

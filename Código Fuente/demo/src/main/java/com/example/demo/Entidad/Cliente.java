@@ -3,19 +3,17 @@ package com.example.demo.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class Cliente { ;
+public class Cliente {
+    
     private int cedula;
     private String nombre;
     private String correo;
     private long celular;
     private String Usuario;
     private String contrasena;
-    List<String> listaPerros =  new ArrayList<>();
+    List<String> listaPerros = new ArrayList<>();
 
-    
-    public Cliente(int cedula, String nombre,String correo, long celular, String usuario, String contrasena) {
+    public Cliente(int cedula, String nombre, String correo, long celular, String usuario, String contrasena) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
@@ -80,9 +78,4 @@ public class Cliente { ;
         this.listaPerros = listaPerros;
     }
 
-   
-    
-
-
-    
 }

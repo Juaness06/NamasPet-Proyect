@@ -23,6 +23,7 @@ public class ClienteServicempl implements ClienteService {
     public Collection<Cliente> SearchAll() {
         return repo.findAll();
     }
+
     @Override
     public void Add(Cliente p) {
         // TODO Auto-generated method stub
@@ -40,5 +41,5 @@ public class ClienteServicempl implements ClienteService {
         // TODO Auto-generated method stub
         repo.Update(p);
     }
-    
+
 }

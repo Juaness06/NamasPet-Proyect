@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Servicio.ClienteService;
 
-
-
-
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RequestMapping("/cliente")
 @Controller
@@ -40,57 +35,57 @@ public class ControladorCliente {
     public String mostrarinfoPerro(Model model, @PathVariable("cedula") int cedula) {
 
         model.addAttribute("cliente", servicioCliente.SearchById(cedula));
-        return "MostrarPerro"; //nueva pagina granni
+        return "MostrarPerro"; // nueva pagina granni
     }
 
     // http://localhost:8090/cliente/targeton
     @GetMapping("/targeton")
     public String TmostrarPerros(Model model) {
         model.addAttribute("cliente", servicioCliente.SearchAll());
-        return "MostrarPerros"; //  nueva pagina de granni
+        return "MostrarPerros"; // nueva pagina de granni
     }
 
     // http://localhost:8090/cliente/index
     @GetMapping("/index")
     public String index() {
-        return "LandingPage";	
+        return "LandingPage";
     }
 
     // http://localhost:8090/cliente/add
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        Cliente cliente = new Cliente(0,"","",0,"","");
+        Cliente cliente = new Cliente(0, "", "", 0, "", "");
         model.addAttribute("cliente", cliente);
 
-
-        return "RegistrarCliente"; //esto se debe cambiar dependiendo como granni llame la pagina paa crear
+        return "RegistrarCliente"; // esto se debe cambiar dependiendo como granni llame la pagina paa crear
     }
-    
+
     @PostMapping("/agregar")
     public String AgregarPerro(@ModelAttribute("cliente") Cliente cliente) {
-    
+
         servicioCliente.Add(cliente);
-        return "redirect:/cliente/all"; //mirar bien esto
+        return "redirect:/cliente/all"; // mirar bien esto
     }
-    
 
     @GetMapping("/delete/{cedula}")
-    public String BorrarPerro(@PathVariable("cedula") int id){ {
-        servicioCliente.DeleteByID(id);
-        return "redirect:/cliente/all"; 
-    }
-    
+    public String BorrarPerro(@PathVariable("cedula") int id) {
+        {
+            servicioCliente.DeleteByID(id);
+            return "redirect:/cliente/all";
+        }
+
     }
 
     @GetMapping("/edit/{cedula}")
     public String modificarCliente(@PathVariable("cedula") int cedula, Model model) {
         model.addAttribute("cliente", servicioCliente.SearchById(cedula));
-        return "ModificarCliente"; 
+        return "ModificarCliente";
     }
 
     @PostMapping("/edit/{cedula}")
     public String UpdateCliente(@PathVariable("cedula") int cedula, @ModelAttribute("cliente") Cliente cliente) {
         servicioCliente.Update(cliente);
-        return "MostrarPerrosCliente"; 
+        return "redirect:/cliente/all";
     }
+
 }

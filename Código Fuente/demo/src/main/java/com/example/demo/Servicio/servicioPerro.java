@@ -1,15 +1,13 @@
 package com.example.demo.Servicio;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidad.Perro;
 
-
 public interface ServicioPerro {
-    
+
     public Perro SearchById(int id);
 
     public Collection<Perro> SearchAll();
@@ -20,5 +18,5 @@ public interface ServicioPerro {
 
     public void Update(Perro p);
 
-    public List<Perro> PerrosClientePerros(int cedula);
+    public Collection<Perro> PerrosClientePerros(int cedula);
 }

@@ -25,6 +25,7 @@ public class PerroServicempl implements ServicioPerro {
     public Collection<Perro> SearchAll() {
         return repo.findAll();
     }
+
     @Override
     public void Add(Perro p) {
         // TODO Auto-generated method stub
@@ -42,9 +43,10 @@ public class PerroServicempl implements ServicioPerro {
         // TODO Auto-generated method stub
         repo.Update(p);
     }
+
     @Override
-    public List<Perro> PerrosClientePerros(int cedula) {
+    public Collection<Perro> PerrosClientePerros(int cedula) {
         return repo.PerrosClientePerros(cedula);
     }
-    
+
 }

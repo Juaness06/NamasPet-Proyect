@@ -7,8 +7,7 @@
     <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
-
-<body>
+    <link <body>
     <header>
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
@@ -65,6 +64,7 @@
                         <th>USUARIO</th>
                         <th>CONTRASEÑA</th>
                         <th>MASCOTAS</th>
+                        <th>ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,16 +76,18 @@
                         <td th:text="${cliente.usuario}"></td>
                         <td th:text="${cliente.contrasena}"></td>
                         <td>
-                            <a th:href="@{/perro/search/{cedula}(cedula=${cliente.cedula})}">PERROS</a>
+                            <a id="anchorPerros"
+                                th:href="@{/perro/search/{cedula}(cedula=${cliente.cedula})}">PERROS</a>
                         </td>
                         <td>
-                            <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">Editar</a>
-                            <a class="btnEli" th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">Eliminar</a>
+                            <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">EDITAR</a>
+                            <a class="btnEli"
+                                th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">ELIMINAR</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-                     
+
     </section>
 
     <footer>
@@ -126,6 +128,6 @@
             </div>
         </div>
     </footer>
-</body>
+    </body>
 
 </html>

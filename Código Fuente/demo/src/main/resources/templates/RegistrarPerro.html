@@ -71,7 +71,7 @@
                     <input type="text" th:field="*{nombre}" id="nombre">
                 </div>
                 <div>
-                    <label for="raza" >Raza</label>
+                    <label for="raza">Raza</label>
                     <input type="text" th:field="*{raza}" id="raza">
                 </div>
                 <div>
@@ -80,8 +80,8 @@
                 </div>
                 <div>
                     <label for="peso">Peso</label>
-                    <input type="number" th:field="*{peso}" id="peso">
-                </div>
+                    <input type="number" th:field="*{peso}" id="peso" step="0.01">
+                </div>                
                 <div>
                     <label for="imagen">Foto</label>
                     <input type="url" th:field="*{imagen}" id="imagen">

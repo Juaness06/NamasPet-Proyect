@@ -37,17 +37,15 @@ public class ControladorPerro {
 
         Perro perro = servicioPerro.SearchById(id);
 
-        if(perro != null){
+        if (perro != null) {
             model.addAttribute("perro", servicioPerro.SearchById(id));
-        }
-        else{
+        } else {
             throw new NotFoundException(id);
         }
 
         model.addAttribute("perro", servicioPerro.SearchById(id));
         return "MostrarPerro";
     }
-
 
     // http://localhost:8090/perro/targeton
     @GetMapping("/targeton")
@@ -68,14 +66,14 @@ public class ControladorPerro {
         Perro perro = new Perro("", 0, "", "", 0, false, 0.0, 0);
         model.addAttribute("perro", perro);
 
-        return "RegistrarPerro"; 
+        return "RegistrarPerro";
     }
 
     @PostMapping("/agregar")
     public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
 
         servicioPerro.Add(perro);
-        return "redirect:/perro/all"; 
+        return "redirect:/perro/all";
     }
 
     @GetMapping("/delete/{id}")
@@ -88,24 +86,28 @@ public class ControladorPerro {
     }
 
     @GetMapping("/edit/{id}")
-    public String UpdatePerro(@PathVariable("id") int id, @ModelAttribute("perro") Perro perro) {
-        servicioPerro.Update(perro);
-        return "ModificarPerro";
+    public String editarPerro(@PathVariable("id") int id, Model model) {
+        Perro perro = servicioPerro.SearchById(id);
+        if (perro != null) {
+            model.addAttribute("perro", perro);
+            return "ModificarPerro";
+        } else {
+            return "redirect:/perro/all";
+        }
     }
 
-     @PostMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     public String UpdateCliente(@PathVariable("id") int cedula, @ModelAttribute("perro") Perro perro) {
         servicioPerro.Update(perro);
-        return "redirect:/perro/all"; 
+        return "redirect:/perro/all";
     }
-
 
     // http://localhost:8090/perro/search/1
     @GetMapping("/search/{cedula}")
     public String PerrosClientePerros(@PathVariable("cedula") int cedula, Model model) {
         model.addAttribute("perros", servicioPerro.PerrosClientePerros(cedula));
-        return "MostrarPerrosCliente"; 
+        return "MostrarPerrosCliente";
 
     }
-    
+
 }
