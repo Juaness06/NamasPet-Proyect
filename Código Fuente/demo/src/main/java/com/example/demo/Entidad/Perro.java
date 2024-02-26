@@ -36,7 +36,6 @@ public class Perro {
     }
     
     public Perro(){
-
     }
 
     public String getImagen() {
