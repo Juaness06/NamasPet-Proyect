@@ -42,4 +42,9 @@ public class ClienteServicempl implements ClienteService {
         repo.Update(p);
     }
 
+    public Cliente Cuenta(String Usuario, String contrasena) {
+        // TODO Auto-generated method stub
+        return repo.Cuenta(Usuario, contrasena);
+    }
+
 }

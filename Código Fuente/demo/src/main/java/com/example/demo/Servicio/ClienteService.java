@@ -18,5 +18,7 @@ public interface ClienteService {
     public void DeleteByID(int id);
 
     public void Update(Cliente p);
+
+    public Cliente Cuenta(String Usuario, String contrasena);
     
 }

@@ -88,4 +88,8 @@ public class ControladorCliente {
         return "redirect:/cliente/all";
     }
 
+    // http://localhost:8090/cliente/Login
+    
+
+
 }

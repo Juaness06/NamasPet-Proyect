@@ -22,6 +22,10 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
+    public Cliente() {
+        //TODO Auto-generated constructor stub
+    }
+
     public int getCedula() {
         return cedula;
     }
