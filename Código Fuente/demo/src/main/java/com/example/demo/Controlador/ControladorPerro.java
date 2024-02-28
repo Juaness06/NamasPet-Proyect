@@ -55,9 +55,9 @@ public class ControladorPerro {
     }
 
     // http://localhost:8090/perro/index
-    @GetMapping("/index")
+    @GetMapping("")
     public String index() {
-        return "LandingPage";
+        return "index";
     }
 
     // http://localhost:8090/perro/add

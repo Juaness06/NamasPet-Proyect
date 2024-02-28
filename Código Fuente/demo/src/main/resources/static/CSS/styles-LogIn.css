@@ -207,3 +207,18 @@ body {
     bottom: 100%;
   }
 }
+
+#btnIngresar{
+  font-family: 'Macondo', cursive;
+  font-size: 900;
+  border-radius: 10px;
+  text-decoration: none;
+  border-radius: 1px solid #64c27b;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+#cedula{
+  font-family: 'Macondo', cursive;
+  font-size: 25px;
+}

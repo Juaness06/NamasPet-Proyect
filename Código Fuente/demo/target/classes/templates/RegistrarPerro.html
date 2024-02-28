@@ -22,7 +22,7 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a th:href="@{/perro/index}">Inicio</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
                         <ul class="menuVertical">
@@ -44,8 +44,13 @@
                         </ul>
                     </li>
                     <li><a href="Contacto.html">Contacto</a></li>
-                    <li id="btnItem"><button type="button" class="btnPerfil"><img class="btnPerfil"
-                                th:src="@{/Imagenes/logo_corrected.png}"></button></li>
+                    <li id="btnItem">
+                        <button class="btnPerfil">
+                            <a id="btnLogin" th:href="@{/login/cliente}">
+                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                            </a>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -57,15 +62,8 @@
     </section>
 
     <section id="sectionForm">
-        <div>
-            <img th:src="@{/Imagenes/PepeSinFondo.png}" alt="perrito" id="pepe">
-        </div>
         <div id="divForm">
             <form th:action="@{/perro/agregar}" method="POST" th:object="${perro}">
-                <div>
-                    <label for="id" class="form-label">ID</label>
-                    <input type="text" th:field="*{id}" id="id">
-                </div>
                 <div>
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" th:field="*{nombre}" id="nombre">
@@ -82,17 +80,13 @@
                     <label for="peso">Peso</label>
                     <input type="number" th:field="*{peso}" id="peso" step="0.01">
                 </div>                
-                <div>x
+                <div>
                     <label for="imagen">Foto</label>
                     <input type="url" th:field="*{imagen}" id="imagen">
                 </div>
                 <div id="btnRegistrar">
                     <button type="submit">Registrar</button>
                 </div>
-        </div>
-
-        <div>
-            <img th:src="@{/Imagenes/feli.png}" alt="perrito" id="feli">
         </div>
     </section>
 

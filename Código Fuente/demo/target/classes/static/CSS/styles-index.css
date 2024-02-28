@@ -196,6 +196,19 @@ main .contenedor {
   width: 50px;
 }
 
+#btnLogin{
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 20px;
+  padding-right: 0px;
+  width: fit-content;
+}
+
+#btnLogin:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .navbar {
   background: #2f2c79;
 }
@@ -474,4 +487,8 @@ main .contenedor {
 
 .textoFoterin {
   font-family: "Dosis", sans-serif;
+}
+
+#mapa{
+  margin-left: 200px;
 }

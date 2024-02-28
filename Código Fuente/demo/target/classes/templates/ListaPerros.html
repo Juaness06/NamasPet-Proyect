@@ -23,7 +23,7 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a th:href="@{/perro/index}">Inicio</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
                         <ul class="menuVertical">
@@ -45,8 +45,13 @@
                         </ul>
                     </li>
                     <li><a href="Contacto.html">Contacto</a></li>
-                    <li id="btnItem"><button type="button" class="btnPerfil"><img class="btnPerfil"
-                                th:src="@{/Imagenes/logo_corrected.png}"></button></li>
+                    <li id="btnItem">
+                        <button class="btnPerfil">
+                            <a id="btnLogin" th:href="@{/login/cliente}">
+                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                            </a>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -86,7 +91,7 @@
                         </td>
                         <!--<td th:text="${perro.drogas}"></td>-->
                         <td th:text="${perros.numeroAtenciones}"></td>
-                        <td>
+                        <td id="tdEliminarEditar">
                             <a class="btnEdi" th:href="@{/perro/edit/{id}(id=${perros.id})}">Editar</a>
                             <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
                         </td>
@@ -94,6 +99,10 @@
                 </tbody>
             </table>
         </div>
+    </section>
+
+    <section id="sectionBTNAgregar">
+        <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
     </section>
 
     <footer>

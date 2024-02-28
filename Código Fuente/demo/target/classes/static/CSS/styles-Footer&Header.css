@@ -93,6 +93,19 @@ nav {
   font-weight: bold;
 }
 
+#btnLogin{
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 20px;
+  padding-right: 0px;
+  width: fit-content;
+}
+
+#btnLogin:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .btnPerfil {
   border: none;
   outline: none;

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NamasPet</title>
   <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-  <link th:href="@{/CSS/styles-LandingPage.css}" rel="stylesheet" />
+  <link th:href="@{/CSS/styles-index.css}" rel="stylesheet" />
 
 </head>
 
@@ -23,7 +23,7 @@
     <div id="contenedorMenuDesplegable">
       <nav class="navbar">
         <ul class="menuHorizontal">
-          <li><a th:href="@{/perro/index}">Inicio</a></li>
+          <li><a th:href="@{/}">Inicio</a></li>
           <li>
             <a href="Servicios.html">Tratamientos</a>
             <ul class="menuVertical">
@@ -47,7 +47,9 @@
           <li><a href="Contacto.html">Contacto</a></li>
           <li id="btnItem">
             <button class="btnPerfil">
-              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+              <a id="btnLogin" th:href="@{/login/cliente}">
+                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+              </a>
             </button>
           </li>
         </ul>
@@ -143,10 +145,11 @@
               con todos los métodos de pago : efectivo, datafono, pagos online
               y lo más importante con muy buenos precios.
             </p>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.807015171248!2d-74.06723942603459!3d4.628492842281408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a8193f1c9f%3A0xf93431640f134c07!2sPontificia%20Universidad%20Javeriana!5e0!3m2!1ses-419!2sco!4v1707931908629!5m2!1ses-419!2sco"
-              width="600" height="650" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe id="mapa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.807015171248!2d-74.06723942603459!3d4.628492842281408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a8193f1c9f%3A0xf93431640f134c07!2sPontificia%20Universidad%20Javeriana!5e0!3m2!1ses-419!2sco!4v1707931908629!5m2!1ses-419!2sco"
+                width="600" height="650" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             <img th:src="@{/Imagenes/perro3.png}" alt="" height="500" width="500">
           </div>
         </div>

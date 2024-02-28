@@ -22,7 +22,7 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a th:href="@{/perro/index}">Inicio</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
                         <ul class="menuVertical">
@@ -44,8 +44,13 @@
                         </ul>
                     </li>
                     <li><a href="Contacto.html">Contacto</a></li>
-                    <li id="btnItem"><button type="button" class="btnPerfil"><img class="btnPerfil"
-                                th:src="@{/Imagenes/logo_corrected.png}"></button></li>
+                    <li id="btnItem">
+                        <button class="btnPerfil">
+                            <a id="btnLogin" th:href="@{/login/cliente}">
+                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                            </a>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -58,10 +63,6 @@
     <section id="sectionForm">
         <div id="divForm">
             <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST">
-                <div>
-                    <label for="id" class="form-label">ID</label>
-                    <input type="text" th:field="*{id}" id="id">
-                </div>
                 <div>
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" th:field="*{nombre}" id="nombre">
