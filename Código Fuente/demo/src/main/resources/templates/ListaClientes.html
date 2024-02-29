@@ -41,7 +41,7 @@
                             <li><a href="Nosotros.html">Mision</a></li>
                         </ul>
                     </li>
-                    <li><a href="Contacto.html">Contacto</a></li>
+                     <li><a th:href="@{/cliente/all}">Clientes</a></li>
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
@@ -82,7 +82,7 @@
                         <td>******</td>
                         <td>
                             <a id="anchorPerros"
-                                th:href="@{/cliente/{cedula}/mascotas(cedula=${cliente.cedula})}">PERROS</a>
+                                th:href="@{/perro/search/{cedula}(cedula=${cliente.cedula})}">PERROS</a>
                         </td>
                         <td>
                             <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">EDITAR</a>
@@ -90,13 +90,21 @@
                                 th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">ELIMINAR</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio">
+                            <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-    </section>
-
-    <section id="sectionBTNAgregar">
-        <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button>
     </section>
 
     <footer>

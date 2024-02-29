@@ -157,7 +157,7 @@ td span {
 }
 
 #anchorPerros:hover {
-  font-size: 25px;
+  font-size: 23px;
   text-decoration: none;
 }
 
@@ -168,53 +168,21 @@ td span {
 
 /** ============ btn agregar =========== */
 
-#sectionBTNAgregar {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-#sectionBTNAgregar a {
-  font-family: "Patua One", sans-serif;
-  color: yellow;
-  text-decoration: none;
-}
-
-#divBTNAgregar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#divBTNAgregar {
-  text-decoration: none;
-  background-color: #171a4a;
-  margin-right: 95px;
-  height: 100px;
-  width: 140px;
-}
-
 #btnAgregar {
-  position: relative;
+  position:static;
   font-family: "Patua One", sans-serif;
   text-decoration: none;
   background-color: #171a4a;
   color: white;
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0.5px;
-  height: 100px;
+  height: 110px;
   width: 150px;
-  margin-right: 88px;
   border: 1px solid #64c27b;
   color: yellowgreen;
   top: 0px;
   border-bottom-right-radius: 10px;
 }
-
-#btnagregar::hover {
-  font-size: 20px;
-  text-decoration: none;
-}
-
 
 #btnAgregar::after {
   content: "";
@@ -228,13 +196,22 @@ td span {
 }
 
 #btnAgregar:hover {
-  font-size: 25px;
+  font-size: 23px;
   text-decoration: none;
 }
 
 #btnAgregar:hover::after {
   width: 100%;
   text-decoration: none;
+}
+
+.tdVacio{
+  padding-left: 0px;
+  padding-top: 0px;
+  background-color: transparent;
+  color: transparent;
+  border-radius: 0px transparent transparent transparent;
+  border-style: none;
 }
 
 

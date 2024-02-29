@@ -44,7 +44,7 @@
                             <li><a href="Nosotros.html">Mision</a></li>
                         </ul>
                     </li>
-                    <li><a href="Contacto.html">Contacto</a></li>
+                    <li><a th:href="@{/cliente/all}">Cliente</a></li>
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
@@ -96,13 +96,22 @@
                             <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio"></td>
+                        <td class="tdVacio">
+                            <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-    </section>
-
-    <section id="sectionBTNAgregar">
-        <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
     </section>
 
     <footer>
