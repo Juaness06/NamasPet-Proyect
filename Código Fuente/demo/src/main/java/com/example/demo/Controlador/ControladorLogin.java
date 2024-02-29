@@ -28,13 +28,12 @@ public class ControladorLogin {
 
     @PostMapping("/cliente")
     public String Login(
-            @RequestParam("Usuario") String Usuario,
-            @RequestParam("Contrasena") String contrasena) {
-        Cliente a = clienteService.Cuenta(Usuario, contrasena);
+            @RequestParam("cedula") int cedula) {
+        Cliente a = clienteService.Cuenta(cedula);
         if (a != null) {
-            return "redirect:/perro/search/" + a.getCedula();
+            return "redirect:/cliente/" + a.getCedula()+"/mascotas";
         } else {
-            throw new NotFoundException(Usuario, contrasena);   
+            throw new NotFoundException(cedula);   
         }
     }
 

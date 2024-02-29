@@ -19,6 +19,6 @@ public interface ClienteService {
 
     public void Update(Cliente p);
 
-    public Cliente Cuenta(String Usuario, String contrasena);
+    public Cliente Cuenta(int cedula);
     
 }

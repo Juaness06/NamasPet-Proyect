@@ -23,7 +23,13 @@ public class Perro {
         this.numeroAtenciones = numeroAtenciones;
         this.cliente = cliente;
     }
-
+    public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) {
+        this.imagen = imagen;
+        this.nombre = nombre;
+        this.raza = raza;
+        this.edad = edad;
+        this.peso = peso;
+    }
     public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
         this.id = id;

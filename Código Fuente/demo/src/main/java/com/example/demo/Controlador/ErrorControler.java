@@ -18,8 +18,7 @@ public class ErrorControler {
 
     public String error2(Model model, NotFoundException ex) {
         
-        model.addAttribute("user", ex.getUsuario());
-        model.addAttribute("contrasena", ex.getContrasena());
+        model.addAttribute("cedula", ex.getCedula());
         return ("ErrorPage");
     }
 

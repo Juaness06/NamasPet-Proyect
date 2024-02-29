@@ -103,11 +103,5 @@ public class ControladorPerro {
     }
 
     // http://localhost:8090/perro/search/1
-    @GetMapping("/search/{cedula}")
-    public String PerrosClientePerros(@PathVariable("cedula") int cedula, Model model) {
-        model.addAttribute("perros", servicioPerro.PerrosClientePerros(cedula));
-        return "MostrarPerrosCliente";
-
-    }
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Servicio.ClienteService;
+import com.example.demo.Servicio.ServicioPerro;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -22,6 +23,8 @@ public class ControladorCliente {
 
     @Autowired
     private ClienteService servicioCliente;
+    @Autowired
+    private ServicioPerro servicioPerro;
 
     // http://localhost:8090/cliente/all
     @GetMapping("/all")
@@ -87,7 +90,13 @@ public class ControladorCliente {
         servicioCliente.Update(cliente);
         return "redirect:/cliente/all";
     }
+    @GetMapping("/{cedula}/mascotas")
+    public String PerrosClientePerros(@PathVariable("cedula") int cedula, Model model) {
+        model.addAttribute("cliente", servicioCliente.SearchById(cedula));
+        model.addAttribute("perros", servicioPerro.PerrosClientePerros(cedula));
+        return "MostrarPerrosCliente";
 
+    }
     // http://localhost:8090/cliente/Login
     
 

@@ -43,10 +43,10 @@ public class ReporsitorioCliente {
         data.put(p.getCedula(), p);
     }
 
-    public Cliente Cuenta(String Usuario, String contrasena) {
+    public Cliente Cuenta(int cedula) {
         // TODO Auto-generated method stu
         for (Cliente cliente : data.values()) {
-            if (cliente.getUsuario().equals(Usuario) && cliente.getContrasena().equals(contrasena) == true) {
+            if (cliente.getCedula() == cedula) {
                 return cliente;
             }
         }
