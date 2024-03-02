@@ -97,6 +97,10 @@ public class ControladorCliente {
         servicioCliente.Update(cliente);
         return "redirect:/cliente/all";
     }
+
+
+
+    
     @GetMapping("/{cedula}/mascotas")
 public String PerrosClientePerros(@PathVariable("cedula") long cedula, Model model) {
     Cliente cliente = servicioCliente.SearchById(cedula);
@@ -108,13 +112,18 @@ public String PerrosClientePerros(@PathVariable("cedula") long cedula, Model mod
     return "MostrarPerrosCliente";
 }
 
+
     // http://localhost:8090/cliente/Login
     
+
+
+    /*
  @GetMapping("/cliente/{cedula}/perros")
     public String mostrarPerrosDelCliente(@PathVariable("cedula") long cedula, Model model) {
         Collection<Perro> perros = servicioCliente.PerrosClientePerros(cedula);
         model.addAttribute("perros", perros);
         return "lista-perros"; // Nombre de la plantilla HTML que mostrará los perros
     }
+    */
 
 }

@@ -12,6 +12,7 @@ import com.example.demo.Entidad.Perro;
 
 @Repository
 public interface RepositorioPerro extends JpaRepository<Perro, Long > {
+    
     List<Perro> findByClienteCedula(long cedula);
    
 }

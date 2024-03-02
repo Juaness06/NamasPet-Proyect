@@ -51,6 +51,7 @@ public class ClienteServicempl implements ClienteService {
     }
 
 
+    
     @Override
     public Collection<Perro> PerrosClientePerros(long cedula) {
         Cliente cliente = repo.findByCedula(cedula);
@@ -60,6 +61,7 @@ public class ClienteServicempl implements ClienteService {
             return new ArrayList<>();
         }
     }    
+    
 
 
 }

@@ -15,8 +15,11 @@ public class Perro {
     @GeneratedValue
     private long id;
 
-    @Column(name = "NAME")
+
+    @Column(name = "imagen", length = 512)
     private String imagen;
+
+    @Column(name = "NAME")
     private String nombre;
     private String raza;
     private int edad;
