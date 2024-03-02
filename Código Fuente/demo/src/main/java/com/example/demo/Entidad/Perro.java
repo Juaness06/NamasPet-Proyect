@@ -1,18 +1,33 @@
 package com.example.demo.Entidad;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "perro")
 public class Perro {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(name = "NAME")
     private String imagen;
-    private int id;
     private String nombre;
     private String raza;
     private int edad;
     private boolean actividad;
     private double peso;
     private int numeroAtenciones;
+
+    @ManyToOne
     private Cliente cliente;
 
-    public Perro(String imagen, String nombre, int id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) {
+    public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
@@ -21,7 +36,6 @@ public class Perro {
         this.actividad = actividad;
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
-        this.cliente = cliente;
     }
     public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) {
         this.imagen = imagen;
@@ -30,7 +44,7 @@ public class Perro {
         this.edad = edad;
         this.peso = peso;
     }
-    public Perro(String imagen, int id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
+    public Perro(String imagen, long id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
@@ -52,11 +66,11 @@ public class Perro {
         this.imagen = imagen;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

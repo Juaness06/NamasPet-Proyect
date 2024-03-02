@@ -3,18 +3,41 @@ package com.example.demo.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "cliente")
 public class Cliente {
-    
-    private int cedula;
+
+
+    @Id
+    @GeneratedValue
+    private long cedula;
+
+    @Column(name = "NAME")
     private String nombre;
     private String correo;
     private long celular;
     private String Usuario;
     private String contrasena;
-    List<String> listaPerros = new ArrayList<>();
 
-    public Cliente(int cedula, String nombre, String correo, long celular, String usuario, String contrasena) {
+    @OneToMany(mappedBy = "cliente")
+    private List<Perro> listaPerros = new ArrayList<>();
+
+    public Cliente(long cedula, String nombre, String correo, long celular, String usuario, String contrasena) {
         this.cedula = cedula;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.celular = celular;
+        this.Usuario = usuario;
+        this.contrasena = contrasena;
+    }
+
+    public Cliente( String nombre, String correo, long celular, String usuario, String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
@@ -26,11 +49,11 @@ public class Cliente {
         //TODO Auto-generated constructor stub
     }
 
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
 
@@ -74,12 +97,14 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public List<String> getListaPerros() {
+    public List<Perro> getListaPerros() {
         return listaPerros;
     }
 
-    public void setListaPerros(List<String> listaPerros) {
+    public void setListaPerros(List<Perro> listaPerros) {
         this.listaPerros = listaPerros;
     }
+
+
 
 }

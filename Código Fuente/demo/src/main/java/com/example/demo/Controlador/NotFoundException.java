@@ -2,25 +2,25 @@ package com.example.demo.Controlador;
 
 public class NotFoundException extends RuntimeException {
 
-    private int id;
-    private int cedula;
+    private long id;
+    private long cedula;
 
-    public NotFoundException(int id){
-        this.id = id;
+    public NotFoundException(long cedula2){
+        this.id = cedula2;
     }
 
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
-    public int getCedula() {
+    public long getCedula() {
         return cedula;
     }
-    public void setCedula(int cedula) {
+    public void setCedula(long cedula) {
         this.cedula = cedula;
     }
    

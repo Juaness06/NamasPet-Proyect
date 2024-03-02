@@ -26,9 +26,11 @@ public class ControladorLogin {
         return "LogIn";
     }
 
+
+
     @PostMapping("/cliente")
     public String Login(
-            @RequestParam("cedula") int cedula) {
+            @RequestParam("cedula") long cedula) {
         Cliente a = clienteService.Cuenta(cedula);
         if (a != null) {
             return "redirect:/cliente/" + a.getCedula()+"/mascotas";

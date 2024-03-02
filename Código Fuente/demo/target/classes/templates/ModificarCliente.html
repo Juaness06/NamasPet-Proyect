@@ -64,11 +64,6 @@
         <div id="divForm">
             <form th:object="${cliente}" th:action="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}" method="POST">
                 <div>
-                    <label for="cedula">Cedula</label>
-                    <input type="text" th:field="*{cedula}" id="cedula">
-                </div>
-
-                <div>
                     <label for="nombre">Nombre</label>
                     <input type="text" th:field="*{nombre}" id="nombre">
                 </div>

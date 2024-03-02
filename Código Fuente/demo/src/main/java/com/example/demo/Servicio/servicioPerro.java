@@ -8,15 +8,15 @@ import com.example.demo.Entidad.Perro;
 
 public interface ServicioPerro {
 
-    public Perro SearchById(int id);
+    public Perro SearchById(long id);
 
     public Collection<Perro> SearchAll();
 
     public void Add(Perro p);
 
-    public void DeleteByID(int id);
+    public void DeleteByID(long id);
 
     public void Update(Perro p);
 
-    public Collection<Perro> PerrosClientePerros(int cedula);
+   // public Collection<Perro> PerrosClientePerros(long cedula);
 }
