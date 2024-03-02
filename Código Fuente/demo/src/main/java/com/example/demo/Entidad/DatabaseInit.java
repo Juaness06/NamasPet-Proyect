@@ -24,7 +24,7 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-            // Generar y guardar 50 clientes con detalles más realistas
+            
             String[] nombresClientes = {"Ana", "Beatriz", "Carlos", "David", "Elena", "Fernando", "Gabriela", "Héctor", "Irene", "Jorge","Alejandro", "Bruno", "Daniel", "Eduardo", "Francisco",
             "Guillermo", "Hugo", "Íñigo", "Joaquín", "Leonardo",
             "Manuel", "Nicolás", "Óscar", "Pablo", "Quentin",
@@ -60,7 +60,7 @@ public class DatabaseInit implements ApplicationRunner {
                 repo.save(cliente);
             }
         
-            // Generar y guardar 50 perros con detalles más realistas
+           
             String[] nombresPerros = {
                 "Max", "Bella", "Charlie", "Luna", "Rocky", "Molly", "Toby", "Lucy", "Coco", "Bailey",
                 "Daisy", "Oliver", "Sadie", "Maggie", "Buddy", "Oscar", "Lola", "Winston", "Ruby", "Bear",
@@ -86,7 +86,6 @@ public class DatabaseInit implements ApplicationRunner {
                 repo2.save(perro);
             }
         
-            // Asociar todos los perros al primer cliente como ejemplo
             Cliente asociar = repo.findById(1L).orElse(null);
             if (asociar != null) {
                 for (Perro perro : repo2.findAll()) {
