@@ -73,8 +73,19 @@ public class DatabaseInit implements ApplicationRunner {
         String[] razas = { "Labrador", "Bulldog", "Beagle", "Poodle", "Boxer", "Dálmata", "Pastor Alemán",
                 "Golden Retriever", "Husky Siberiano", "Chihuahua" };
 
+        String[] imagenes = {"https://labradoresdeabantueso.com/wp-content/uploads/2023/09/Foto-Labrador-1-Guia-min.jpg",
+                             "https://www.elespectador.com/resizer/9wg8wmcFdXfCJjTdEiLaBGlYNyI=/910x606/filters:quality(70):format(jpeg)/cloudfront-us-east-1.images.arcpublishing.com/elespectador/B2XZEEBCNFFBBNXJSFH3TO2GBI.jpg",
+                             "https://hips.hearstapps.com/hmg-prod/images/beagle-running-on-field-royalty-free-image-1619098658.?crop=1.00xw:0.666xh;0,0.334xh&resize=980:*",
+                             "https://heraldodemexico.com.mx/wp-content/uploads/2020/06/caniche-1-1-1200x829.jpg",
+                             "https://t2.ea.ltmcdn.com/es/posts/4/3/2/como_educar_un_perro_boxer_20234_600.jpg",
+                             "https://www.purina.es/sites/default/files/2024-02/sitesdefaultfilesstylessquare_medium_440x440public2022-07Dalmatian.jpg?itok=nG-oiSzU",
+                             "https://www.aon.es/personales/seguro-perro-gato/wp-content/uploads/sites/2/2021/06/pastor-aleman-3.jpg",
+                             "https://www.zooplus.es/magazine/wp-content/uploads/2019/04/golden-retriever-dog-breed-1-768x546.jpg",
+                             "https://www.hogarmania.com/archivos/202303/husky-siberiano-416x236x80xX-1.jpg",
+                             "https://estaticos-cdn.prensaiberica.es/clip/59ca56ec-1332-4c33-a2eb-6ef863b65a56_alta-libre-aspect-ratio_default_0.jpg"};
+
         for (int i = 1; i <= 50; i++) {
-            String urlImagen = "URL de imagen genérica aquí";
+            String urlImagen = imagenes[i % imagenes.length];
             String nombre = nombresPerros[i % nombresPerros.length];
             int id = i;
             String raza = razas[i % razas.length];
