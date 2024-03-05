@@ -8,8 +8,9 @@
   margin-top: 50px;
 }
 
+
 #space{
-  width: 440px;
+  width: 360px;
 }
 
 #divTitulo {
@@ -22,14 +23,12 @@
 }
 
 #btnAgregar{
-  margin-left: 265px;
+  margin-left: 230px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   margin-bottom: 10px;
 }
-
-/* ============ tabla =========== */
 
 /* ============ tabla =========== */
 #divTabla::-webkit-scrollbar {
@@ -53,9 +52,9 @@
 
 #divTabla{
   border-radius: 10px;
-  max-height: 505px; 
+  max-height: 580px; 
   overflow-y:scroll;
-  width: 1150px;
+  width: 1000px;
   display: block;
 }
 

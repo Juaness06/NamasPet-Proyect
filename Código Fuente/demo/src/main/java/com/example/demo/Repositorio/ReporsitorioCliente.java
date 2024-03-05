@@ -16,9 +16,5 @@ public interface ReporsitorioCliente extends JpaRepository<Cliente, Long> {
 
        Cliente findByCedula(long cedula);
 
-      
        
-    
-
-    
 } 

@@ -28,25 +28,26 @@ public class ClienteServicempl implements ClienteService {
 
     @Override
     public void Add(Cliente p) {
-        // TODO Auto-generated method stub
+        
         repo.save(p);
     }
 
 
     @Override
     public void Update(Cliente p) {
-        // TODO Auto-generated method stub
+        
         repo.save(p);
     }
 
     @Override
     public void deleteById(Long id) {
+        
         repo.deleteById(id);
     }
 
     @Override
     public Cliente Cuenta(Long cedula) {
-        // TODO Auto-generated method stub
+        
         return repo.findByCedula(cedula);
     }
 

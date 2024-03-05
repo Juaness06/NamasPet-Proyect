@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
+    <link th:href="@{/CSS/styles-ListaClientes.css}" rel="stylesheet" />
     <body>
     <header>
         <div id="contenedorLogoTitulo">
@@ -55,8 +55,16 @@
     </header>
 
     <section id="sectionTabla">
+
         <div id="divTitulo">
-            <h1>CLIENTES</h1>
+            <div id="space">
+            </div>
+            <div>
+                <h1>CLIENTES</h1>
+            </div>
+            <div>
+                <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button>
+            </div>
         </div>
         <div id="divTabla">
             <table>
@@ -67,7 +75,6 @@
                         <th>CORREO</th>
                         <th>CELULAR</th>
                         <th>USUARIO</th>
-                        <th>CONTRASEÑA</th>
                         <th>MASCOTAS</th>
                         <th>ACCIONES</th>
                     </tr>
@@ -79,7 +86,6 @@
                         <td th:text="${cliente.correo}"></td>
                         <td th:text="${cliente.celular}"></td>
                         <td th:text="${cliente.usuario}"></td>
-                        <td>******</td>
                         <td>
                             <a id="anchorPerros"
                                 th:href="@{/cliente/{cedula}/mascotas(cedula=${cliente.cedula})}">PERROS</a>
@@ -88,18 +94,6 @@
                             <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">EDITAR</a>
                             <a class="btnEli"
                                 th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">ELIMINAR</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio">
-                            <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button>
                         </td>
                     </tr>
                 </tbody>

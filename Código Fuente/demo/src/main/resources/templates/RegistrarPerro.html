@@ -84,6 +84,10 @@
                     <label for="imagen">Foto</label>
                     <input type="url" th:field="*{imagen}" id="imagen">
                 </div>
+                <div>
+                    <label for="dueno">Cedula Del Dueñ@</label>
+                    <input type="number" th:field="*{cliente.cedula}" id="dueno">
+                </div>
                 <div id="btnRegistrar">
                     <button type="submit">Registrar</button>
                 </div>

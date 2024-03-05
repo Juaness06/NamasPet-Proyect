@@ -462,6 +462,7 @@ main .contenedor {
 }
 
 /* *  ============ custom shape footer =========== */
+
 .custom-shape-divider-bottom-1707855607 {
   position: relative;
   left: 0;
@@ -490,5 +491,25 @@ main .contenedor {
 }
 
 #mapa{
-  margin-left: 200px;
+  margin-left: 20px;
+}
+
+#textoConMapa{
+  display: flex;
+  height: 400px;
+  margin-bottom: 100px;
+}
+
+#contenedorPerritoFooter {
+  margin-top: 50px;
+  position: relative;
+  z-index: 2; 
+}
+
+#perritoFooter {
+  position: absolute;
+  bottom: -0px; 
+  left: 15%;
+  transform: translateY(70%);
+  z-index: 3; 
 }

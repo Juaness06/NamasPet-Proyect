@@ -59,7 +59,13 @@
 
     <section id="sectionTabla">
         <div id="divTitulo">
-            <h1>MASCOTAS</h1>
+            <div id="space"></div>
+            <div>
+                <h1>MASCOTAS</h1>
+            </div>
+            <div id="divBtn">
+                <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
+            </div>
         </div>
         <div id="divTabla">
             <table>
@@ -94,19 +100,6 @@
                         <td id="tdEliminarEditar">
                             <a class="btnEdi" th:href="@{/perro/edit/{id}(id=${perros.id})}">Editar</a>
                             <a class="btnEli" th:href="@{/perro/delete/{id}(id=${perros.id})}">Eliminar</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio"></td>
-                        <td class="tdVacio">
-                            <button id="btnAgregar" onclick="location.href='/perro/add'">Agregar</button>
                         </td>
                     </tr>
                 </tbody>

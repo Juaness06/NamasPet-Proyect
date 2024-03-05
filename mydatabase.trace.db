@@ -871,3 +871,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/USUARIO
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 67 more
+2024-03-04 10:14:52.563322-05:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]CLIENTE_CEDULA PERRO"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
+CLIENTE_CEDULA PERRO [42001-224]
