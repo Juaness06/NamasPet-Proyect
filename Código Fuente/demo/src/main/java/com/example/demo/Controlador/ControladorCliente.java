@@ -24,7 +24,7 @@ public class ControladorCliente {
     @Autowired
     private ClienteService servicioCliente;
     @Autowired
-    private ServicioPerro servicioPerro;
+    private ServicioPerro ServicioPerro;
 
     // http://localhost:8090/cliente/all
     @GetMapping("/all")

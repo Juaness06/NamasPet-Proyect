@@ -52,7 +52,7 @@ public class DatabaseInit implements ApplicationRunner {
                 "Drift", "Echo", "Flame", "Glitch", "Hawk", "Iron", "Jester"
         };
 
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 100; i++) {
             String nombre = nombresClientes[i % nombresClientes.length] + " " + apellidos[i % apellidos.length];
             String email = nombresClientes[i % nombresClientes.length] + apellidos[i % apellidos.length] + i
                     + "@gmail.com";
@@ -87,7 +87,7 @@ public class DatabaseInit implements ApplicationRunner {
                              "https://www.hogarmania.com/archivos/202303/husky-siberiano-416x236x80xX-1.jpg",
                              "https://estaticos-cdn.prensaiberica.es/clip/59ca56ec-1332-4c33-a2eb-6ef863b65a56_alta-libre-aspect-ratio_default_0.jpg"};
 
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 100; i++) {
             String urlImagen = imagenes[i % imagenes.length];
             String nombre = nombresPerros[i % nombresPerros.length];
             int id = i;
@@ -103,12 +103,21 @@ public class DatabaseInit implements ApplicationRunner {
             repo2.save(perro);
         }
 
+
+       /*
         Cliente asociar = repo.findById(1L).orElse(null);
         if (asociar != null) {
             for (Perro perro : repo2.findAll()) {
                 perro.setCliente(asociar);
                 repo2.save(perro);
             }
+        }
+        */
+
+        for(int i = 1;i<= 100;i++){
+                Perro m = repo2.findById((long)i).get();
+                m.setCliente(repo.findById((long)i).get());
+                repo2.save(m);
         }
     }
 
