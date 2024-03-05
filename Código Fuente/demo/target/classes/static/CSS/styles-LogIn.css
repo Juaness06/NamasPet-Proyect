@@ -9,6 +9,25 @@
   align-items: center;
 }
 
+#sectionLogIn{
+  display: flex;
+}
+
+#plantaAbajoDerecha{
+  margin-top: 130px;
+  margin-left: 760px;
+  transform: scaleX(-1);
+  rotate: 120deg;
+}
+
+#plantaAbajoIzquierda{
+  margin-top: 140px;
+  display: flex;
+  margin-left: 160px;
+  rotate: -120deg;
+}
+
+
 #plantaReflejada {
   transform: scaleX(-1);
 }
@@ -206,6 +225,12 @@ body {
   100% {
     bottom: 100%;
   }
+}
+
+#divIngresar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #btnIngresar{
