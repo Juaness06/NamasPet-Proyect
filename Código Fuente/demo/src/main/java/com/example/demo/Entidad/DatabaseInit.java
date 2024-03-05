@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
+
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.RepositorioPerro;
@@ -22,6 +24,7 @@ public class DatabaseInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+         Random rand = new Random();
 
         String[] nombresClientes = { "Ana", "Beatriz", "Carlos", "David", "Elena", "Fernando", "Gabriela", "Héctor",
                 "Irene", "Jorge", "Alejandro", "Bruno", "Daniel", "Eduardo", "Francisco",
@@ -53,7 +56,7 @@ public class DatabaseInit implements ApplicationRunner {
             String nombre = nombresClientes[i % nombresClientes.length] + " " + apellidos[i % apellidos.length];
             String email = nombresClientes[i % nombresClientes.length] + apellidos[i % apellidos.length] + i
                     + "@gmail.com";
-            long telefono = 30000000L + i;
+            long telefono = rand.nextInt(10000000) + 30000000;;
             String usuario = apodos[i % apodos.length] + i;
             String contraseña = "" + i;
 
