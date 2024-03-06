@@ -111,11 +111,12 @@ public class ControladorPerro {
     public String UpdateCliente(@PathVariable("id") int cedula, @ModelAttribute("perro") Perro perro) {
         
       Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
+      long id = perro.getCliente().getCedula();
       if (a != null) {
         servicioPerro.Update(perro);
         return "redirect:/perro/all";
     } else {
-        throw new NotFoundException(cedula);   
+        throw new NotFoundException(id);   
     }
        
     }
