@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
+import com.example.demo.Servicio.ClienteService;
 import com.example.demo.Servicio.ServicioPerro;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,9 @@ public class ControladorPerro {
 
     @Autowired
     private ServicioPerro servicioPerro;
+
+    @Autowired
+    ClienteService servicioCliente;
 
     // http://localhost:8090/perro/all
     @GetMapping("/all")
@@ -71,10 +75,17 @@ public class ControladorPerro {
 
     @PostMapping("/agregar")
     public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
-
-        servicioPerro.Add(perro);
-        return "redirect:/perro/all";
+        Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
+        long id = perro.getCliente().getCedula();
+        if (a != null) {
+          servicioPerro.Add(perro);
+          return "redirect:/perro/all";
+      } else {
+          throw new NotFoundException(id);   
+      }
+         
     }
+    
 
     @GetMapping("/delete/{id}")
     public String BorrarPerro(@PathVariable("id") int id) {
@@ -98,8 +109,15 @@ public class ControladorPerro {
 
     @PostMapping("/edit/{id}")
     public String UpdateCliente(@PathVariable("id") int cedula, @ModelAttribute("perro") Perro perro) {
+        
+      Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
+      if (a != null) {
         servicioPerro.Update(perro);
         return "redirect:/perro/all";
+    } else {
+        throw new NotFoundException(cedula);   
+    }
+       
     }
 
     // http://localhost:8090/perro/search/1
