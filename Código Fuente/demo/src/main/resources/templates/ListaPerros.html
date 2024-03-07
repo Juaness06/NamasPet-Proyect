@@ -7,7 +7,7 @@
     <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-ListaPerros.css}" rel="stylesheet" />
-    
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
 </head>
 
 <body>
@@ -33,9 +33,6 @@
                     </li>
                     <li>
                         <a th:href="@{/perro/all}">Mascotas</a>
-                        <ul class="menuVertical">
-                            <li><a th:href="@{/perro/targeton}">Perros</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
@@ -59,7 +56,9 @@
 
     <section id="sectionTabla">
         <div id="divTitulo">
-            <div id="space"></div>
+            <div id="space">
+                <button class="flip-scale-2-ver-left" id="btnVistaGeneral" onclick="location.href='/perro/targeton'">Vista General</button>
+            </div>
             <div>
                 <h1>MASCOTAS</h1>
             </div>
@@ -75,7 +74,7 @@
                         <th>NOMBRE</th>
                         <th>RAZA</th>
                         <th>EDAD</th>
-                        <th>ACTIVIDAD</th>
+                        <th>ESTADO</th>
                         <th>PESO</th>
                         <th>IMAGEN</th>
                         <th># ATENCIONES</th>
@@ -92,8 +91,7 @@
                         <td th:text="${perros.peso}"></td>
                         <!--<td><span th:text="${perro.enfermedades}"></span></td> -->
                         <td>
-                            <img th:src="${perros.imagen}" alt="Imagen de la mascota"
-                                style="max-width:100%; height:auto;" />
+                            <img th:src="${perros.imagen}" alt="Imagen de la mascota" style="max-width:100%; height:auto;" />
                         </td>
                         <!--<td th:text="${perro.drogas}"></td>-->
                         <td th:text="${perros.numeroAtenciones}"></td>

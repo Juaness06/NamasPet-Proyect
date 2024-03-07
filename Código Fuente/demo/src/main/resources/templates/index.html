@@ -7,7 +7,9 @@
   <title>NamasPet</title>
   <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
   <link th:href="@{/CSS/styles-index.css}" rel="stylesheet" />
-
+  <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script th:src="@{/JS/script-index.js}" defer></script>
 </head>
 
 <body>
@@ -33,9 +35,6 @@
           </li>
           <li>
             <a th:href="@{/perro/all}">Mascotas</a>
-            <ul class="menuVertical">
-              <li><a th:href="@{/perro/targeton}">Perros</a></li>
-            </ul>
           </li>
           <li>
             <a href="Nosotros.html">Información</a>
@@ -57,48 +56,63 @@
     </div>
   </header>
 
+  <section id="bienvenida">
+
+    <div id="divTestimonioPerrito">
+      <div id="divNombrePerrito">
+        <h1 id="nombrePerrito">MANOLO</h1>
+      </div>
+      <div id="divTestimonioPerritoTexto">
+        <p id="testimonioPerrito">
+          Hola soy Manolo! Un dia me senti super enfermo <br>mis dueñose me llevaron a NamasPet y me cuidaron muy bien
+        </p>
+        <div class="container">
+          <div class="dog">
+            <div class="dog-head">
+              <div class="dog-ears ears-left"></div>
+              <div class="dog-ears ears-right"></div>
+              <div class="dog-eyes"></div>
+              <div class="dog-mouth">
+                <div class="dog-nose"></div>
+                <div class="dog-tongue"></div>
+              </div>
+            </div>
+            <div class="dog-tail"></div>
+            <div class="dog-body">
+              <div class="dog-foot"></div>
+            </div>
+            <div class="ball"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="DivCarrusel">
+      <div class="carrusel" id="slider">
+        <section class="slider-section">
+          <img id="imagen" th:src="@{/Imagenes/perro1JPG.jpg}" alt="" />
+        </section>
+
+        <section class="slider-section">
+          <img id="imagen" th:src="@{/Imagenes/perro6JPG.jpg}" alt="" height="700" />
+        </section>
+
+        <section class="slider-section">
+          <img id="imagen" th:src="@{/Imagenes/perro4JPG.jpg}" alt="" />
+        </section>
+
+        <section class="slider-section">
+          <img id="imagen" th:src="@{/Imagenes/perro5JPG.jpg}" alt="" />
+        </section>
+
+      </div>
+      <div class="btn-left"><i class='bx bx-chevron-right bx-rotate-180'></i></div>
+      <div class="btn-right"><i class='bx bxs-chevron-right'></i></div>
+    </div>
 
 
-  <div class="slider-box">
-    <ul>
-      <li>
-        <img id="imagen" th:src="@{/Imagenes/perro1JPG.jpg}" alt="" />
-        <div class="texto">
-          <h6 class="nombrePerrito">MANOLO</h6>
-          <p class="ruleta">
-            Hola soy Manolo! Un dia me senti super enfermo <br>mis dueñose me llevaron a NamasPet y me cuidaron muy bien
-          </p>
-        </div>
-      </li>
-      <li>
-        <img id="imagen" th:src="@{/Imagenes/perro6JPG.jpg}" alt="" height="700" />
-        <div class="texto">
-          <h6 class="nombrePerrito osquitar">OSQUITAR</h6>
-          <p class="ruleta osquitar">
-            Antes le tenia miedo al veterinario<br> en NamasPet no puedo estar mas contento
-          </p>
-        </div>
-      </li>
-      <li>
-        <img id="imagen" th:src="@{/Imagenes/perro4JPG.jpg}" alt="" />
-        <div class="texto">
-          <h6 class="nombrePerrito">PEPE</h6>
-          <p class="ruleta">
-            Me llamo Pepe, y quiero mucho a mi doctora, me cuido muy bien
-          </p>
-        </div>
-      </li>
-      <li>
-        <img id="imagen" th:src="@{/Imagenes/perro5JPG.jpg}" alt="" />
-        <div class="texto">
-          <h6 class="nombrePerrito cocco">COCCO</h6>
-          <p class="ruleta cocco">
-            Me llamo Cocco, y me encanta ir a NamasPet, me siento muy bien
-          </p>
-        </div>
-      </li>
-    </ul>
-  </div>
+  </section>
+
 
   <main id="blog">
     <div class="contenedor">
@@ -154,7 +168,7 @@
   <div id="contenedorPerritoFooter">
     <img th:src="@{/Imagenes/perro3.png}" alt="Imagen de un perro" id="perritoFooter" width="450" height="450" />
   </div>
-  
+
 
   <footer>
     <div class="custom-shape-divider-bottom-1707855607">
@@ -192,6 +206,7 @@
         <p id="terminos" class="textoFoterin">© 2024 NamasPet. Todos los derechos reservados.</p>
       </div>
     </div>
+    <script th:src="@{/JS/script-index.js}" defer></script>
 </body>
 
 </html>

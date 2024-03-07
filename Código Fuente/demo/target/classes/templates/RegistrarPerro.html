@@ -7,6 +7,7 @@
     <title>NamasPet</title>
     <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
     <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}">
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
 </head>
 
 <body>
@@ -32,9 +33,6 @@
                     </li>
                     <li>
                         <a th:href="@{/perro/all}">Mascotas</a>
-                        <ul class="menuVertical">
-                            <li><a th:href="@{/perro/targeton}">Perros</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
@@ -79,6 +77,10 @@
                 <div>
                     <label for="peso">Peso</label>
                     <input type="number" th:field="*{peso}" id="peso" step="0.01">
+                </div>
+                <div>
+                    <label for="estado">Estado</label>
+                    <input type="text" th:field="*{actividad}" id="acitvidad">
                 </div>                
                 <div>
                     <label for="imagen">Foto</label>

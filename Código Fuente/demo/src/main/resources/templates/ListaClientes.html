@@ -7,6 +7,7 @@
     <title>NAMASPET</title>
     <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
     <link th:href="@{/CSS/styles-ListaClientes.css}" rel="stylesheet" />
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
     <body>
     <header>
         <div id="contenedorLogoTitulo">
@@ -30,9 +31,6 @@
                     </li>
                     <li>
                         <a th:href="@{/perro/all}">Mascotas</a>
-                        <ul class="menuVertical">
-                            <li><a th:href="@{/perro/targeton}">Perros</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
@@ -83,7 +81,7 @@
                     <tr th:each="cliente : ${cliente}">
                         <td th:text="${cliente.cedula}"></td>
                         <td th:text="${cliente.nombre}"></td>
-                        <td th:text="${cliente.correo}"></td>
+                        <td class="correo" th:text="${cliente.correo}"></td>
                         <td th:text="${cliente.celular}"></td>
                         <td th:text="${cliente.usuario}"></td>
                         <td>
