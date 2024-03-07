@@ -30,6 +30,9 @@ public class Perro {
     @ManyToOne
     private Cliente cliente;
 
+    @ManyToOne
+    private Tratamientos tratamiento;
+
     public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
         this.id = id;
@@ -131,5 +134,11 @@ public class Perro {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+    public Tratamientos getTratamiento() {
+        return tratamiento;
+    }
+    public void setTratamiento(Tratamientos tratamiento) {
+        this.tratamiento = tratamiento;
     }
 }
