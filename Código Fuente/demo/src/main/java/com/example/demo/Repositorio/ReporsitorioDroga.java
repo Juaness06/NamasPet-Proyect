@@ -1,5 +1,9 @@
 package com.example.demo.Repositorio;
 
-public class ReporsitorioDroga {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.Entidad.Droga;
+
+public interface ReporsitorioDroga extends JpaRepository<Droga, Long> {
     
 }
