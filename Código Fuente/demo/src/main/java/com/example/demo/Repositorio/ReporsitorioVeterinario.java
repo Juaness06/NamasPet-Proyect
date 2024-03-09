@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.Entidad.Veterinario;
 
 @Repository
-public interface ReporsitorioVeterinario extends JpaRepository<Veterinario, Integer> {
+public interface ReporsitorioVeterinario extends JpaRepository<Veterinario, Long> {
 
        
 
