@@ -24,7 +24,7 @@ public class Administrador {
         
     }
     
-    public Administrador(int id, String nombre, String contraseña) {
+    public Administrador(String nombre, String contraseña) {
         this.nombre = nombre;
         this.contraseña = contraseña;
     }

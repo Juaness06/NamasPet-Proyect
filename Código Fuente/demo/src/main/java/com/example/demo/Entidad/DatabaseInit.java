@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import com.example.demo.Repositorio.ReporsitorioAdministrador;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.RepositorioPerro;
 
@@ -17,10 +19,13 @@ import jakarta.transaction.Transactional;
 public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
-    ReporsitorioCliente repo;
+    ReporsitorioCliente clienteR;
 
     @Autowired
-    RepositorioPerro repo2;
+    RepositorioPerro perroR;
+
+    @Autowired
+    ReporsitorioAdministrador admin;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -52,6 +57,12 @@ public class DatabaseInit implements ApplicationRunner {
                 "Drift", "Echo", "Flame", "Glitch", "Hawk", "Iron", "Jester"
         };
 
+        Administrador administrador = new Administrador("Nicolas Quintana", "123456");
+        Administrador administrador2 = new Administrador("Juan Esteban Granada", "123456");
+        admin.save(administrador);
+        admin.save(administrador2);
+        
+
         for (int i = 1; i <= 100; i++) {
             String nombre = nombresClientes[i % nombresClientes.length] + " " + apellidos[i % apellidos.length];
             String email = nombresClientes[i % nombresClientes.length] + apellidos[i % apellidos.length] + i
@@ -61,7 +72,7 @@ public class DatabaseInit implements ApplicationRunner {
             String contraseña = "" + i;
 
             Cliente cliente = new Cliente(nombre, email, telefono, usuario, contraseña);
-            repo.save(cliente);
+            clienteR.save(cliente);
         }
 
         String[] nombresPerros = {
@@ -100,24 +111,24 @@ public class DatabaseInit implements ApplicationRunner {
             int energia = (i % 3) + 1;
 
             Perro perro = new Perro(urlImagen, nombre, id, raza, edad, sexo, peso, energia);
-            repo2.save(perro);
+            perroR.save(perro);
         }
 
 
        /*
-        Cliente asociar = repo.findById(1L).orElse(null);
+        Cliente asociar = clienteR.findById(1L).orElse(null);
         if (asociar != null) {
-            for (Perro perro : repo2.findAll()) {
+            for (Perro perro : perroR.findAll()) {
                 perro.setCliente(asociar);
-                repo2.save(perro);
+                perroR.save(perro);
             }
         }
         */
 
         for(int i = 1;i<= 100;i++){
-                Perro m = repo2.findById((long)i).get();
-                m.setCliente(repo.findById((long)i).get());
-                repo2.save(m);
+                Perro m = perroR.findById((long)i).get();
+                m.setCliente(clienteR.findById((long)i).get());
+                perroR.save(m);
         }
     }
 
