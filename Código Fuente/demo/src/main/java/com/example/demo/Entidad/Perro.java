@@ -1,10 +1,15 @@
 package com.example.demo.Entidad;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,8 +35,8 @@ public class Perro {
     @ManyToOne
     private Cliente cliente;
 
-    @ManyToOne
-    private Tratamientos tratamiento;
+    @OneToMany(mappedBy = "perro",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Tratamientos> tratamientos = new ArrayList<>();
 
     public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
         this.imagen = imagen;
@@ -135,10 +140,11 @@ public class Perro {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    public Tratamientos getTratamiento() {
-        return tratamiento;
+    public List<Tratamientos> getTratamientos() {
+        return tratamientos;
     }
-    public void setTratamiento(Tratamientos tratamiento) {
-        this.tratamiento = tratamiento;
+    public void setTratamientos(List<Tratamientos> tratamientos) {
+        this.tratamientos = tratamientos;
     }
+   
 }

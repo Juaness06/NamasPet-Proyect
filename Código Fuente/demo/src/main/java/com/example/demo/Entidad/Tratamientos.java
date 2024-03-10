@@ -1,15 +1,12 @@
 package com.example.demo.Entidad;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,19 +22,17 @@ public class Tratamientos {
     private double precio;
     private Date fecha;
 
-   @OneToMany(mappedBy = "tratamiento",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Droga> listaDroga = new ArrayList<>();
+    @ManyToOne
+    private Droga droga;
 
-    @OneToMany(mappedBy = "tratamiento",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Perro> listaPerros = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "tratamiento",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Veterinario> listaVeterinarios = new ArrayList<>();
+    @ManyToOne
+    private Perro perro;
 
+    @ManyToOne
+    private Veterinario veterinario; // Nombre corregido
 
+    // Constructor, getters y setters...
 
-
-    
     public Tratamientos(String nombre, double precio, Date fecha) {
         this.nombre = nombre;
         this.precio = precio;
@@ -47,65 +42,29 @@ public class Tratamientos {
     public Tratamientos() {
     }
 
+    // ID, nombre, precio, fecha getters y setters...
 
-
-    
-    public long getId() {
-        return id;
+    public Droga getDroga() {
+        return droga;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setDroga(Droga droga) {
+        this.droga = droga;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Perro getPerro() {
+        return perro;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPerro(Perro perro) {
+        this.perro = perro;
     }
 
-    public double getPrecio() {
-        return precio;
+    public Veterinario getVeterinario() { // Método getter corregido
+        return veterinario;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setVeterinario(Veterinario veterinario) { // Método setter corregido
+        this.veterinario = veterinario;
     }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public List<Droga> getListaDroga() {
-        return listaDroga;
-    }
-
-    public void setListaDroga(List<Droga> listaDroga) {
-        this.listaDroga = listaDroga;
-    }
-
-    public List<Perro> getListaPerros() {
-        return listaPerros;
-    }
-
-    public void setListaPerros(List<Perro> listaPerros) {
-        this.listaPerros = listaPerros;
-    }
-
-    public List<Veterinario> getListaVeterinarios() {
-        return listaVeterinarios;
-    }
-
-    public void setListaVeterinarios(List<Veterinario> listaVeterinarios) {
-        this.listaVeterinarios = listaVeterinarios;
-    }
-
-
-    
 }

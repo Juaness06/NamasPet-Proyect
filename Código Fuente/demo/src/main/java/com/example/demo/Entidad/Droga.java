@@ -1,10 +1,17 @@
 package com.example.demo.Entidad;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,8 +30,8 @@ public class Droga {
     private int unidades_V;
     private int unidades;
 
-    @ManyToOne
-    private Tratamientos tratamiento;
+    @OneToMany(mappedBy = "droga",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Tratamientos> tratamientos = new ArrayList<>();
     
 
 
@@ -116,13 +123,15 @@ public class Droga {
         this.unidades = unidades;
     }
 
-    public Tratamientos getTratamiento() {
-        return tratamiento;
+    public List<Tratamientos> getTratamientos() {
+        return tratamientos;
     }
 
-    public void setTratamiento(Tratamientos tratamiento) {
-        this.tratamiento = tratamiento;
+    public void setTratamientos(List<Tratamientos> tratamientos) {
+        this.tratamientos = tratamientos;
     }
+
+    
 
     
 
