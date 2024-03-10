@@ -20,7 +20,7 @@ public interface TratamientosService {
 
     public void Update(Tratamientos p);
 
-    public Tratamientos Cuenta(Long cedula);
+   // public Tratamientos Cuenta(Long cedula);
     
     //public Collection<Perro> PerrosClientePerros(long cedula);
     

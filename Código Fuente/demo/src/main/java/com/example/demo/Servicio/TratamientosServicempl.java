@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidad.Tratamientos;
+
 import com.example.demo.Repositorio.RepositorioTratamientos;
 
 @Service
@@ -44,12 +45,15 @@ public class TratamientosServicempl implements TratamientosService{
         repo.deleteById(id);
     }
 
+
+
+    /* 
     @Override
     public Tratamientos Cuenta(Long cedula) {
         
         return repo.findByCedula(cedula);
     }
-
+*/
 
    
     /*

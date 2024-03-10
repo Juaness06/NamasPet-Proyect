@@ -8,6 +8,6 @@ import com.example.demo.Entidad.Administrador;
 @Repository
 public interface ReporsitorioAdministrador extends JpaRepository<Administrador, Integer> {
 
-       Administrador findByCedula(int id);
+       Administrador findByid(int id);
 
 }

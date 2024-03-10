@@ -8,6 +8,6 @@ import com.example.demo.Entidad.Tratamientos;
 @Repository
 public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Long> {
 
-    Tratamientos findByCedula(long cedula);
+    //Tratamientos findByCedula(long cedula);
 
 }
