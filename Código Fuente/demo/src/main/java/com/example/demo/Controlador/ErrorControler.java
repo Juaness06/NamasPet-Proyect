@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorControler {
 
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(NotFoundException.class) //manejo de excepciones
     public String error(Model model, NotFoundException ex) {
         
         model.addAttribute("id", ex.getId());
@@ -16,7 +16,7 @@ public class ErrorControler {
     }
 
 
-    public String error2(Model model, NotFoundException ex) {
+    public String error2(Model model, NotFoundException ex) { //redirección a la página de error
         
         model.addAttribute("cedula", ex.getCedula());
         return ("ErrorPage");

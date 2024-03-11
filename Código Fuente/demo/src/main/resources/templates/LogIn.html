@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAMASPET</title>
-    <link rel="stylesheet" th:href="@{/CSS/styles-LogIn.css}">
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-LogIn.css}"> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
 </head>
 
 <body>
@@ -36,9 +36,9 @@
         <div id="divlogin">
             <div class="login-box">
                 <h2>Iniciar Sesion</h2>
-                <form method="post">
+                <form method="post"> <!--formulario de inicio de sesion-->
                     <div class="user-box">
-                        <input type="text" id="cedula" name="cedula" required>
+                        <input type="text" id="cedula" name="cedula" required> 
                         <label>Cedula</label>
                     </div>
                     <div id="divIngresar">

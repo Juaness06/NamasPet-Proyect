@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.Entidad.Droga;
 
-public interface ReporsitorioDroga extends JpaRepository<Droga, Long> {
+public interface ReporsitorioDroga extends JpaRepository<Droga, Long> { //repositorios exteinde a JPA para droga
+
     
 }

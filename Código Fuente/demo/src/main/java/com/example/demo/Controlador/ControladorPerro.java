@@ -8,15 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
 import com.example.demo.Servicio.ClienteService;
 import com.example.demo.Servicio.ServicioPerro;
 
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("/perro")
 @Controller

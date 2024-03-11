@@ -23,25 +23,17 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li> <!-- ir al landing page-->
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
-                        <ul class="menuVertical">
-                            <li><a href="Servicios.html">Cuidados</a></li>
-                            <li><a href="Servicios.html">Medicamentos</a></li>
-                        </ul>
                     </li>
                     <li>
-                        <a th:href="@{/perro/all}">Mascotas</a>
+                        <a th:href="@{/perro/all}">Mascotas</a> <!-- ver las mascotas-->
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
-                        <ul class="menuVertical">
-                            <li><a href="Nosotros.html">Historia</a></li>
-                            <li><a href="Nosotros.html">Mision</a></li>
-                        </ul>
                     </li>
-                    <li><a th:href="@{/cliente/all}">Clientes</a></li>
+                    <li><a th:href="@{/cliente/all}">Clientes</a></li> <!-- ver los clientes-->
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">

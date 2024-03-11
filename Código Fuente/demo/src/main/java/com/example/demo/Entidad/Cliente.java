@@ -10,29 +10,27 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "cliente")
+@Table(name = "cliente") // nombre de la tabla
 public class Cliente {
 
-
     @Id
-    @GeneratedValue
+    @GeneratedValue // id autoincremental
     private long cedula;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME") // columna
     private String nombre;
 
-    
     private String correo;
-
     private long celular;
     private String Usuario;
     private String contrasena;
 
-    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // relacion uno a muchos
     private List<Perro> listaPerros = new ArrayList<>();
 
-    public Cliente(long cedula, String nombre, String correo, long celular, String usuario, String contrasena) {
+    public Cliente(long cedula, String nombre, String correo, long celular, String usuario, String contrasena) { // constructor
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
@@ -41,16 +39,16 @@ public class Cliente {
         this.contrasena = contrasena;
     }
 
-    public Cliente( String nombre, String correo, long celular, String usuario, String contrasena) {
-        this.nombre = nombre;
+    public Cliente(String nombre, String correo, long celular, String usuario, String contrasena) { // constructor
+        this.nombre = nombre; 
         this.correo = correo;
         this.celular = celular;
         this.Usuario = usuario;
         this.contrasena = contrasena;
     }
 
-    public Cliente() {
-        //TODO Auto-generated constructor stub
+    public Cliente() { // constructor vacio
+
     }
 
     public long getCedula() {
@@ -108,7 +106,4 @@ public class Cliente {
     public void setListaPerros(List<Perro> listaPerros) {
         this.listaPerros = listaPerros;
     }
-
-
-
 }

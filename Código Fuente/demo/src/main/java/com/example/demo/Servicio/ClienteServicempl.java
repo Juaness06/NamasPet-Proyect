@@ -11,7 +11,7 @@ import com.example.demo.Entidad.Perro;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 
 @Service
-public class ClienteServicempl implements ClienteService {
+public class ClienteServicempl implements ClienteService { //implementa el servicio de cliente
 
     @Autowired
     ReporsitorioCliente repo;

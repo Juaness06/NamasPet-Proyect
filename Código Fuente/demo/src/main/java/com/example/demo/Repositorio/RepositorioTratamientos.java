@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.Entidad.Tratamientos;
 
 @Repository
-public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Long> {
+public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Long> { //repositorios exteinde a JPA para tratamientos
 
     //Tratamientos findByCedula(long cedula);
 

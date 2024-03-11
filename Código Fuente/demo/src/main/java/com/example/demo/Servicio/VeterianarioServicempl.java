@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.Entidad.Veterinario;
 import com.example.demo.Repositorio.ReporsitorioVeterinario;
 
-public class VeterianarioServicempl implements ServicioVeterinario  {
+public class VeterianarioServicempl implements ServicioVeterinario  { //implementa el servicio de veterinario
 
     @Autowired
     ReporsitorioVeterinario repo;

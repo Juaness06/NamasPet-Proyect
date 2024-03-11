@@ -9,7 +9,7 @@ import com.example.demo.Entidad.Administrador;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 
 @Service
-public class AdministradorServicempl implements AdministradorService {
+public class AdministradorServicempl implements AdministradorService { //implementa el servicio de administrador
     
     @Autowired
     ReporsitorioAdministrador repo;

@@ -9,7 +9,6 @@ public class NotFoundException extends RuntimeException {
         this.id = cedula2;
     }
 
-
     public long getId(){
         return id;
     }
@@ -23,8 +22,4 @@ public class NotFoundException extends RuntimeException {
     public void setCedula(long cedula) {
         this.cedula = cedula;
     }
-   
-    
-    
-
 }

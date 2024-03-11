@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--thymeleaf -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAMASPET</title>
-    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-ListaClientes.css}" rel="stylesheet" />
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
-    <body>
-    <header>
+    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link th:href="@{/CSS/styles-ListaClientes.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
+
+<body>
+    <header> <!--header de la pagina-->
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
                 <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
@@ -21,29 +22,21 @@
         <div id="contenedorMenuDesplegable">
             <nav class="navbar">
                 <ul class="menuHorizontal">
-                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li> <!-- ir al landing page-->
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
-                        <ul class="menuVertical">
-                            <li><a href="Servicios.html">Cuidados</a></li>
-                            <li><a href="Servicios.html">Medicamentos</a></li>
-                        </ul>
                     </li>
                     <li>
-                        <a th:href="@{/perro/all}">Mascotas</a>
+                        <a th:href="@{/perro/all}">Mascotas</a> <!-- ver las mascotas-->
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
-                        <ul class="menuVertical">
-                            <li><a href="Nosotros.html">Historia</a></li>
-                            <li><a href="Nosotros.html">Mision</a></li>
-                        </ul>
                     </li>
-                     <li><a th:href="@{/cliente/all}">Clientes</a></li>
+                    <li><a th:href="@{/cliente/all}">Clientes</a></li> <!-- ver los clientes-->
                     <li id="btnItem">
                         <button class="btnPerfil">
-                            <a id="btnLogin" th:href="@{/login/cliente}">
-                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                            <a id="btnLogin" th:href="@{/login/cliente}"> <!--anchor para la imagen-->
+                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
                             </a>
                         </button>
                     </li>
@@ -52,22 +45,22 @@
         </div>
     </header>
 
-    <section id="sectionTabla">
+    <section id="sectionTabla"> <!--Section de la pagina-->
 
         <div id="divTitulo">
-            <div id="space">
+            <div id="space"> <!-- div del espacio en la pagina-->
             </div>
             <div>
                 <h1>CLIENTES</h1>
             </div>
             <div>
-                <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button>
+                <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button> <!--boton de agregar-->
             </div>
         </div>
         <div id="divTabla">
             <table>
                 <thead>
-                    <tr>
+                    <tr> <!--Cabecueras de columna-->
                         <th>CEDULA</th>
                         <th>NOMBRE</th>
                         <th>CORREO</th>
@@ -77,8 +70,8 @@
                         <th>ACCIONES</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr th:each="cliente : ${cliente}">
+                <tbody> <!--cuerpo de la tabla-->
+                    <tr th:each="cliente : ${cliente}"> <!--Se trae a todos los clinetes-->
                         <td th:text="${cliente.cedula}"></td>
                         <td th:text="${cliente.nombre}"></td>
                         <td class="correo" th:text="${cliente.correo}"></td>
@@ -87,11 +80,14 @@
                         <td>
                             <a id="anchorPerros"
                                 th:href="@{/cliente/{cedula}/mascotas(cedula=${cliente.cedula})}">PERROS</a>
+                            <!--anchor de ver perros-->
                         </td>
                         <td>
                             <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">EDITAR</a>
+                            <!--anchor de editar-->
                             <a class="btnEli"
                                 th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">ELIMINAR</a>
+                            <!--anchor de eliminar-->
                         </td>
                     </tr>
                 </tbody>
@@ -100,7 +96,7 @@
     </section>
 
     <footer>
-        <div class="custom-shape-divider-bottom-1707855607">
+        <div class="custom-shape-divider-bottom-1707855607"> <!--div de la parte inferior del footer-->
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">
                 <path
@@ -118,15 +114,15 @@
             <div id="redes">
                 <div id="tituloLogo">
                     <img th:src="@{/Imagenes/logo-negro.png}" alt="Logo NamasPet" width="100" height="100" />
-                    <h1 class="titulo">NAMASPET</h1>
+                    <h1 class="titulo">NAMASPET</h1> <!--h1 del footer-->
                 </div>
-                <div id="contenedorRedes">
+                <div id="contenedorRedes"> <!--div que contiene los iconos de redes-->
                     <img th:src="@{/Imagenes/instragram.png}" alt="Instragram" width="40" height="30" />
                     <img th:src="@{/Imagenes/Facebook.png}" alt="Facebook" width="30" height="30" />
                     <img th:src="@{/Imagenes/twitter.png}" alt="X" width="30" height="30" />
                 </div>
             </div>
-            <div id="Información">
+            <div id="Información"> <!--div que contiene la informacion del footer-->
                 <h2 class="textoFoterin">Información</h2>
                 <ul class="footerin">
                     <li class="textoFoterin">Telefono: +57 321 322 8515</li>
@@ -137,6 +133,6 @@
             </div>
         </div>
     </footer>
-    </body>
+</body>
 
 </html>

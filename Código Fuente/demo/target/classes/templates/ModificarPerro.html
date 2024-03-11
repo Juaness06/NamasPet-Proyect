@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
-    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
-    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}">
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}"> <!--importacion de estilos-->
+    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}"> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
 </head>
 
 <body>
-    <header>
+    <header> <!--header de la pagina-->
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
-                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
+                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" /> 
             </div>
             <div id="contenedorTitulo">
                 <h1 class="titulo">NAMASPET</h1>
@@ -45,7 +45,7 @@
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
-                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
                             </a>
                         </button>
                     </li>
@@ -60,7 +60,7 @@
 
     <section id="sectionForm">
         <div id="divForm">
-            <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST">
+            <form th:object="${perro}" th:action="@{/perro/edit/{id}(id=${perro.id})}" method="POST">  <!--formulario de modificar-->
                 <div>
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" th:field="*{nombre}" id="nombre">
@@ -90,15 +90,13 @@
                     <input type="number" th:field="*{cliente.cedula}" id="dueno">
                 </div>
                 <div id="btnModificar">
-                    <button type="submit">Modificar</button>
+                    <button type="submit">Modificar</button> <!--boton de modificar-->
                 </div>
-
-
             </form>
         </div>
     </section>
 
-    <footer>
+    <footer> <!--footer de la pagina-->
         <div class="custom-shape-divider-bottom-1707855607">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">

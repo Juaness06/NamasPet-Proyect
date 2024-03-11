@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
-    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" />
-    <link th:href="@{/CSS/styles-MostrarPerros.css}" rel="stylesheet" />
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link th:href="@{/CSS/styles-MostrarPerros.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
 </head>
 
 
 <body>
-    <header>
+    <header> <!--header de la pagina-->
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
                 <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
@@ -27,10 +27,6 @@
                     <li><a th:href="@{/}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
-                        <ul class="menuVertical">
-                            <li><a href="Servicios.html">Cuidados</a></li>
-                            <li><a href="Servicios.html">Medicamentos</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a th:href="@{/perro/all}">Mascotas</a>
@@ -46,7 +42,7 @@
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
-                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
                             </a>
                         </button>
                     </li>
@@ -59,20 +55,20 @@
         <h1 id="titulo">MASCOTAS</h1>
     </section>
 
-    <section class="sectionTarjetones">
+    <section class="sectionTarjetones"> <!--Aqui se contienen todos los tarjetones-->
         <div class="divTarjetones">
-            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}">
+            <a class="btnTarjeton" th:each="perros : ${perros}" th:href="@{/perro/find/{id}(id=${perros.id})}"> <!--Aqui se hace la redireccion a la informacion del perro-->
                 <div class="card">
-                    <div class="card-image-container">
+                    <div class="card-image-container"> <!--Aqui se muestra la imagen del perro-->
                         <img th:src="${perros.imagen}" alt="Perro" />
                     </div>
                     <p class="card-title" th:text="${perros.nombre}"></p>
-                    <p class="card-text" th:text="${'Dueñ@: ' + perros.cliente.nombre}"></p>
+                    <p class="card-text" th:text="${'Dueñ@: ' + perros.cliente.nombre}"></p> <!--Aqui se muestra el duenyo del perro-->
                 </div>
             </a>
         </div>
     </section>
-    <footer>
+    <footer> <!--footer de la pagina-->
         <div class="custom-shape-divider-bottom-1707855607">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">

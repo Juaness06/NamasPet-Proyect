@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.Entidad.Cliente;
 
 @Repository
-public interface ReporsitorioCliente extends JpaRepository<Cliente, Long> {
+public interface ReporsitorioCliente extends JpaRepository<Cliente, Long> { //repositorios exteinde a JPA para cliente
 
-       Cliente findByCedula(long cedula);
+       Cliente findByCedula(long cedula); //busca al cliente por su cedula
 
 }

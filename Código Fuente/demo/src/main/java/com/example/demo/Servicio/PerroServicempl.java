@@ -9,7 +9,7 @@ import com.example.demo.Entidad.Perro;
 import com.example.demo.Repositorio.RepositorioPerro;
 
 @Service
-public class PerroServicempl implements ServicioPerro {
+public class PerroServicempl implements ServicioPerro { //implementa el servicio de perro
 
     @Autowired
     RepositorioPerro repo;

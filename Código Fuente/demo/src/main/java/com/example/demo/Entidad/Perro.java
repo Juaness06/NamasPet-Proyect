@@ -13,15 +13,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "perro")
+@Table(name = "perro") // nombre de la tabla
 public class Perro {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // autoincrementable
     private long id;
 
 
-    @Column(name = "imagen", length = 512)
+    @Column(name = "imagen", length = 512) // columna
     private String imagen;
 
     @Column(name = "NAME")
@@ -32,13 +32,13 @@ public class Perro {
     private double peso;
     private int numeroAtenciones;
 
-    @ManyToOne
-    private Cliente cliente;
+    @ManyToOne // relacion uno a muchos
+    private Cliente cliente; 
 
-    @OneToMany(mappedBy = "perro",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "perro",cascade = CascadeType.ALL,orphanRemoval = true) // relacion uno a muchos
     private List<Tratamientos> tratamientos = new ArrayList<>();
 
-    public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
+    public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) { // constructor con parámetros
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
@@ -48,14 +48,16 @@ public class Perro {
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
     }
-    public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) {
+
+    public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) { // constructor con parámetros
         this.imagen = imagen;
         this.nombre = nombre;
         this.raza = raza;
         this.edad = edad;
         this.peso = peso;
     }
-    public Perro(String imagen, long id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) {
+
+    public Perro(String imagen, long id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) { // constructor con parámetros
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;

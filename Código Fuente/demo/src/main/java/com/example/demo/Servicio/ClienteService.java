@@ -2,14 +2,14 @@ package com.example.demo.Servicio;
 
 import java.util.Collection;
 
-//import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
 
 
-public interface ClienteService {
+public interface ClienteService { //servicio de cliente
     
+    //metodos del servicio
     public Cliente SearchById(Long id);
 
     public Collection<Cliente> SearchAll();

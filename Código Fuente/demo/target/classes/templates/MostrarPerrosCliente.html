@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
-    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
-    <link rel="stylesheet" th:href="@{/CSS/styles-MostrarPerros.css}">
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}"> <!--importacion de estilos-->
+    <link rel="stylesheet" th:href="@{/CSS/styles-MostrarPerros.css}"> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
 </head>
 
 <body>
@@ -45,7 +45,7 @@
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
-                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                              <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
                             </a>
                         </button>
                     </li>

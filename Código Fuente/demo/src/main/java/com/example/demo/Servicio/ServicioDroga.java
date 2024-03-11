@@ -4,8 +4,9 @@ import java.util.Collection;
 
 import com.example.demo.Entidad.Droga;
 
-public interface ServicioDroga {
+public interface ServicioDroga { //servicio de droga
 
+    //metodos del servicio
     public Droga SearchById(long id);
 
     public Collection<Droga> SearchAll();

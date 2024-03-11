@@ -2,13 +2,11 @@ package com.example.demo.Servicio;
 
 import java.util.Collection;
 
-//import org.springframework.stereotype.Service;
-
 
 import com.example.demo.Entidad.Tratamientos;
 
 
-public interface TratamientosService {
+public interface TratamientosService { //servicio de tratamientos
     
     public Tratamientos SearchById(Long id);
 

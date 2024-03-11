@@ -10,11 +10,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tratamientos")
+@Table(name = "tratamientos") // Nombre de la tabla
 public class Tratamientos {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // autoincrementable
     private long id;
 
     @Column(name = "NAME")

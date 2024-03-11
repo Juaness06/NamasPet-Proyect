@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "administrador")
+@Table(name = "administrador") // nombre de la tabla
 public class Administrador {
 
     @Id
@@ -19,15 +19,15 @@ public class Administrador {
     private String contraseña;
 
 
-
-    public Administrador() {
+    public Administrador() { //constructor vacio
         
     }
     
-    public Administrador(String nombre, String contraseña) {
+    public Administrador(String nombre, String contraseña) { //constructor con parámetros
         this.nombre = nombre;
         this.contraseña = contraseña;
     }
+
     public int getId() {
         return id;
     }
