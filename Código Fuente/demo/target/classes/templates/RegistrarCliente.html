@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NamasPet</title>
-    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}">
-    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}">
-    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}">
+    <link rel="stylesheet" th:href="@{/CSS/styles-Footer&Header.css}"> <!--importacion de estilos-->
+    <link rel="stylesheet" th:href="@{/CSS/styles-RegistrarPerro.css}"> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
 </head>
 
 <body>
-    <header>
+    <header> <!--header de la pagina-->
         <div id="contenedorLogoTitulo">
             <div id="contenedorLogo">
-                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
+                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" /> 
             </div>
             <div id="contenedorTitulo">
                 <h1 class="titulo">NAMASPET</h1>
@@ -26,26 +26,18 @@
                     <li><a th:href="@{/}">Inicio</a></li>
                     <li>
                         <a href="Servicios.html">Tratamientos</a>
-                        <ul class="menuVertical">
-                            <li><a href="Servicios.html">Cuidados</a></li>
-                            <li><a href="Servicios.html">Medicamentos</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a th:href="@{/perro/all}">Mascotas</a>
                     </li>
                     <li>
                         <a href="Nosotros.html">Información</a>
-                        <ul class="menuVertical">
-                            <li><a href="Nosotros.html">Historia</a></li>
-                            <li><a href="Nosotros.html">Mision</a></li>
-                        </ul>
                     </li>
                     <li><a th:href="@{/cliente/all}">Clientes</a></li>
                     <li id="btnItem">
                         <button class="btnPerfil">
                             <a id="btnLogin" th:href="@{/login/cliente}">
-                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}">
+                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
                             </a>
                         </button>
                     </li>
@@ -58,9 +50,9 @@
         <h1 id="titulo">REGISTRAR CLIENTE</h1>
     </section>
 
-    <section id="sectionForm">
+    <section id="sectionForm"> <!--formulario de registro-->
         <div id="divForm">
-            <form th:object="${cliente}" th:action="@{/cliente/agregar}" method="POST">
+            <form th:object="${cliente}" th:action="@{/cliente/agregar}" method="POST"> <!-- formulario de registro con metodo POST-->
                 <div>
                     <label for="cedula">Cedula</label>
                     <input type="text" th:field="*{cedula}" id="cedula">
@@ -92,13 +84,13 @@
                 </div>
 
                 <div id="btnRegistrar">
-                    <button type="submit">Registrar</button>
+                    <button type="submit">Registrar</button> <!--boton de registrar-->
                 </div>
             </form>
         </div>
     </section>
 
-    <footer>
+    <footer> <!--footer de la pagina-->
         <div class="custom-shape-divider-bottom-1707855607">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">

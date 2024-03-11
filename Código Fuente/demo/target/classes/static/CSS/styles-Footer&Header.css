@@ -1,3 +1,5 @@
+/* fonts */
+
 @import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap");
@@ -12,6 +14,7 @@ header {
   background-color: #2f2c79;
 }
 
+/* estilos para todo*/
 * {
   margin: 0;
   padding: 0;
@@ -19,10 +22,12 @@ header {
   scroll-margin-top: 30px;
 }
 
+
 #contenedorMenuDesplegable {
   display: flex;
 }
 
+/* estilos para la barra de navegación*/
 nav {
   max-width: 900px;
   margin: auto;
@@ -34,12 +39,14 @@ nav {
   font-size: 20px;
 }
 
+/* estilos para la barra de navegación*/
 .menuHorizontal {
   list-style: none;
   display: flex;
   justify-content: space-around;
 }
 
+/* estilos para la barra de navegación*/
 .menuHorizontal li a {
   display: block;
   padding: 15px 20px;
@@ -48,11 +55,13 @@ nav {
   width: 150px;
 }
 
+/* estilos para la barra de navegación*/
 .menuHorizontal li:hover {
   background-color: transparent;
   color: #2f2c79;
 }
 
+/* estilos para la barra de navegación*/
 .menuVertical {
   position: absolute;
   display: none;
@@ -61,22 +70,26 @@ nav {
   background-color: #2f2c79;
 }
 
+/* estilos para la barra de navegación*/
 .menuHorizontal li:hover .menuVertical {
   display: block;
   z-index: 1;
 }
 
+/* estilos para la barra de navegación*/
 .menuVertical li:hover {
   background-color: #64c27b;
   color: #2f2c79;
 }
 
+/* estilos para la barra de navegación*/
 .menuVertical li a {
   display: block;
   color: white;
   padding: 15px 15px 15px 20px;
   text-decoration: none;
 }
+
 
 .info {
   position: relative;
@@ -93,6 +106,7 @@ nav {
   font-weight: bold;
 }
 
+/* estilos para la barra de navegación*/
 #btnLogin{
   padding-bottom: 0px;
   padding-top: 0px;
@@ -101,11 +115,13 @@ nav {
   width: fit-content;
 }
 
+/* estilos para la barra de navegación*/
 #btnLogin:hover {
   text-decoration: none;
   background-color: transparent;
 }
 
+/* estilos para la barra de navegación*/
 .btnPerfil {
   border: none;
   outline: none;
@@ -115,19 +131,23 @@ nav {
   width: 50px;
 }
 
+/* estilos para la barra de navegación*/
 a {
   text-decoration: none;
   outline: none;
 }
 
+/* estilos para la barra de navegación*/
 a:hover {
   text-decoration: underline;
 }
 
+/* estilos para la barra de navegación*/ 
 body {
   background: #d0fdd7;
 }
 
+/* estilos para la barra de navegación*/
 .contenedor {
   max-width: 1000px;
   width: 90%;
@@ -137,6 +157,7 @@ body {
   justify-content: space-between;
 }
 
+/* estilos para la barra de navegación*/
 #contenedorNombre {
   display: flex;
   width: 100%;
@@ -145,6 +166,7 @@ body {
   margin-top: 30px;
 }
 
+/* estilos para la barra de navegación*/
 #contenedorLogo {
   display: inline-block;
   display: flex;
@@ -152,12 +174,14 @@ body {
   align-items: center;
 }
 
+/* estilos para la barra de navegación*/
 #contenedorLogoTitulo {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* estilos para la barra de navegación*/
 #contenedorTitulo {
   display: inline-block;
   display: flex;
@@ -168,10 +192,12 @@ body {
   color: #d8d9e7;
 }
 
+/* estilos para la barra de navegación*/
 .navbar {
   background: #2f2c79;
 }
 
+/* estilos para la barra de navegación*/
 .navbar a {
   color: #fff;
   display: inline-block;
@@ -182,6 +208,7 @@ body {
   transition: 0.3s ease-out all;
 }
 
+/* estilos para la barra de navegación*/
 .navbar a:hover {
   background: #1d2f3d;
   color: #fff;
@@ -190,6 +217,7 @@ body {
 
 /**=====Foter======*/
 
+/* logo y titulo */
 #tituloLogo {
   display: flex;
   flex-direction: column;
@@ -199,6 +227,7 @@ body {
   font-size: 20px;
 }
 
+/* redes */
 #redes {
   display: inline-block;
   margin-left: 15px;
@@ -254,6 +283,7 @@ body {
 
 /* *  ============ custom shape footer =========== */
 
+/* Dibujo en el footer*/
 .custom-shape-divider-bottom-1707855607 {
   position: relative;
   left: 0;
@@ -265,6 +295,7 @@ body {
   z-index: -1;
 }
 
+/* Dibujo en el footer*/
 .custom-shape-divider-bottom-1707855607 svg {
   position: relative;
   display: block;
@@ -273,6 +304,7 @@ body {
   transform: rotateY(180deg);
 }
 
+/* Dibujo en el footer*/
 .custom-shape-divider-bottom-1707855607 .shape-fill {
   fill: #64c27b;
 }
