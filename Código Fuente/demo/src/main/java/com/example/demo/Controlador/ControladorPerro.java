@@ -35,7 +35,7 @@ public class ControladorPerro {
     // http://localhost:8090/perro/find/1
     @GetMapping("/find/{id}")
     public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
-
+        //encuentra el perro y lo muestra en pantalla si no muestra la excepcion
         Perro perro = servicioPerro.SearchById(id);
 
         if (perro != null) {
@@ -53,6 +53,7 @@ public class ControladorPerro {
     public String TmostrarPerros(Model model) {
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "MostrarPerros";
+        //retorna todos los Perros en la base de datos
     }
 
     // http://localhost:8090/perro/index

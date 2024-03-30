@@ -11,7 +11,7 @@ public class ErrorControler {
     public String error(Model model, NotFoundException ex) {
         
         model.addAttribute("id", ex.getId());
-
+        //muestra pagina de errror
         return ("ErrorPage");
     }
 
