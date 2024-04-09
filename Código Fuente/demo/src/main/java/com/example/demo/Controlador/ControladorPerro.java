@@ -50,8 +50,8 @@ public class ControladorPerro {
 
     // http://localhost:8090/perro/find/1
     @GetMapping("/find/{id}")
-    public Perro mostrarinfoPerro(@PathVariable("id") long id) {
-/*
+    public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
+
         Perro perro = servicioPerro.SearchById(id);
 
         if (perro != null) {
@@ -74,8 +74,6 @@ public class ControladorPerro {
         /*
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "MostrarPerros";
-        */
-        return servicioPerro.SearchAll();
     }
 
     // http://localhost:8090/perro/index
