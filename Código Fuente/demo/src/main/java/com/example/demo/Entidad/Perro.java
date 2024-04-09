@@ -34,7 +34,6 @@ public class Perro {
     private double peso;
     private int numeroAtenciones;
 
-    @JsonIgnore
     @ManyToOne // relacion uno a muchos
     private Cliente cliente; 
     
