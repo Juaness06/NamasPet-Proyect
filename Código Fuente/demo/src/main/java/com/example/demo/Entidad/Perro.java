@@ -3,6 +3,8 @@ package com.example.demo.Entidad;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,9 +34,11 @@ public class Perro {
     private double peso;
     private int numeroAtenciones;
 
+    @JsonIgnore
     @ManyToOne // relacion uno a muchos
     private Cliente cliente; 
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "perro",cascade = CascadeType.ALL,orphanRemoval = true) // relacion uno a muchos
     private List<Tratamientos> tratamientos = new ArrayList<>();
 

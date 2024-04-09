@@ -3,6 +3,7 @@ package com.example.demo.Servicio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class ClienteServicempl implements ClienteService { //implementa el servi
     }
 
     @Override
-    public Collection<Cliente> SearchAll() {
+    public List<Cliente> SearchAll() {
         return repo.findAll();
     }
 
@@ -54,7 +55,7 @@ public class ClienteServicempl implements ClienteService { //implementa el servi
 
     
     @Override
-    public Collection<Perro> PerrosClientePerros(long cedula) {
+    public List<Perro> PerrosClientePerros(long cedula) {
         Cliente cliente = repo.findByCedula(cedula);
         if (cliente != null) {
             return cliente.getListaPerros(); 

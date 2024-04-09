@@ -1,22 +1,33 @@
 package com.example.demo.Controlador;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
 import com.example.demo.Servicio.ClienteService;
 import com.example.demo.Servicio.ServicioPerro;
 
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.RequestParam;
 
+
+
+@RestController
 @RequestMapping("/perro")
-@Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class ControladorPerro {
 
     @Autowired
@@ -27,15 +38,20 @@ public class ControladorPerro {
 
     // http://localhost:8090/perro/all
     @GetMapping("/all")
-    public String mostrarPerros(Model model) {
+    @Operation(summary = "Muestra todos los perros")
+    public List<Perro> mostrarPerros(Model model) {
+        /*
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "ListaPerros";
+        */
+
+        return servicioPerro.SearchAll();
     }
 
     // http://localhost:8090/perro/find/1
     @GetMapping("/find/{id}")
-    public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
-
+    public Perro mostrarinfoPerro(@PathVariable("id") long id) {
+/*
         Perro perro = servicioPerro.SearchById(id);
 
         if (perro != null) {
@@ -46,13 +62,20 @@ public class ControladorPerro {
 
         model.addAttribute("perro", servicioPerro.SearchById(id));
         return "MostrarPerro";
+        */
+        Perro perro = servicioPerro.SearchById(id);
+
+        return perro;
     }
 
     // http://localhost:8090/perro/targeton
     @GetMapping("/targeton")
-    public String TmostrarPerros(Model model) {
+    public List<Perro> TmostrarPerros(Model model) {
+        /*
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "MostrarPerros";
+        */
+        return servicioPerro.SearchAll();
     }
 
     // http://localhost:8090/perro/index
@@ -71,12 +94,12 @@ public class ControladorPerro {
     }
 
     @PostMapping("/agregar")
-    public String AgregarPerro(@ModelAttribute("perro") Perro perro) {
+    public void AgregarPerro(@RequestBody Perro perro) {
         Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
         long id = perro.getCliente().getCedula();
         if (a != null) {
           servicioPerro.Add(perro);
-          return "redirect:/perro/all";
+          
       } else {
           throw new NotFoundException(id);   
       }
@@ -84,11 +107,10 @@ public class ControladorPerro {
     }
     
 
-    @GetMapping("/delete/{id}")
-    public String BorrarPerro(@PathVariable("id") int id) {
+    @DeleteMapping("/delete/{id}")
+    public void BorrarPerro(@PathVariable("id") int id) {
         {
             servicioPerro.DeleteByID(id);
-            return "redirect:/perro/all";
         }
 
     }
@@ -104,19 +126,25 @@ public class ControladorPerro {
         }
     }
 
-    @PostMapping("/edit/{id}")
-    public String UpdateCliente(@PathVariable("id") int cedula, @ModelAttribute("perro") Perro perro) {
+    @PutMapping("/edit/{id}")
+    public void UpdateCliente(@RequestBody Perro perro) {
         
       Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
       long id = perro.getCliente().getCedula();
       if (a != null) {
         servicioPerro.Update(perro);
-        return "redirect:/perro/all";
     } else {
         throw new NotFoundException(id);   
     }
        
     }
+
+    // http://localhost:8090/perro/clienteMascota/1
+    @GetMapping("/cliente/{id}")
+    public List<Perro> Perro(@RequestParam("id") long id) {
+        return servicioPerro.findByClienteCedula(id);
+    }
+    
 
     // http://localhost:8090/perro/search/1
 

@@ -1,6 +1,7 @@
 package com.example.demo.Servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class AdministradorServicempl implements AdministradorService { //impleme
     }
 
     @Override
-    public Collection<Administrador> SearchAll() {
+    public List<Administrador> SearchAll() {
         return repo.findAll();
     }
 

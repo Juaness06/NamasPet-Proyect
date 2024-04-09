@@ -1,6 +1,9 @@
 package com.example.demo.Entidad;
 
 import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,12 +25,15 @@ public class Tratamientos {
     private double precio;
     private Date fecha;
 
+    @JsonIgnore
     @ManyToOne
     private Droga droga;
 
+    @JsonIgnore
     @ManyToOne
     private Perro perro;
 
+    @JsonIgnore
     @ManyToOne
     private Veterinario veterinario; // Nombre corregido
 

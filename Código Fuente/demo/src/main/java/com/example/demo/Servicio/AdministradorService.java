@@ -1,6 +1,7 @@
 package com.example.demo.Servicio;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.example.demo.Entidad.Administrador;
 
@@ -11,7 +12,7 @@ public interface AdministradorService { //servicio de admnistrador
     
     public Administrador SearchById(int id);
 
-    public Collection<Administrador> SearchAll();
+    public List<Administrador> SearchAll();
 
     public void Add(Administrador d);
 

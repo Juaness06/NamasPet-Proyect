@@ -1,6 +1,7 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class PerroServicempl implements ServicioPerro { //implementa el servicio
     }
 
     @Override
-    public Collection<Perro> SearchAll() {
+    public List<Perro> SearchAll() {
         return repo.findAll();
     }
 
@@ -39,6 +40,11 @@ public class PerroServicempl implements ServicioPerro { //implementa el servicio
         repo.save(p);
     }
 
+    @Override
+    public List<Perro> findByClienteCedula(long id) {
+        
+        return repo.findByClienteCedula(id);
+    }
     
 
 }
