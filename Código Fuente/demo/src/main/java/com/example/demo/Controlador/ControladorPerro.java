@@ -39,21 +39,20 @@ public class ControladorPerro {
     // http://localhost:8090/perro/all
     @GetMapping("/all")
     @Operation(summary = "Muestra todos los perros")
-    public List<Perro> mostrarPerros(Model model) {
+    public List<Perro> mostrarPerros() {
         /*
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "ListaPerros";
         */
-
         return servicioPerro.SearchAll();
     }
 
     // http://localhost:8090/perro/find/1
     @GetMapping("/find/{id}")
-    public String mostrarinfoPerro(Model model, @PathVariable("id") int id) {
+    public Perro mostrarinfoPerro( @PathVariable("id") int id) {
 
         Perro perro = servicioPerro.SearchById(id);
-
+ /*
         if (perro != null) {
             model.addAttribute("perro", servicioPerro.SearchById(id));
         } else {
@@ -61,19 +60,20 @@ public class ControladorPerro {
         }
 
         model.addAttribute("perro", servicioPerro.SearchById(id));
-        return "MostrarPerro";
         */
-        Perro perro = servicioPerro.SearchById(id);
+    
 
         return perro;
     }
 
     // http://localhost:8090/perro/targeton
     @GetMapping("/targeton")
-    public List<Perro> TmostrarPerros(Model model) {
+    public List<Perro> TmostrarPerros() {
         /*
         model.addAttribute("perros", servicioPerro.SearchAll());
         return "MostrarPerros";
+        */
+        return servicioPerro.SearchAll();
     }
 
     // http://localhost:8090/perro/index
@@ -114,14 +114,9 @@ public class ControladorPerro {
     }
 
     @GetMapping("/edit/{id}")
-    public String editarPerro(@PathVariable("id") int id, Model model) {
-        Perro perro = servicioPerro.SearchById(id);
-        if (perro != null) {
-            model.addAttribute("perro", perro);
-            return "ModificarPerro";
-        } else {
-            return "redirect:/perro/all";
-        }
+    public void editarPerro(@RequestBody Perro perro,@PathVariable("id") int id) {
+        
+        servicioPerro.Update(perro);
     }
 
     @PutMapping("/edit/{id}")
