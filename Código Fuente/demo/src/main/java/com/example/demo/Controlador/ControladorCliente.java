@@ -61,11 +61,7 @@ public class ControladorCliente {
     }
 
     // http://localhost:8090/cliente/edit/{cedula}
-    @GetMapping("/edit/{cedula}") // editar cliente con este id para get
-    public String ModificarCliente(@PathVariable("cedula") long cedula, Model model) {
-        model.addAttribute("cliente", servicioCliente.SearchById(cedula));
-        return "ModificarCliente";
-    }
+   
 
     @PostMapping("/edit/{cedula}") // editar cliente con este id para post
     public void UpdateCliente(@RequestBody Cliente cliente) {
@@ -75,14 +71,8 @@ public class ControladorCliente {
 
     // http://localhost:8090/cliente/{cedula}/mascotas
     @GetMapping("/{cedula}/mascotas") //mostrar los perros del cliente
-    public String PerrosClientePerros(@PathVariable("cedula") long cedula, Model model) {
-        Cliente cliente = servicioCliente.SearchById(cedula);
-        if (cliente != null) {
-            List<Perro> perros = servicioCliente.PerrosClientePerros(cedula);
-            model.addAttribute("cliente", cliente);
-            model.addAttribute("perros", perros);
-        }
-        return "MostrarPerrosCliente";
+    public List<Perro> obtenerPerrosDelCliente(@PathVariable("cedula") long cedula) {
+        return servicioCliente.PerrosClientePerros(cedula);
     }
 
 }

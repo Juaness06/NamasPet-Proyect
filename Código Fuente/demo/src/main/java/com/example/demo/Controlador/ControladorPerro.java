@@ -21,7 +21,6 @@ import com.example.demo.Servicio.ClienteService;
 import com.example.demo.Servicio.ServicioPerro;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -93,6 +92,8 @@ public class ControladorPerro {
 
     @PostMapping("/agregar")
     public void AgregarPerro(@RequestBody Perro perro) {
+        System.out.println(perro);
+
         Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
         long id = perro.getCliente().getCedula();
         if (a != null) {
@@ -115,7 +116,6 @@ public class ControladorPerro {
 
     @GetMapping("/edit/{id}")
     public void editarPerro(@RequestBody Perro perro,@PathVariable("id") int id) {
-        
         servicioPerro.Update(perro);
     }
 
@@ -134,7 +134,7 @@ public class ControladorPerro {
 
     // http://localhost:8090/perro/clienteMascota/1
     @GetMapping("/cliente/{id}")
-    public List<Perro> Perro(@RequestParam("id") long id) {
+    public List<Perro> Perro(@PathVariable("id") long id) {
         return servicioPerro.findByClienteCedula(id);
     }
     
