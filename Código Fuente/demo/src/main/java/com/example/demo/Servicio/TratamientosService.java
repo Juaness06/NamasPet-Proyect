@@ -1,7 +1,7 @@
 package com.example.demo.Servicio;
 
 import java.util.Collection;
-
+import java.util.List;
 
 import com.example.demo.Entidad.Tratamientos;
 
@@ -10,7 +10,7 @@ public interface TratamientosService { //servicio de tratamientos
     
     public Tratamientos SearchById(Long id);
 
-    public Collection<Tratamientos> SearchAll();
+    public List<Tratamientos> SearchAll();
 
     public void Add(Tratamientos p);
 

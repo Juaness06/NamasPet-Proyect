@@ -3,6 +3,8 @@ package com.example.demo.Servicio;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class TratamientosServicempl implements TratamientosService{
     }
 
     @Override
-    public Collection<Tratamientos> SearchAll() {
+    public List<Tratamientos> SearchAll() {
         return repo.findAll();
     }
 

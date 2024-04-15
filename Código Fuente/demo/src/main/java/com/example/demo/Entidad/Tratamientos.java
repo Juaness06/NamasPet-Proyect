@@ -73,4 +73,9 @@ public class Tratamientos {
     public void setVeterinario(Veterinario veterinario) { // Método setter corregido
         this.veterinario = veterinario;
     }
+
+    public Tratamientos findById(Long id2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
 }
