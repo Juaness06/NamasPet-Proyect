@@ -1,6 +1,6 @@
 package com.example.demo.Controlador;
 
-import java.util.List; 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +30,9 @@ public class ControladorCliente {
     @GetMapping("/all")
     public List<Cliente> MostrarClientes(Model model) {
         /*
-        model.addAttribute("cliente", servicioCliente.SearchAll());
-        return "ListaClientes";
-        */
+         * model.addAttribute("cliente", servicioCliente.SearchAll());
+         * return "ListaClientes";
+         */
         return servicioCliente.SearchAll();
     }
 
@@ -48,7 +48,7 @@ public class ControladorCliente {
     // http://localhost:8090/cliente/add
     @GetMapping("/add")
     public void RegistrarCliente(@RequestBody Cliente cliente) {
-       // esto se debe cambiar dependiendo como granni llame la pagina paa crear
+        // esto se debe cambiar dependiendo como granni llame la pagina paa crear
         servicioCliente.Add(cliente);
     }
 
@@ -61,16 +61,15 @@ public class ControladorCliente {
     }
 
     // http://localhost:8090/cliente/edit/{cedula}
-   
 
     @PostMapping("/edit/{cedula}") // editar cliente con este id para post
     public void UpdateCliente(@RequestBody Cliente cliente) {
         servicioCliente.Update(cliente);
-        
+
     }
 
     // http://localhost:8090/cliente/{cedula}/mascotas
-    @GetMapping("/{cedula}/mascotas") //mostrar los perros del cliente
+    @GetMapping("/{cedula}/mascotas") // mostrar los perros del cliente
     public List<Perro> obtenerPerrosDelCliente(@PathVariable("cedula") long cedula) {
         return servicioCliente.PerrosClientePerros(cedula);
     }
