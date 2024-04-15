@@ -22,7 +22,6 @@ public class Perro {
     @GeneratedValue // autoincrementable
     private long id;
 
-
     @Column(name = "imagen", length = 512) // columna
     private String imagen;
 
@@ -34,15 +33,16 @@ public class Perro {
     private double peso;
     private int numeroAtenciones;
 
-    
-    @ManyToOne // relacion uno a muchos
-    private Cliente cliente; 
-    
     @JsonIgnore
-    @OneToMany(mappedBy = "perro",cascade = CascadeType.ALL,orphanRemoval = true) // relacion uno a muchos
+    @ManyToOne // relacion uno a muchos
+    private Cliente cliente;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "perro", cascade = CascadeType.ALL, orphanRemoval = true) // relacion uno a muchos
     private List<Tratamientos> tratamientos = new ArrayList<>();
 
-    public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) { // constructor con parámetros
+    public Perro(String imagen, String nombre, long id, String raza, int edad, boolean actividad, double peso,
+            int numeroAtenciones) { // constructor con parámetros
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
@@ -53,7 +53,8 @@ public class Perro {
         this.numeroAtenciones = numeroAtenciones;
     }
 
-    public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones, Cliente cliente) { // constructor con parámetros
+    public Perro(String imagen, String nombre, String raza, int edad, boolean actividad, double peso,
+            int numeroAtenciones, Cliente cliente) { // constructor con parámetros
         this.imagen = imagen;
         this.nombre = nombre;
         this.raza = raza;
@@ -61,7 +62,8 @@ public class Perro {
         this.peso = peso;
     }
 
-    public Perro(String imagen, long id, String nombre, String raza, int edad, boolean actividad, double peso, int numeroAtenciones) { // constructor con parámetros
+    public Perro(String imagen, long id, String nombre, String raza, int edad, boolean actividad, double peso,
+            int numeroAtenciones) { // constructor con parámetros
         this.imagen = imagen;
         this.id = id;
         this.nombre = nombre;
@@ -71,8 +73,8 @@ public class Perro {
         this.peso = peso;
         this.numeroAtenciones = numeroAtenciones;
     }
-    
-    public Perro(){
+
+    public Perro() {
     }
 
     public String getImagen() {
@@ -146,11 +148,13 @@ public class Perro {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
     public List<Tratamientos> getTratamientos() {
         return tratamientos;
     }
+
     public void setTratamientos(List<Tratamientos> tratamientos) {
         this.tratamientos = tratamientos;
     }
-   
+
 }
