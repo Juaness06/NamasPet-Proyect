@@ -1,18 +1,35 @@
 package com.example.demo.Entidad;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.File;
+import java.util.Date;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.ReporsitorioDroga;
 import com.example.demo.Repositorio.ReporsitorioVeterinario;
 import com.example.demo.Repositorio.RepositorioPerro;
+import com.example.demo.Repositorio.RepositorioTratamientos;
 
 import jakarta.transaction.Transactional;
 
@@ -35,10 +52,16 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     ReporsitorioDroga drog;
 
+    @Autowired
+    RepositorioTratamientos tratamientoR;
+
     @Override
     public void run(ApplicationArguments args) throws Exception { //inicializa la base de datos con datos de prueba
         
+
         Random rand = new Random();
+
+        cargarDatosDesdeExcel();
 
         String[] nombresClientes = { "Ana", "Beatriz", "Carlos", "David", "Elena", "Fernando", "Gabriela", "Héctor",
                 "Irene", "Jorge", "Alejandro", "Bruno", "Daniel", "Eduardo", "Francisco",
@@ -173,5 +196,47 @@ public class DatabaseInit implements ApplicationRunner {
         }
 
     }
+    private void cargarDatosDesdeExcel() {
+        System.out.println("Iniciando carga de datos...");
+        try {
+            System.out.println("Abriendo archivo Excel...");
+            FileInputStream file = new FileInputStream(new File("C:\\Users\\USUARIO\\OneDrive\\Documents\\5 semestre\\Desarrollo Web\\NamasPet-Proyect\\Código Fuente\\demo\\src\\main\\java\\com\\example\\demo\\Entidad\\MEDICAMENTOS_VETERINARIA.xlsx"));
+            Workbook workbook = new XSSFWorkbook(file);
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> rows = sheet.iterator();
+    
+            if (rows.hasNext()) {
+                Row headerRow = rows.next(); // Salta el encabezado
+                System.out.println("Encabezado omitido: " + headerRow.getCell(0).getStringCellValue()); // Esto imprimirá la primera celda del encabezado
+            }
+            System.out.println("Procesando filas del archivo Excel...");
+            int i = 0;
+            while (rows.hasNext()) {
+                Row row = rows.next();
+                String nombre = row.getCell(0).getStringCellValue();
+                double precioVenta = row.getCell(1).getNumericCellValue();
+                double precioCompra = row.getCell(2).getNumericCellValue();
+                int unidadesDisponibles = (int) row.getCell(3).getNumericCellValue();
+                int unidadesVendidas = (int) row.getCell(4).getNumericCellValue();
+    
+                Tratamientos tratamiento = new Tratamientos(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
+                System.out.println("Guardando tratamiento: " + nombre + " con ID: " + i);
+                tratamientoR.save(tratamiento);
+                i++;
+            }
+            workbook.close();
+            file.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("No se pudo encontrar el archivo Excel. Asegúrate de que la ruta es correcta.");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al leer el archivo Excel.");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error procesando el archivo Excel:");
+            e.printStackTrace();
+        }
+    }
+    
 
 }

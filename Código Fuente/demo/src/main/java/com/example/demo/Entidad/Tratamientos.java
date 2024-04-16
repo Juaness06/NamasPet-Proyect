@@ -22,8 +22,11 @@ public class Tratamientos {
 
     @Column(name = "NAME")
     private String nombre;
-    private double precio;
-    private Date fecha;
+    private double precioV;
+    private double precioC;
+    private int unidades_C;
+    private int unidades_V;
+    
 
     @JsonIgnore
     @ManyToOne
@@ -39,16 +42,54 @@ public class Tratamientos {
 
     // Constructor, getters y setters...
 
-    public Tratamientos(String nombre, double precio, Date fecha) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.fecha = fecha;
-    }
+    
 
     public Tratamientos() {
     }
 
     // ID, nombre, precio, fecha getters y setters...
+
+    public Tratamientos(long id, String nombre, double precioV, double precioC,int unidades_C, int unidades_V) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precioV = precioV;
+        this.precioC = precioC;
+        this.unidades_C = unidades_C;
+        this.unidades_V = unidades_V;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecioV() {
+        return precioV;
+    }
+
+    public void setPrecioV(double precioV) {
+        this.precioV = precioV;
+    }
+
+    public double getPrecioC() {
+        return precioC;
+    }
+
+    public void setPrecioC(double precioC) {
+        this.precioC = precioC;
+    }
+
 
     public Droga getDroga() {
         return droga;
@@ -74,8 +115,21 @@ public class Tratamientos {
         this.veterinario = veterinario;
     }
 
-    public Tratamientos findById(Long id2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+
+
+    public int getUnidades_V() {
+        return unidades_V;
+    }
+
+    public void setUnidades_V(int unidades_V) {
+        this.unidades_V = unidades_V;
+    }
+
+    public int getUnidades_C() {
+        return unidades_C;
+    }
+
+    public void setUnidades_C(int unidades_C) {
+        this.unidades_C = unidades_C;
     }
 }
