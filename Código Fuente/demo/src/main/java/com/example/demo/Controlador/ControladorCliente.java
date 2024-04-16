@@ -46,9 +46,8 @@ public class ControladorCliente {
     }
 
     // http://localhost:8090/cliente/add
-    @GetMapping("/add")
+    @PostMapping("/add")
     public void RegistrarCliente(@RequestBody Cliente cliente) {
-        // esto se debe cambiar dependiendo como granni llame la pagina paa crear
         servicioCliente.Add(cliente);
     }
 
@@ -61,11 +60,9 @@ public class ControladorCliente {
     }
 
     // http://localhost:8090/cliente/edit/{cedula}
-
     @PostMapping("/edit/{cedula}") // editar cliente con este id para post
     public void UpdateCliente(@RequestBody Cliente cliente) {
         servicioCliente.Update(cliente);
-
     }
 
     // http://localhost:8090/cliente/{cedula}/mascotas
