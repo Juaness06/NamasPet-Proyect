@@ -200,7 +200,7 @@ public class DatabaseInit implements ApplicationRunner {
         System.out.println("Iniciando carga de datos...");
         try {
             System.out.println("Abriendo archivo Excel...");
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\USUARIO\\OneDrive\\Documents\\5 semestre\\Desarrollo Web\\NamasPet-Proyect\\Código Fuente\\demo\\src\\main\\java\\com\\example\\demo\\Entidad\\MEDICAMENTOS_VETERINARIA.xlsx"));
+            FileInputStream file = new FileInputStream(new File("Código Fuente/demo/src/main/java/com/example/demo/Entidad/MEDICAMENTOS_VETERINARIA.xlsx"));
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rows = sheet.iterator();
