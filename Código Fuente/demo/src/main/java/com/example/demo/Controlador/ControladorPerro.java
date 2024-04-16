@@ -88,8 +88,9 @@ public class ControladorPerro {
         return "RegistrarPerro";
     }
 
-    @PostMapping("/agregar")
-    public void AgregarPerro(@RequestBody Perro perro) {
+    @PostMapping("/agregar/{cedula}")
+    public void AgregarPerro(@RequestBody Perro perro,@PathVariable("cedula") long cedula) {
+        perro.setCliente(servicioCliente.SearchById(cedula));
         servicioPerro.Add(perro);
     }
 
@@ -101,17 +102,14 @@ public class ControladorPerro {
 
     }
 
-    @GetMapping("/edit/{id}")
-    public void editarPerro(@RequestBody Perro perro, @PathVariable("id") int id) {
-        servicioPerro.Update(perro);
-    }
+    
 
     @PutMapping("/edit/{id}")
-    public void UpdateCliente(@RequestBody Perro perro) {
+    public void UpdateCliente(@RequestBody Perro perro,@PathVariable("id") long id) {
 
-        Cliente a = servicioCliente.Cuenta(perro.getCliente().getCedula());
-        long id = perro.getCliente().getCedula();
-        if (a != null) {
+        Perro a = servicioPerro.SearchById(perro.getId());
+        Cliente b = servicioCliente.SearchById(id);
+        if (a != null&&b!=null) {            
             servicioPerro.Update(perro);
         } else {
             throw new NotFoundException(id);
