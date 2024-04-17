@@ -7,25 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.Entidad.Veterinario;
 import com.example.demo.Repositorio.ReporsitorioVeterinario;
 
-public class VeterianarioServicempl implements ServicioVeterinario  { //implementa el servicio de veterinario
+public class VeterianarioServicempl implements ServicioVeterinario { // implementa el servicio de veterinario
 
     @Autowired
     ReporsitorioVeterinario repo;
 
-
     @Override
     public Veterinario SearchById(long id) {
-       return repo.findById(id).get();
+        return repo.findById(id).get();
     }
 
     @Override
     public Collection<Veterinario> SearchAll() {
-       return repo.findAll();
+        return repo.findAll();
     }
 
     @Override
     public void Add(Veterinario v) {
         repo.save(v);
     }
-    
+
 }

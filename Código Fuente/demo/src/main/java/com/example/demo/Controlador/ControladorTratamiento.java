@@ -12,7 +12,6 @@ import com.example.demo.Entidad.Tratamientos;
 import com.example.demo.Servicio.TratamientosService;
 
 import ch.qos.logback.core.model.Model;
-import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/tratamiento")

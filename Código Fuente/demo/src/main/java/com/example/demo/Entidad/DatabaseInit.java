@@ -19,11 +19,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
-import java.util.Date;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.ReporsitorioDroga;

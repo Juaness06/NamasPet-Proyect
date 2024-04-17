@@ -1,15 +1,12 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.example.demo.Entidad.Administrador;
 
+public interface AdministradorService { // servicio de admnistrador
 
-public interface AdministradorService { //servicio de admnistrador
-
-    //metodos
-    
+    // metodos
     public Administrador SearchById(int id);
 
     public List<Administrador> SearchAll();

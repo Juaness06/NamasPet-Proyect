@@ -24,17 +24,16 @@ public class Droga {
     @Column(name = "NAME") // columna
     private String nombre;
 
-    
-    private double precio; 
+    private double precio;
     private int unidades_V;
     private int unidades;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "droga",cascade = CascadeType.ALL,orphanRemoval = true) // relacion uno a muchos
+    @OneToMany(mappedBy = "droga", cascade = CascadeType.ALL, orphanRemoval = true) // relacion uno a muchos
     private List<Tratamientos> tratamientos = new ArrayList<>();
-    
+
     public Droga() { // constructor vacio
-        
+
     }
 
     public Droga(String nombre, double precio, int unidades) { // constructor con parámetros
@@ -44,16 +43,13 @@ public class Droga {
         this.unidades = unidades;
     }
 
-
     public long getCodigo() {
         return codigo;
     }
 
-
     public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -62,7 +58,6 @@ public class Droga {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     public double getPrecio() {
         return precio;
@@ -76,7 +71,6 @@ public class Droga {
         return unidades_V;
     }
 
-
     public void setUnidades_V(int unidades_V) {
         this.unidades_V = unidades_V;
     }
@@ -84,7 +78,6 @@ public class Droga {
     public int getUnidades() {
         return unidades;
     }
-
 
     public void setUnidades(int unidades) {
         this.unidades = unidades;
@@ -98,4 +91,3 @@ public class Droga {
         this.tratamientos = tratamientos;
     }
 }
-

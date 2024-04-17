@@ -4,9 +4,9 @@ import java.util.Collection;
 
 import com.example.demo.Entidad.Veterinario;
 
-public interface ServicioVeterinario { //servicio de veterinario
-    
-    //metodos
+public interface ServicioVeterinario { // servicio de veterinario
+
+    // metodos
     public Veterinario SearchById(long id);
 
     public Collection<Veterinario> SearchAll();

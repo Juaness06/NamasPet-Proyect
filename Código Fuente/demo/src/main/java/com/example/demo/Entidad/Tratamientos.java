@@ -1,10 +1,7 @@
 package com.example.demo.Entidad;
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +23,6 @@ public class Tratamientos {
     private double precioC;
     private int unidades_C;
     private int unidades_V;
-    
 
     @JsonIgnore
     @ManyToOne
@@ -42,14 +38,12 @@ public class Tratamientos {
 
     // Constructor, getters y setters...
 
-    
-
     public Tratamientos() {
     }
 
     // ID, nombre, precio, fecha getters y setters...
 
-    public Tratamientos(long id, String nombre, double precioV, double precioC,int unidades_C, int unidades_V) {
+    public Tratamientos(long id, String nombre, double precioV, double precioC, int unidades_C, int unidades_V) {
         this.id = id;
         this.nombre = nombre;
         this.precioV = precioV;
@@ -90,7 +84,6 @@ public class Tratamientos {
         this.precioC = precioC;
     }
 
-
     public Droga getDroga() {
         return droga;
     }
@@ -114,8 +107,6 @@ public class Tratamientos {
     public void setVeterinario(Veterinario veterinario) { // Método setter corregido
         this.veterinario = veterinario;
     }
-
-
 
     public int getUnidades_V() {
         return unidades_V;

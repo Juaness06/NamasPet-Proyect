@@ -2,12 +2,10 @@ package com.example.demo.Controlador;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,16 +52,15 @@ public class ControladorCliente {
 
     @DeleteMapping("/delete/{cedula}")
     public void BorrarCliente(@PathVariable("cedula") long id) {
-        {
-            servicioCliente.deleteById(id);
-        }
+
+        servicioCliente.deleteById(id);
 
     }
 
     // http://localhost:8090/cliente/edit/{cedula}
     @PutMapping("/edit/{cedula}") // editar cliente con este id para post
-    public void UpdateCliente(@RequestBody Cliente cliente,@PathVariable("cedula") long id) {
-        
+    public void UpdateCliente(@RequestBody Cliente cliente, @PathVariable("cedula") long id) {
+
         servicioCliente.Update(cliente);
     }
 

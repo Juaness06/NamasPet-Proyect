@@ -1,6 +1,5 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.example.demo.Entidad.Perro;

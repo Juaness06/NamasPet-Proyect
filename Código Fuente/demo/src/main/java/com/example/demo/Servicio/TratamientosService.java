@@ -1,13 +1,11 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.example.demo.Entidad.Tratamientos;
 
+public interface TratamientosService { // servicio de tratamientos
 
-public interface TratamientosService { //servicio de tratamientos
-    
     public Tratamientos SearchById(Long id);
 
     public List<Tratamientos> SearchAll();
@@ -18,8 +16,8 @@ public interface TratamientosService { //servicio de tratamientos
 
     public void Update(Tratamientos p);
 
-   // public Tratamientos Cuenta(Long cedula);
-    
-    //public Collection<Perro> PerrosClientePerros(long cedula);
-    
+    // public Tratamientos Cuenta(Long cedula);
+
+    // public Collection<Perro> PerrosClientePerros(long cedula);
+
 }

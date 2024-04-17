@@ -43,7 +43,7 @@ public class Cliente {
     }
 
     public Cliente(String nombre, String correo, long celular, String usuario, String contrasena) { // constructor
-        this.nombre = nombre; 
+        this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
         this.Usuario = usuario;

@@ -3,12 +3,10 @@ package com.example.demo.Controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -89,7 +87,7 @@ public class ControladorPerro {
     }
 
     @PostMapping("/agregar/{cedula}")
-    public void AgregarPerro(@RequestBody Perro perro,@PathVariable("cedula") long cedula) {
+    public void AgregarPerro(@RequestBody Perro perro, @PathVariable("cedula") long cedula) {
         perro.setCliente(servicioCliente.SearchById(cedula));
         servicioPerro.Add(perro);
     }
@@ -102,14 +100,13 @@ public class ControladorPerro {
 
     }
 
-    
-
     @PutMapping("/edit/{id}")
-    public void UpdateCliente(@RequestBody Perro perro,@PathVariable("id") long id) {
+    public void UpdateCliente(@RequestBody Perro perro, @PathVariable("id") long id) {
 
         Perro a = servicioPerro.SearchById(perro.getId());
         Cliente b = servicioCliente.SearchById(id);
-        if (a != null&&b!=null) {            
+        if (a != null && b != null) {
+            perro.setCliente(b);
             servicioPerro.Update(perro);
         } else {
             throw new NotFoundException(id);

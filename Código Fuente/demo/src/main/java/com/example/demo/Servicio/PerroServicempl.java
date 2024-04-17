@@ -2,7 +2,6 @@ package com.example.demo.Servicio;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import com.example.demo.Entidad.Perro;
 import com.example.demo.Repositorio.RepositorioPerro;
 
 @Service
-public class PerroServicempl implements ServicioPerro { //implementa el servicio de perro
+public class PerroServicempl implements ServicioPerro { // implementa el servicio de perro
 
     @Autowired
     RepositorioPerro repo;
@@ -42,9 +41,8 @@ public class PerroServicempl implements ServicioPerro { //implementa el servicio
 
     @Override
     public List<Perro> findByClienteCedula(long id) {
-        
+
         return repo.findByClienteCedula(id);
     }
-    
 
 }

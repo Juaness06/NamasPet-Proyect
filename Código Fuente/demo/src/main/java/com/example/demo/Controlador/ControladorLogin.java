@@ -24,8 +24,8 @@ public class ControladorLogin {
     }
 
     // http://localhost:8090/login
-    @PostMapping("/cliente") //post para enviar los datos a buscar al cliente
-    public String Login( 
+    @PostMapping("/cliente") // post para enviar los datos a buscar al cliente
+    public String Login(
             @RequestParam("cedula") long cedula) {
         Cliente a = clienteService.Cuenta(cedula);
         if (a != null) {

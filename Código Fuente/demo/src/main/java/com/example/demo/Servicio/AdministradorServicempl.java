@@ -1,6 +1,5 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,8 @@ import com.example.demo.Entidad.Administrador;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 
 @Service
-public class AdministradorServicempl implements AdministradorService { //implementa el servicio de administrador
-    
+public class AdministradorServicempl implements AdministradorService { // implementa el servicio de administrador
+
     @Autowired
     ReporsitorioAdministrador repo;
 
@@ -30,7 +29,7 @@ public class AdministradorServicempl implements AdministradorService { //impleme
         repo.save(d);
     }
 
-      @Override
+    @Override
     public void DeleteByID(int id) {
         repo.deleteById(id);
     }

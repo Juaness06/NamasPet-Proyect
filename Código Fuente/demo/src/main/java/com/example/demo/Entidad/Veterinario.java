@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "veterinario")
 public class Veterinario {
-    
+
     @Id
     @GeneratedValue
     private long id;
@@ -21,20 +21,16 @@ public class Veterinario {
     @Column(name = "NAME")
     private String nombre;
 
-    
     private String especialidad;
     private int atenciones;
     private String foto;
 
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamientos> tratamientos = new ArrayList<>();
-    
 
     public Veterinario() {
-        
-    }
 
-    
+    }
 
     public Veterinario(String nombre, String especialidad, int atenciones, String foto) {
         this.nombre = nombre;
@@ -42,8 +38,6 @@ public class Veterinario {
         this.atenciones = atenciones;
         this.foto = foto;
     }
-
-
 
     public long getId() {
         return id;
@@ -85,20 +79,12 @@ public class Veterinario {
         this.foto = foto;
     }
 
-
-
     public List<Tratamientos> getTratamientos() {
         return tratamientos;
     }
-
-
 
     public void setTratamientos(List<Tratamientos> tratamientos) {
         this.tratamientos = tratamientos;
     }
 
-
-
-    
-    
 }
