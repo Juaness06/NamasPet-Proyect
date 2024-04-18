@@ -1,6 +1,5 @@
 package com.example.demo.Entidad;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,7 +18,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
+import java.util.Date;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.ReporsitorioDroga;
@@ -187,8 +190,7 @@ public class DatabaseInit implements ApplicationRunner {
             Double precio = preciosDroga[i % preciosDroga.length];
             Integer unidadesVendidas = unidadesDrogas[i % unidadesDrogas.length];
 
-            Droga droga = new Droga(nombre, precio, unidadesVendidas); //crea la droga
-            drog.save(droga); //guarda la droga
+           
         }
 
     }
@@ -215,9 +217,9 @@ public class DatabaseInit implements ApplicationRunner {
                 int unidadesDisponibles = (int) row.getCell(3).getNumericCellValue();
                 int unidadesVendidas = (int) row.getCell(4).getNumericCellValue();
     
-                Tratamientos tratamiento = new Tratamientos(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
-                System.out.println("Guardando tratamiento: " + nombre + " con ID: " + i);
-                tratamientoR.save(tratamiento);
+                Droga droga = new Droga(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
+                System.out.println("Guardando droga: " + nombre + " con ID: " + i);
+                drog.save(droga); //guarda la droga
                 i++;
             }
             workbook.close();

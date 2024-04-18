@@ -1,7 +1,10 @@
 package com.example.demo.Entidad;
 
+import java.sql.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,11 +21,12 @@ public class Tratamientos {
     private long id;
 
     @Column(name = "NAME")
-    private String nombre;
-    private double precioV;
+    private String nombreTratamiento;
+
     private double precioC;
-    private int unidades_C;
-    private int unidades_V;
+    private Date fecha;
+
+    
 
     @JsonIgnore
     @ManyToOne
@@ -38,18 +42,16 @@ public class Tratamientos {
 
     // Constructor, getters y setters...
 
+    
+
     public Tratamientos() {
     }
 
-    // ID, nombre, precio, fecha getters y setters...
-
-    public Tratamientos(long id, String nombre, double precioV, double precioC, int unidades_C, int unidades_V) {
+    public Tratamientos(long id, String nombreTratamiento, double precioC, Date fecha) {
         this.id = id;
-        this.nombre = nombre;
-        this.precioV = precioV;
+        this.nombreTratamiento = nombreTratamiento;
         this.precioC = precioC;
-        this.unidades_C = unidades_C;
-        this.unidades_V = unidades_V;
+        this.fecha = fecha;
     }
 
     public long getId() {
@@ -60,20 +62,12 @@ public class Tratamientos {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreTratamiento() {
+        return nombreTratamiento;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getPrecioV() {
-        return precioV;
-    }
-
-    public void setPrecioV(double precioV) {
-        this.precioV = precioV;
+    public void setNombreTratamiento(String nombreTratamiento) {
+        this.nombreTratamiento = nombreTratamiento;
     }
 
     public double getPrecioC() {
@@ -82,6 +76,14 @@ public class Tratamientos {
 
     public void setPrecioC(double precioC) {
         this.precioC = precioC;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Droga getDroga() {
@@ -100,27 +102,15 @@ public class Tratamientos {
         this.perro = perro;
     }
 
-    public Veterinario getVeterinario() { // Método getter corregido
+    public Veterinario getVeterinario() {
         return veterinario;
     }
 
-    public void setVeterinario(Veterinario veterinario) { // Método setter corregido
+    public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;
     }
 
-    public int getUnidades_V() {
-        return unidades_V;
-    }
+    // ID, nombre, precio, fecha getters y setters...
 
-    public void setUnidades_V(int unidades_V) {
-        this.unidades_V = unidades_V;
-    }
-
-    public int getUnidades_C() {
-        return unidades_C;
-    }
-
-    public void setUnidades_C(int unidades_C) {
-        this.unidades_C = unidades_C;
-    }
+   
 }

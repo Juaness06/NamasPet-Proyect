@@ -1,6 +1,6 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import com.example.demo.Repositorio.ReporsitorioDroga;
 
 @Service
 public class DrogaServicempl implements ServicioDroga {
-
+    
     @Autowired
     ReporsitorioDroga repo;
 
@@ -20,7 +20,7 @@ public class DrogaServicempl implements ServicioDroga {
     }
 
     @Override
-    public Collection<Droga> SearchAll() {
+    public List<Droga> SearchAll() {
         return repo.findAll();
     }
 
