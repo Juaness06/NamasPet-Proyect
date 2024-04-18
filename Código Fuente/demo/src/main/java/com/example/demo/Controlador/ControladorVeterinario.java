@@ -29,19 +29,19 @@ public class ControladorVeterinario {
     private ServicioVeterinario servicioVeterinario;
 
     // Endpoint para mostrar todos los veterinarios
-    @GetMapping("/todos")
+    @GetMapping("/all")
     public List<Veterinario> mostrarVeterinarios() {
         return servicioVeterinario.SearchAll();
     }
 
     // Endpoint para mostrar la información de un veterinario específico por su ID
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/{id}")
     public Veterinario mostrarInfoVeterinario(@PathVariable("id") long id) {
         return servicioVeterinario.SearchById(id);
     }
 
     // Endpoint para registrar un nuevo veterinario
-    @PostMapping("/agregar")
+    @PostMapping("/add")
     public void registrarVeterinario(@RequestBody Veterinario veterinario) {
         servicioVeterinario.Add(veterinario);
     }
