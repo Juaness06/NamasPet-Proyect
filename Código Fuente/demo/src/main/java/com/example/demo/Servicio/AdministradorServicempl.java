@@ -16,7 +16,7 @@ public class AdministradorServicempl implements AdministradorService { // implem
 
     @Override
     public Administrador SearchById(int id) {
-        return repo.findById(id).get();
+        return repo.findById(id);
     }
 
     @Override
@@ -38,4 +38,5 @@ public class AdministradorServicempl implements AdministradorService { // implem
     public void Update(Administrador p) {
         repo.save(p);
     }
+
 }

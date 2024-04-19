@@ -86,8 +86,8 @@ public class DatabaseInit implements ApplicationRunner {
                 "Drift", "Echo", "Flame", "Glitch", "Hawk", "Iron", "Jester"
         };
 
-        Administrador administrador = new Administrador("Nicolas Quintana", "123456");
-        Administrador administrador2 = new Administrador("Juan Esteban Granada", "123456");
+        Administrador administrador = new Administrador("nico", "123456");
+        Administrador administrador2 = new Administrador("grani", "cafu");
         admin.save(administrador);
         admin.save(administrador2);
 
