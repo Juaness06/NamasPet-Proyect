@@ -21,27 +21,31 @@ public class Droga {
     @GeneratedValue // autoincrementable
     private long codigo;
 
-    @Column(name = "NAME") // columna
+    @Column(name = "NAME")
     private String nombre;
-
-    private double precio;
+    private double precioV;
+    private double precioC;
+    private int unidades_C;
     private int unidades_V;
-    private int unidades;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "droga", cascade = CascadeType.ALL, orphanRemoval = true) // relacion uno a muchos
+    @OneToMany(mappedBy = "droga",cascade = CascadeType.ALL,orphanRemoval = true) // relacion uno a muchos
     private List<Tratamientos> tratamientos = new ArrayList<>();
-
+    
     public Droga() { // constructor vacio
-
+        
     }
+    
 
-    public Droga(String nombre, double precio, int unidades) { // constructor con parámetros
+    public Droga(long codigo, String nombre, double precioV, double precioC, int unidades_C, int unidades_V) {
+        this.codigo = codigo;
         this.nombre = nombre;
-        this.precio = precio;
-        this.unidades_V = 0;
-        this.unidades = unidades;
+        this.precioV = precioV;
+        this.precioC = precioC;
+        this.unidades_C = unidades_C;
+        this.unidades_V = unidades_V;
     }
+
 
     public long getCodigo() {
         return codigo;
@@ -59,12 +63,28 @@ public class Droga {
         this.nombre = nombre;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioV() {
+        return precioV;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioV(double precioV) {
+        this.precioV = precioV;
+    }
+
+    public double getPrecioC() {
+        return precioC;
+    }
+
+    public void setPrecioC(double precioC) {
+        this.precioC = precioC;
+    }
+
+    public int getUnidades_C() {
+        return unidades_C;
+    }
+
+    public void setUnidades_C(int unidades_C) {
+        this.unidades_C = unidades_C;
     }
 
     public int getUnidades_V() {
@@ -75,14 +95,6 @@ public class Droga {
         this.unidades_V = unidades_V;
     }
 
-    public int getUnidades() {
-        return unidades;
-    }
-
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
-    }
-
     public List<Tratamientos> getTratamientos() {
         return tratamientos;
     }
@@ -90,4 +102,6 @@ public class Droga {
     public void setTratamientos(List<Tratamientos> tratamientos) {
         this.tratamientos = tratamientos;
     }
+
+    
 }

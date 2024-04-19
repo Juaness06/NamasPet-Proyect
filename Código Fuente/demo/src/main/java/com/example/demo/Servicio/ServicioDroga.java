@@ -1,16 +1,17 @@
 package com.example.demo.Servicio;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.example.demo.Entidad.Droga;
 
-public interface ServicioDroga { // servicio de droga
+public interface ServicioDroga { //servicio de droga
 
-    // metodos del servicio
+    //metodos del servicio
     public Droga SearchById(long id);
 
-    public Collection<Droga> SearchAll();
+    public List<Droga> SearchAll();
 
     public void Add(Droga d);
-
+    
 }
+
