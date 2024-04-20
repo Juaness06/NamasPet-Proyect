@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--thymeleaf -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMASPET</title>
+    <link th:href="@{/CSS/styles-Footer&Header.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link th:href="@{/CSS/styles-ListaClientes.css}" rel="stylesheet" /> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
+
+<body>
+    <header> <!--header de la pagina-->
+        <div id="contenedorLogoTitulo">
+            <div id="contenedorLogo">
+                <img id="logo" th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="100" height="100" />
+            </div>
+            <div id="contenedorTitulo">
+                <h1 class="titulo">NAMASPET</h1>
+            </div>
+        </div>
+        <div id="contenedorMenuDesplegable">
+            <nav class="navbar">
+                <ul class="menuHorizontal">
+                    <li><a th:href="@{/}">Inicio</a></li> <!-- ir al landing page-->
+                    <li>
+                        <a>Tratamientos</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/perro/all}">Mascotas</a> <!-- ver las mascotas-->
+                    </li>
+                    <li>
+                        <a>Información</a>
+                    </li>
+                    <li><a th:href="@{/cliente/all}">Clientes</a></li> <!-- ver los clientes-->
+                    <li id="btnItem">
+                        <button class="btnPerfil">
+                            <a id="btnLogin" th:href="@{/login/cliente}"> <!--anchor para la imagen-->
+                                <img class="btnPerfil" th:src="@{/Imagenes/logo_corrected.png}"> <!--boton de login-->
+                            </a>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="sectionTabla"> <!--Section de la pagina-->
+
+        <div id="divTitulo">
+            <div id="space"> <!-- div del espacio en la pagina-->
+            </div>
+            <div>
+                <h1>CLIENTES</h1>
+            </div>
+            <div>
+                <button id="btnAgregar" onclick="location.href='/cliente/add'">Agregar</button> <!--boton de agregar-->
+            </div>
+        </div>
+        <div id="divTabla">
+            <table>
+                <thead>
+                    <tr> <!--Cabecueras de columna-->
+                        <th>CEDULA</th>
+                        <th>NOMBRE</th>
+                        <th>CORREO</th>
+                        <th>CELULAR</th>
+                        <th>USUARIO</th>
+                        <th>MASCOTAS</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody> <!--cuerpo de la tabla-->
+                    <tr th:each="cliente : ${cliente}"> <!--Se trae a todos los clinetes-->
+                        <td th:text="${cliente.cedula}"></td>
+                        <td th:text="${cliente.nombre}"></td>
+                        <td class="correo" th:text="${cliente.correo}"></td>
+                        <td th:text="${cliente.celular}"></td>
+                        <td th:text="${cliente.usuario}"></td>
+                        <td>
+                            <a id="anchorPerros"
+                                th:href="@{/cliente/{cedula}/mascotas(cedula=${cliente.cedula})}">PERROS</a>
+                            <!--anchor de ver perros-->
+                        </td>
+                        <td>
+                            <a class="btnEdi" th:href="@{/cliente/edit/{cedula}(cedula=${cliente.cedula})}">EDITAR</a>
+                            <!--anchor de editar-->
+                            <a class="btnEli"
+                                th:href="@{/cliente/delete/{cedula}(cedula=${cliente.cedula})}">ELIMINAR</a>
+                            <!--anchor de eliminar-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="custom-shape-divider-bottom-1707855607"> <!--div de la parte inferior del footer-->
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                    opacity=".25" class="shape-fill"></path>
+                <path
+                    d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                    opacity=".5" class="shape-fill"></path>
+                <path
+                    d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="info">
+            <div id="redes">
+                <div id="tituloLogo">
+                    <img th:src="@{/Imagenes/logo-negro.png}" alt="Logo NamasPet" width="100" height="100" />
+                    <h1 class="titulo">NAMASPET</h1> <!--h1 del footer-->
+                </div>
+                <div id="contenedorRedes"> <!--div que contiene los iconos de redes-->
+                    <img th:src="@{/Imagenes/instragram.png}" alt="Instragram" width="40" height="30" />
+                    <img th:src="@{/Imagenes/Facebook.png}" alt="Facebook" width="30" height="30" />
+                    <img th:src="@{/Imagenes/twitter.png}" alt="X" width="30" height="30" />
+                </div>
+            </div>
+            <div id="Información"> <!--div que contiene la informacion del footer-->
+                <h2 class="textoFoterin">Información</h2>
+                <ul class="footerin">
+                    <li class="textoFoterin">Telefono: +57 321 322 8515</li>
+                    <li class="textoFoterin">ServicioAlCliente@NamasPet.com.co</li>
+                    <li class="textoFoterin">Bogotá D.C., Colombia</li>
+                </ul>
+                <p id="terminos">© 2024 NamasPet. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

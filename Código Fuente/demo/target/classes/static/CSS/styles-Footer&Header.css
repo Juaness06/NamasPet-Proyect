@@ -1,0 +1,310 @@
+/* fonts */
+
+@import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Patua+One&display=swap");
+
+/**======Header y Body====== */
+header {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #2f2c79;
+}
+
+/* estilos para todo*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-margin-top: 30px;
+}
+
+
+#contenedorMenuDesplegable {
+  display: flex;
+}
+
+/* estilos para la barra de navegación*/
+nav {
+  max-width: 900px;
+  margin: auto;
+  font-size: 26px;
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+/* estilos para la barra de navegación*/
+.menuHorizontal {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* estilos para la barra de navegación*/
+.menuHorizontal li a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  width: 150px;
+}
+
+/* estilos para la barra de navegación*/
+.menuHorizontal li:hover {
+  background-color: transparent;
+  color: #2f2c79;
+}
+
+/* estilos para la barra de navegación*/
+.menuVertical {
+  position: absolute;
+  display: none;
+  list-style: none;
+  width: auto;
+  background-color: #2f2c79;
+}
+
+/* estilos para la barra de navegación*/
+.menuHorizontal li:hover .menuVertical {
+  display: block;
+  z-index: 1;
+}
+
+/* estilos para la barra de navegación*/
+.menuVertical li:hover {
+  background-color: #64c27b;
+  color: #2f2c79;
+}
+
+/* estilos para la barra de navegación*/
+.menuVertical li a {
+  display: block;
+  color: white;
+  padding: 15px 15px 15px 20px;
+  text-decoration: none;
+}
+
+
+.info {
+  position: relative;
+  display: flex;
+  bottom: 0;
+  padding-top: 10px;
+  background-color: #64c27b;
+}
+
+.titulo {
+  font-family: "Macondo", cursive;
+  font-weight: 900;
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* estilos para la barra de navegación*/
+#btnLogin{
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 20px;
+  padding-right: 0px;
+  width: fit-content;
+}
+
+/* estilos para la barra de navegación*/
+#btnLogin:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+/* estilos para la barra de navegación*/
+.btnPerfil {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+}
+
+/* estilos para la barra de navegación*/
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+/* estilos para la barra de navegación*/
+a:hover {
+  text-decoration: underline;
+}
+
+/* estilos para la barra de navegación*/ 
+body {
+  background: #d0fdd7;
+}
+
+/* estilos para la barra de navegación*/
+.contenedor {
+  max-width: 1000px;
+  width: 90%;
+  margin: auto;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* estilos para la barra de navegación*/
+#contenedorNombre {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* estilos para la barra de navegación*/
+#contenedorLogo {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* estilos para la barra de navegación*/
+#contenedorLogoTitulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* estilos para la barra de navegación*/
+#contenedorTitulo {
+  display: inline-block;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  align-items: center;
+  font-size: 15px;
+  color: #d8d9e7;
+}
+
+/* estilos para la barra de navegación*/
+.navbar {
+  background: #2f2c79;
+}
+
+/* estilos para la barra de navegación*/
+.navbar a {
+  color: #fff;
+  display: inline-block;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  transition: 0.3s ease-out all;
+}
+
+/* estilos para la barra de navegación*/
+.navbar a:hover {
+  background: #1d2f3d;
+  color: #fff;
+  text-decoration: none;
+}
+
+/**=====Foter======*/
+
+/* logo y titulo */
+#tituloLogo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  font-size: 20px;
+}
+
+/* redes */
+#redes {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+#contenedorRedes {
+  display: flex;
+  height: auto;
+  width: 210px;
+  justify-content: space-around;
+  bottom: 0;
+}
+
+#terminos {
+  font-family: "Dosis", sans-serif;
+  margin-top: 20px;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+#Información {
+  display: inline-block;
+  color: black;
+  font-size: 17px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#Información h2 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.footerin {
+  list-style: none;
+  padding: 0;
+}
+
+.textoFoterin {
+  font-family: "Dosis", sans-serif;
+}
+
+.footerin li {
+  margin-bottom: 10px;
+}
+
+/* *  ============ custom shape footer =========== */
+
+/* Dibujo en el footer*/
+.custom-shape-divider-bottom-1707855607 {
+  position: relative;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+
+/* Dibujo en el footer*/
+.custom-shape-divider-bottom-1707855607 svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 174px;
+  transform: rotateY(180deg);
+}
+
+/* Dibujo en el footer*/
+.custom-shape-divider-bottom-1707855607 .shape-fill {
+  fill: #64c27b;
+}

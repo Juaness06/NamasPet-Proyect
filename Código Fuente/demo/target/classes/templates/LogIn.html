@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMASPET</title>
+    <link rel="stylesheet" th:href="@{/CSS/styles-LogIn.css}"> <!--importacion de estilos-->
+    <link rel="icon" th:href="@{/Imagenes/icono_logo.ico}"> <!--importacion de icono-->
+</head>
+
+<body>
+    <section id="sectionTitulo">
+        <div class="divPlanta">
+            <img class="planta" th:src="@{/Imagenes/plantaLogIn.png}" alt="plantaLogIn" width="146.23"
+                height="222.5">
+        </div>
+        <div id="divLogoTitulo">
+            <div id="divLogo">
+                <img th:src="@{/Imagenes/logo-blanco.png}" alt="Logo NamasPet" width="180" height="180" />
+            </div>
+            <div id="divTitulo">
+                <h1>NAMASPET</h1>
+            </div>
+        </div>
+        <div class="divPlanta">
+            <img class="planta" th:src="@{/Imagenes/plantaLogIn.png}" alt="plantaLogIn" width="146.23" height="222.5"
+                id="plantaReflejada">
+        </div>
+    </section>
+    <section id="sectionLogIn">
+        <div id="plantaAbajoIzquierda">
+            <img class="planta" th:src="@{/Imagenes/plantaLogIn.png}" alt="plantaLogIn" width="146.23"
+            height="222.5">
+        </div>
+        <div id="divlogin">
+            <div class="login-box">
+                <h2>Iniciar Sesion</h2>
+                <form method="post"> <!--formulario de inicio de sesion-->
+                    <div class="user-box">
+                        <input type="text" id="cedula" name="cedula" required> 
+                        <label>Cedula</label>
+                    </div>
+                    <div id="divIngresar">
+                        <button id="btnIngresar" type="submit">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="plantaAbajoDerecha">
+            <img class="planta" th:src="@{/Imagenes/plantaLogIn.png}" alt="plantaLogIn" width="146.23"
+            height="222.5">
+        </div>
+    </section>
+</body>
+
+</html>
