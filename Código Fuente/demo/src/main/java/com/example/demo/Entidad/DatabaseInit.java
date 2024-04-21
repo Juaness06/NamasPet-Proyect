@@ -311,6 +311,7 @@ public class DatabaseInit implements ApplicationRunner {
             tratamiento.setPerro(perroAleatorio);
             tratamiento.setVeterinario(veterinarioAleatorio);
             tratamiento.setDroga(drogaAleatoria);
+
             tratamiento.setPrecioC(drogaAleatoria.getPrecioC()*drogaAleatoria.getUnidades_C()+50000);
     
             // Guarda el tratamiento actualizado en la base de datos

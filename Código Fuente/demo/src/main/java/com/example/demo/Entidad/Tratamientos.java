@@ -8,6 +8,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -29,7 +30,9 @@ public class Tratamientos {
 
     
     @ManyToOne
+    @JoinColumn(name = "droga_id") // Nombre de la columna en la tabla Tratamientos que hace referencia a la tabla Droga
     private Droga droga;
+    
 
 
     @ManyToOne

@@ -18,8 +18,8 @@ public interface TratamientosService { // servicio de tratamientos
     public void Update(Tratamientos p);
 
     public Long getTotalTratamientosUltimoMes();
-    
-    public List<Object[]> getConteoTratamientosPorMedicamento(LocalDate startDate, LocalDate endDate);
+
+    public List<Object[]> countTratamientosPorDroga();
 
     // public Tratamientos Cuenta(Long cedula);
 

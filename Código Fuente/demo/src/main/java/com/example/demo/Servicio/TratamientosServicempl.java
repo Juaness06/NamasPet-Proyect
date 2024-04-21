@@ -51,8 +51,8 @@ public class TratamientosServicempl implements TratamientosService {
         return repo.countTratamientosUltimoMes(startDate, endDate);
     }
 
-    public List<Object[]> getConteoTratamientosPorMedicamento(LocalDate startDate, LocalDate endDate) {
-        return repo.countTratamientosPorMedicamento(startDate, endDate);
+    public List<Object[]> countTratamientosPorDroga() {
+        return repo.countTratamientosPorDroga();
     }
 
    

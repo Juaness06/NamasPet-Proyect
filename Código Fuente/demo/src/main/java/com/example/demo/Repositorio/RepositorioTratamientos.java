@@ -16,8 +16,8 @@ public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Lon
     @Query("SELECT COUNT(t) FROM Tratamientos t WHERE t.fecha BETWEEN :startDate AND :endDate")
     Long countTratamientosUltimoMes(LocalDate startDate, LocalDate endDate);
 
-    @Query("SELECT d.nombre, COUNT(t) FROM Tratamientos t JOIN t.droga d WHERE t.fecha BETWEEN :startDate AND :endDate GROUP BY d.nombre")
-    List<Object[]> countTratamientosPorMedicamento(LocalDate startDate, LocalDate endDate);
-    
-
+    @Query(value = "SELECT d.NAME, COUNT(*) FROM Tratamientos t INNER JOIN droga d ON t.droga_id = d.codigo WHERE MONTH(t.fecha) = MONTH(CURRENT_DATE()) AND YEAR(t.fecha) = YEAR(CURRENT_DATE()) GROUP BY d.NAME", nativeQuery = true)
+    List<Object[]> countTratamientosPorDroga();
+    //Dashboard - 2: Cantidad de tratamientos por tipo de medicamento administrado en el ultimo mes (tabla medicamento-cantidad)
+   
 }

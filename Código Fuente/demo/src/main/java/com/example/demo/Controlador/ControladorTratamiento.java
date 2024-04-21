@@ -19,6 +19,7 @@ import com.example.demo.Entidad.Tratamientos;
 import com.example.demo.Servicio.TratamientosService;
 
 import ch.qos.logback.core.model.Model;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/tratamiento")
@@ -46,6 +47,12 @@ public class ControladorTratamiento {
         return ResponseEntity.ok(totalTratamientos);
     }
 
+    @GetMapping("/cantidad_tipo")
+    @Operation(summary = "Cantidad de tratamientos por tipo de medicamento administrado en el ultimo mes(tabla medicamento-cantidad)")
+    public List<Object[]> showTotalTratamientosPorDroga() {
+        return servicioTratamiento.countTratamientosPorDroga();
+    }
+    
 
     /*
 
