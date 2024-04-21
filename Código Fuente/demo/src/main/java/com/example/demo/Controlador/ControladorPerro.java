@@ -3,6 +3,7 @@ package com.example.demo.Controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -118,6 +119,18 @@ public class ControladorPerro {
     @GetMapping("/cliente/{id}")
     public List<Perro> Perro(@PathVariable("id") long id) {
         return servicioPerro.findByClienteCedula(id);
+    }
+
+    @GetMapping("/perros")
+    public ResponseEntity<Long> contarTotalPerros() {
+    int totalPerrosInt = servicioPerro.SearchAll().size(); // Obtiene el tamaño como int
+    Long totalPerros = Long.valueOf(totalPerrosInt); // Convierte int a Long
+    return ResponseEntity.ok(totalPerros);
+}
+
+    @GetMapping("/activos")
+    public Long contarMascotasActivas() {
+        return servicioPerro.contarMascotasActivas();
     }
 
 }

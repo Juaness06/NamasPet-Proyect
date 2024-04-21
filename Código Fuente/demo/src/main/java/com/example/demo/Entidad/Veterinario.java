@@ -27,6 +27,8 @@ public class Veterinario {
     private int atenciones;
     private String foto;
 
+    private boolean activo;
+
     @JsonIgnore
     @OneToMany(mappedBy = "veterinario")
     private List<Tratamientos> tratamientos = new ArrayList<>();
@@ -35,7 +37,7 @@ public class Veterinario {
 
     }
 
-    public Veterinario(String nombre, String especialidad, int atenciones, String foto) {
+    public Veterinario(String nombre, String especialidad, int atenciones, String foto, boolean activo) {
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.atenciones = atenciones;
@@ -49,6 +51,7 @@ public class Veterinario {
     public void setId(long id) {
         this.id = id;
     }
+    
 
     public String getNombre() {
         return nombre;
@@ -88,6 +91,14 @@ public class Veterinario {
 
     public void setTratamientos(List<Tratamientos> tratamientos) {
         this.tratamientos = tratamientos;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
 }

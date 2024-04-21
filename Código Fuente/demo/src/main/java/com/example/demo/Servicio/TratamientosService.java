@@ -1,5 +1,6 @@
 package com.example.demo.Servicio;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.demo.Entidad.Tratamientos;
@@ -15,6 +16,10 @@ public interface TratamientosService { // servicio de tratamientos
     public void deleteById(Long id);
 
     public void Update(Tratamientos p);
+
+    public Long getTotalTratamientosUltimoMes();
+    
+    public List<Object[]> getConteoTratamientosPorMedicamento(LocalDate startDate, LocalDate endDate);
 
     // public Tratamientos Cuenta(Long cedula);
 

@@ -36,4 +36,16 @@ public class VeterinarioServiceImpl implements ServicioVeterinario {
     public void Update(Veterinario v) {
         repo.save(v);
     }
+
+    @Override
+    public Long getVeterinariosActivosCount() {
+        return repo.countVeterinariosActivos();
+    }
+
+    @Override
+    public Long getVeterinariosInactivosCount() {
+        return repo.countVeterinariosInactivos();
+    }
+
+
 }

@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -48,6 +51,7 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     ReporsitorioDroga drog;
 
+
     @Autowired
     RepositorioTratamientos tratamientoR;
 
@@ -58,6 +62,7 @@ public class DatabaseInit implements ApplicationRunner {
         Random rand = new Random();
 
         cargarDatosDesdeExcel();
+       
 
         String[] nombresClientes = { "Ana", "Beatriz", "Carlos", "David", "Elena", "Fernando", "Gabriela", "Héctor",
                 "Irene", "Jorge", "Alejandro", "Bruno", "Daniel", "Eduardo", "Francisco",
@@ -168,15 +173,17 @@ public class DatabaseInit implements ApplicationRunner {
                 "https://img.freepik.com/foto-gratis/joven-medico-apoyando-su-paciente_1098-2237.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1710028800&semt=sph",
                 "https://img.freepik.com/fotos-premium/apuesto-joven-medico-clinica-veterinaria-apuntando-dedo-arriba-sonriendo-impresionado-pie-junto-lindo-perro-pug-negro-blanco_1258-32774.jpg" };
 
-        for (int i = 0; i < 10; i++) {
-            String nombre = nombresVeterinarios[i % nombresVeterinarios.length];
-            String especialidad = especialidades[i % especialidades.length];
-            int atenciones = rand.nextInt(100);
-            String foto = fotosVeterinarios[i % fotosVeterinarios.length];
-
-            Veterinario veterinario = new Veterinario(nombre, especialidad, atenciones, foto); //crea el veterinario
-            vet.save(veterinario); //guarda el veterinario
-        }
+                for (int i = 0; i < 10; i++) {
+                    String nombre = nombresVeterinarios[i % nombresVeterinarios.length];
+                    String especialidad = especialidades[i % especialidades.length];
+                    int atenciones = rand.nextInt(100);
+                    String foto = fotosVeterinarios[i % fotosVeterinarios.length];
+                    boolean disponible = rand.nextBoolean();  // Genera un booleano aleatorio para la disponibilidad
+                
+                    Veterinario veterinario = new Veterinario(nombre, especialidad, atenciones, foto, disponible); // Crea el veterinario con disponibilidad aleatoria
+                    vet.save(veterinario); // Guarda el veterinario
+                }
+                
 
         String[] nombresDroga = { "Bayer", "Beaphar", "Chemie", "Drag Pharma", "Labyes", "Merial Pharma", "Micro", "Msd" };
         Double[] preciosDroga = { 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0 };
@@ -186,11 +193,62 @@ public class DatabaseInit implements ApplicationRunner {
             String nombre = nombresDroga[i % nombresDroga.length];
             Double precio = preciosDroga[i % preciosDroga.length];
             Integer unidadesVendidas = unidadesDrogas[i % unidadesDrogas.length];
-
-           
         }
+        generarTratamientos();
+        asignarTratamientosExistente();
+        
 
     }
+
+    public void generarTratamientos() {
+        String[] nombresTratamientos = {
+            "RevitaPelaje",
+            "CaninoLimpio",
+            "RabiaShield",
+            "ParvoPrevención",
+            "PulgaStop",
+            "AntiparasitarioMax",
+            "DentalCare",
+            "VacunaVital",
+            "DigestiPlus",
+            "FelicidadCanina",
+            "CalmaTotal",
+            "PataSaludable",
+            "CorazónSeguro",
+            "OídoAlerta",
+            "VisiónClara",
+            "PeloBrillante",
+            "HuesoFuerte",
+            "AlientoFresco",
+            "EnergíaVital",
+            "SeniorVitalidad"
+        };
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+        Random random = new Random();
+    
+        for (int i = 0; i < 20; i++) {  // Generar 20 tratamientos
+            String nombreTratamiento = nombresTratamientos[i];  // Asigna un nombre del array
+              // Genera un precio aleatorio entre 50,000 y 1,200,000
+    
+            int mes = random.nextInt(12) + 1;
+            int dia = random.nextInt(28) + 1; // Asegura no exceder los días del mes más corto
+            String fecha = dia + "-" + mes + "-2024"; // Fecha del tratamiento
+    
+            Tratamientos tratamiento = new Tratamientos();
+            tratamiento.setNombreTratamiento(nombreTratamiento); // Asigna el nombre al tratamiento
+             // Asigna el precio al tratamiento
+    
+            LocalDate fechaLocalDate = LocalDate.parse(fecha, formatter);
+            tratamiento.setFecha(fechaLocalDate);
+    
+            tratamientoR.save(tratamiento);  // Guarda el tratamiento en la base de datos
+        }
+    
+        System.out.println("Todos los tratamientos han sido generados y guardados correctamente.");
+    }
+    
+
     private void cargarDatosDesdeExcel() {
         System.out.println("Iniciando carga de datos...");
         try {
@@ -232,6 +290,37 @@ public class DatabaseInit implements ApplicationRunner {
             e.printStackTrace();
         }
     }
+    public void asignarTratamientosExistente() {
+        // Obtén todas las listas necesarias
+        List<Perro> perros = perroR.findAll();
+        List<Veterinario> veterinarios = vet.findAll();
+        List<Droga> drogas = drog.findAll();
+        List<Tratamientos> tratamientos = tratamientoR.findAll();
+    
+        Random rand = new Random();
+        int totalPerros = perros.size();
+        int totalVeterinarios = veterinarios.size();
+        int totalDrogas = drogas.size();
+    
+        for (Tratamientos tratamiento : tratamientos) {
+            Perro perroAleatorio = perros.get(rand.nextInt(totalPerros));
+            Veterinario veterinarioAleatorio = veterinarios.get(rand.nextInt(totalVeterinarios));
+            Droga drogaAleatoria = drogas.get(rand.nextInt(totalDrogas));
+    
+            // Asigna un perro, veterinario y droga aleatorios a cada tratamiento
+            tratamiento.setPerro(perroAleatorio);
+            tratamiento.setVeterinario(veterinarioAleatorio);
+            tratamiento.setDroga(drogaAleatoria);
+            tratamiento.setPrecioC(drogaAleatoria.getPrecioC()*drogaAleatoria.getUnidades_C()+50000);
+    
+            // Guarda el tratamiento actualizado en la base de datos
+            tratamientoR.save(tratamiento);
+        }
+    
+        System.out.println("Todos los tratamientos han sido actualizados correctamente con perros, veterinarios y drogas.");
+    }
+    
+    
     
 
 }

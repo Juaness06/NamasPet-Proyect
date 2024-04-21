@@ -17,4 +17,9 @@ public interface ServicioVeterinario { //servicio de veterinario
 
     public void Update(Veterinario p);
 
+    public Long getVeterinariosActivosCount();
+
+    public Long getVeterinariosInactivosCount();
+    
+
 }

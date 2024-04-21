@@ -2,6 +2,7 @@ package com.example.demo.Controlador;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -58,5 +59,16 @@ public class ControladorVeterinario {
         servicioVeterinario.Update(veterinario);
     }
 
+    @GetMapping("/activos")
+    public ResponseEntity<Long> getVeterinariosActivosCount() {
+        Long count = servicioVeterinario.getVeterinariosActivosCount();
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/inactivos")
+    public ResponseEntity<Long> getVeterinariosInactivosCount() {
+        Long count = servicioVeterinario.getVeterinariosInactivosCount();
+        return ResponseEntity.ok(count);
+    }
 
 }

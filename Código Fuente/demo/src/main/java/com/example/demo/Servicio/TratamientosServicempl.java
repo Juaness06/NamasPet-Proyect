@@ -1,5 +1,7 @@
 package com.example.demo.Servicio;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,19 @@ public class TratamientosServicempl implements TratamientosService {
 
         repo.deleteById(id);
     }
+    public Long getTotalTratamientosUltimoMes() {
+        LocalDate endDate = LocalDate.now(); // Fecha actual
+        LocalDate startDate = endDate.withDayOfMonth(1).minusMonths(1); // Primer día del mes anterior
+        
+        return repo.countTratamientosUltimoMes(startDate, endDate);
+    }
+
+    public List<Object[]> getConteoTratamientosPorMedicamento(LocalDate startDate, LocalDate endDate) {
+        return repo.countTratamientosPorMedicamento(startDate, endDate);
+    }
+
+   
+
 
     /*
      * @Override
