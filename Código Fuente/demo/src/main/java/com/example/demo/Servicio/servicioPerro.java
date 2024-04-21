@@ -19,4 +19,8 @@ public interface ServicioPerro { //servicio de perro
 
     public List<Perro> findByClienteCedula(long id);
 
+    public Long contarMascotasActivas();
+    
+    public double calcularVentasDePerrosConTratamientos();
+
 }

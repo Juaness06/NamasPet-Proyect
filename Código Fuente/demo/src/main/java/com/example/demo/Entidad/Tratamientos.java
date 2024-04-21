@@ -1,14 +1,14 @@
 package com.example.demo.Entidad;
 
-import java.sql.Date;
+import java.time.LocalDate; // Solo se necesita esta importación para la fecha
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -24,30 +24,30 @@ public class Tratamientos {
     private String nombreTratamiento;
 
     private double precioC;
-    private Date fecha;
+
+    @Column(name = "fecha")
+    private LocalDate fecha; // Cambiado a LocalDate
 
     
-
-    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "droga_id") // Nombre de la columna en la tabla Tratamientos que hace referencia a la tabla Droga
     private Droga droga;
+    
 
-    @JsonIgnore
+
     @ManyToOne
     private Perro perro;
 
-    @JsonIgnore
+    
     @ManyToOne
-    private Veterinario veterinario; // Nombre corregido
+    private Veterinario veterinario;
 
     // Constructor, getters y setters...
-
-    
 
     public Tratamientos() {
     }
 
-    public Tratamientos(long id, String nombreTratamiento, double precioC, Date fecha) {
+    public Tratamientos(long id, String nombreTratamiento, double precioC, LocalDate fecha) {
         this.id = id;
         this.nombreTratamiento = nombreTratamiento;
         this.precioC = precioC;
@@ -78,11 +78,11 @@ public class Tratamientos {
         this.precioC = precioC;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -109,8 +109,4 @@ public class Tratamientos {
     public void setVeterinario(Veterinario veterinario) {
         this.veterinario = veterinario;
     }
-
-    // ID, nombre, precio, fecha getters y setters...
-
-   
 }

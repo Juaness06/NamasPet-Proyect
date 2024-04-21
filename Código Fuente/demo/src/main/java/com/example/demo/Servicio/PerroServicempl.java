@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidad.Perro;
+import com.example.demo.Entidad.Tratamientos;
 import com.example.demo.Repositorio.RepositorioPerro;
 
 @Service
@@ -45,4 +46,14 @@ public class PerroServicempl implements ServicioPerro { // implementa el servici
         return repo.findByClienteCedula(id);
     }
 
+    @Override 
+    public Long contarMascotasActivas() {
+        return repo.countMascotasActivas();
+    }
+
+    @Override
+    public double calcularVentasDePerrosConTratamientos() {
+        Double total = repo.sumarVentasDePerrosConTratamientos();
+        return total != null ? total : 0; // Retorna 0 si no hay tratamientos
+    }
 }
