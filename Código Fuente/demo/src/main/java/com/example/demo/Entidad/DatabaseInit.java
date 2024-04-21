@@ -197,8 +197,7 @@ public class DatabaseInit implements ApplicationRunner {
             Double precio = preciosDroga[i % preciosDroga.length];
             Integer unidadesVendidas = unidadesDrogas[i % unidadesDrogas.length];
 
-            Droga droga = new Droga(nombre, precio, unidadesVendidas); //crea la droga
-            drog.save(droga); //guarda la droga
+            
         }
 
     }
@@ -225,9 +224,9 @@ public class DatabaseInit implements ApplicationRunner {
                 int unidadesDisponibles = (int) row.getCell(3).getNumericCellValue();
                 int unidadesVendidas = (int) row.getCell(4).getNumericCellValue();
     
-                Tratamientos tratamiento = new Tratamientos(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
+                Droga tratamiento = new Droga(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
                 System.out.println("Guardando tratamiento: " + nombre + " con ID: " + i);
-                tratamientoR.save(tratamiento);
+                drog.save(tratamiento);
                 i++;
             }
             workbook.close();
