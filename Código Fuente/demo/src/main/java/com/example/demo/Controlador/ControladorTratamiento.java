@@ -8,18 +8,24 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Entidad.Droga;
 import com.example.demo.Entidad.Tratamientos;
+import com.example.demo.Servicio.ServicioDroga;
 import com.example.demo.Servicio.TratamientosService;
 
 import ch.qos.logback.core.model.Model;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/tratamiento")
@@ -28,6 +34,12 @@ public class ControladorTratamiento {
 
     @Autowired
     private TratamientosService servicioTratamiento;
+
+    @Autowired
+    private ServicioDroga servicioDroga;
+
+
+    
 
     // Endpoint para obtener todos los tratamientos
     @GetMapping("/all")
@@ -73,6 +85,31 @@ public class ControladorTratamiento {
     }
     */
 
-    
-    
+    @GetMapping("/find/{id}/droga")
+    public ResponseEntity<Droga> mostrarDrogaDelTratamiento(@PathVariable("id") Long id) {
+    Tratamientos tratamiento = servicioTratamiento.SearchById(id);
+    if (tratamiento == null || tratamiento.getDroga() == null) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(tratamiento.getDroga());
+}
+
+@PostMapping("/addDroga/{tratamientoId}/{drogaId}")
+public ResponseEntity<?> agregarDrogaATratamiento(@PathVariable long tratamientoId, @PathVariable long drogaId) {
+    try {
+        Tratamientos tratamiento = servicioTratamiento.SearchById(tratamientoId);
+        Droga droga = servicioDroga.SearchById(drogaId);
+        if (tratamiento != null && droga != null) {
+            tratamiento.setDroga(droga);
+            servicioTratamiento.Update(tratamiento);
+            return ResponseEntity.ok("Droga agregada al tratamiento exitosamente");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al agregar la droga al tratamiento");
+    }
+}
+
+
 }

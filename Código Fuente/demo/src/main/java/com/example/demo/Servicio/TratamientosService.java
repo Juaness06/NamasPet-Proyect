@@ -3,6 +3,7 @@ package com.example.demo.Servicio;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.demo.Entidad.Droga;
 import com.example.demo.Entidad.Tratamientos;
 
 public interface TratamientosService { // servicio de tratamientos
@@ -24,6 +25,7 @@ public interface TratamientosService { // servicio de tratamientos
     public List<Tratamientos> buscarTratamientosPorIdPerro(Long idPerro);
 
     public Double obtenerGananciasTotales();
+
 
     // public Tratamientos Cuenta(Long cedula);
 

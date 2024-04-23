@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entidad.Droga;
 import com.example.demo.Entidad.Tratamientos;
 
 import com.example.demo.Repositorio.RepositorioTratamientos;
@@ -64,6 +65,8 @@ public class TratamientosServicempl implements TratamientosService {
     public Double obtenerGananciasTotales() {
         return repo.calcularGananciasTotales();
     }
+
+    
     
    
 
