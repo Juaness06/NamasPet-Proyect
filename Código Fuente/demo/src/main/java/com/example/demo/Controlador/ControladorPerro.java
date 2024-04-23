@@ -125,8 +125,9 @@ public class ControladorPerro {
         Perro a = servicioPerro.SearchById(perro.getId());
         Tratamientos b = servicioTratamiento.SearchById(id);
         List<Tratamientos> c = a.getTratamientos();
-        c.add(b);
+        
         if (a != null && b != null) {
+            c.add(b);
             perro.setTratamientos(c);
             servicioPerro.Update(perro);
         } else {

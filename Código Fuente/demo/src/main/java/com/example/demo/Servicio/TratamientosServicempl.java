@@ -61,6 +61,10 @@ public class TratamientosServicempl implements TratamientosService {
         return repo.findByPerroId(idPerro);
     }
     
+    public Double obtenerGananciasTotales() {
+        return repo.calcularGananciasTotales();
+    }
+    
    
 
 

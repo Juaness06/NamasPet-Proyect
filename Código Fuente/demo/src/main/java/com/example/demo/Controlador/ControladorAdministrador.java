@@ -1,11 +1,13 @@
 package com.example.demo.Controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.Entidad.Administrador;
 import com.example.demo.Servicio.AdministradorService;
 import com.example.demo.Servicio.ServicioPerro;
+import com.example.demo.Servicio.TratamientosService;
 
 @RequestMapping("/administrador")
 @RestController
@@ -17,6 +19,9 @@ public class ControladorAdministrador {
 
     @Autowired
     private ServicioPerro servicioPerro;
+
+    @Autowired
+    private TratamientosService servicioTratamiento;
 
     @GetMapping("/find/{id}")
     public Administrador BuscarAdministrador(@PathVariable("id") int id) {
@@ -32,8 +37,11 @@ public class ControladorAdministrador {
     }
 
     @GetMapping("/ganancias")
-    public double obtenerGanancias() {
-       return 0.0;
+    public ResponseEntity<Double> obtenerGananciasTotales() {
+        Double ganancias = servicioTratamiento.obtenerGananciasTotales();
+        if (ganancias == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(ganancias);
     }
-
 }

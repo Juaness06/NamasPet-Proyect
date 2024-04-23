@@ -23,6 +23,8 @@ public interface TratamientosService { // servicio de tratamientos
 
     public List<Tratamientos> buscarTratamientosPorIdPerro(Long idPerro);
 
+    public Double obtenerGananciasTotales();
+
     // public Tratamientos Cuenta(Long cedula);
 
     // public Collection<Perro> PerrosClientePerros(long cedula);

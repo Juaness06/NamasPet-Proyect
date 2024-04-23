@@ -20,6 +20,9 @@ public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Lon
     List<Object[]> countTratamientosPorDroga();
     //Dashboard - 2: Cantidad de tratamientos por tipo de medicamento administrado en el ultimo mes (tabla medicamento-cantidad)
 
+    @Query("SELECT SUM(t.precioC) - SUM(t.droga.precioC * t.droga.unidades_C) FROM Tratamientos t")
+    Double calcularGananciasTotales();
+
     List<Tratamientos> findByPerroId(Long idPerro);
 }
 
