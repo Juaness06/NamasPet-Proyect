@@ -19,5 +19,9 @@ public interface RepositorioTratamientos extends JpaRepository<Tratamientos, Lon
     @Query(value = "SELECT d.NAME, COUNT(*) FROM Tratamientos t INNER JOIN droga d ON t.droga_id = d.codigo WHERE MONTH(t.fecha) = MONTH(CURRENT_DATE()) AND YEAR(t.fecha) = YEAR(CURRENT_DATE()) GROUP BY d.NAME", nativeQuery = true)
     List<Object[]> countTratamientosPorDroga();
     //Dashboard - 2: Cantidad de tratamientos por tipo de medicamento administrado en el ultimo mes (tabla medicamento-cantidad)
-   
+
+    List<Tratamientos> findByPerroId(Long idPerro);
 }
+
+   
+

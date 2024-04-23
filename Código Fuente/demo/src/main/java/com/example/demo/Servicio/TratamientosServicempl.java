@@ -44,6 +44,7 @@ public class TratamientosServicempl implements TratamientosService {
 
         repo.deleteById(id);
     }
+
     public Long getTotalTratamientosUltimoMes() {
         LocalDate endDate = LocalDate.now(); // Fecha actual
         LocalDate startDate = endDate.withDayOfMonth(1).minusMonths(1); // Primer día del mes anterior
@@ -55,6 +56,11 @@ public class TratamientosServicempl implements TratamientosService {
         return repo.countTratamientosPorDroga();
     }
 
+    @Override
+    public List<Tratamientos> buscarTratamientosPorIdPerro(Long idPerro) {
+        return repo.findByPerroId(idPerro);
+    }
+    
    
 
 

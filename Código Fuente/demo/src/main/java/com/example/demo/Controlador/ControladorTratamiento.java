@@ -54,6 +54,11 @@ public class ControladorTratamiento {
     }
     
 
+    @GetMapping("/historial/{idPerro}")
+    public ResponseEntity<List<Tratamientos>> obtenerTratamientosPorIdPerro(@PathVariable("idPerro") Long idPerro) {
+        List<Tratamientos> tratamientos = servicioTratamiento.buscarTratamientosPorIdPerro(idPerro);
+        return ResponseEntity.ok(tratamientos);
+    }
     /*
 
     @GetMapping("/conteo-medicamentos")

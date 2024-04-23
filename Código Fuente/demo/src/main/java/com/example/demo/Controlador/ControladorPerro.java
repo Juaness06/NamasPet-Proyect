@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
+import com.example.demo.Entidad.Tratamientos;
 import com.example.demo.Servicio.ClienteService;
 import com.example.demo.Servicio.ServicioPerro;
+import com.example.demo.Servicio.TratamientosService;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -32,6 +34,9 @@ public class ControladorPerro {
 
     @Autowired
     ClienteService servicioCliente;
+
+    @Autowired
+    TratamientosService servicioTratamiento;
 
     // http://localhost:8090/perro/all
     @GetMapping("/all")
@@ -108,6 +113,21 @@ public class ControladorPerro {
         Cliente b = servicioCliente.SearchById(id);
         if (a != null && b != null) {
             perro.setCliente(b);
+            servicioPerro.Update(perro);
+        } else {
+            throw new NotFoundException(id);
+        }
+
+    }
+
+    @PutMapping("/agregarTratamiento/{id}")
+    public void AgregarTratamiento(@RequestBody Perro perro, @PathVariable("id") long id) {
+        Perro a = servicioPerro.SearchById(perro.getId());
+        Tratamientos b = servicioTratamiento.SearchById(id);
+        List<Tratamientos> c = a.getTratamientos();
+        c.add(b);
+        if (a != null && b != null) {
+            perro.setTratamientos(c);
             servicioPerro.Update(perro);
         } else {
             throw new NotFoundException(id);

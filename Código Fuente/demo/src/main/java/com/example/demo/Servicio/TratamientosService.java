@@ -21,6 +21,8 @@ public interface TratamientosService { // servicio de tratamientos
 
     public List<Object[]> countTratamientosPorDroga();
 
+    public List<Tratamientos> buscarTratamientosPorIdPerro(Long idPerro);
+
     // public Tratamientos Cuenta(Long cedula);
 
     // public Collection<Perro> PerrosClientePerros(long cedula);
