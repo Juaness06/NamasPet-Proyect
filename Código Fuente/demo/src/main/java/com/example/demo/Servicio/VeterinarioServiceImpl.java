@@ -47,5 +47,16 @@ public class VeterinarioServiceImpl implements ServicioVeterinario {
         return repo.countVeterinariosInactivos();
     }
 
+    @Override
+    public void UpdateState(long id) {  
+        Veterinario p = repo.findById(id).get();
+        if( p.isActivo()==true)
+            p.setActivo(false);
+        else
+            p.setActivo(true);
+
+        repo.save(p);
+    }
+
 
 }

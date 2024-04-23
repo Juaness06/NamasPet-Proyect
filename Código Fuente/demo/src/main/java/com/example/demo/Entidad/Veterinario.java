@@ -42,6 +42,7 @@ public class Veterinario {
         this.especialidad = especialidad;
         this.atenciones = atenciones;
         this.foto = foto;
+        this.activo = activo;
     }
 
     public long getId() {

@@ -50,7 +50,7 @@ public class ControladorVeterinario {
     // Endpoint para borrar un veterinario
     @DeleteMapping("/borrar/{id}")
     public void borrarVeterinario(@PathVariable("id") long id) {
-        servicioVeterinario.deleteById(id);
+        servicioVeterinario.UpdateState(id);
     }
 
     // Endpoint para actualizar la información de un veterinario

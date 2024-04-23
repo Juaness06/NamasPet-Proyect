@@ -20,6 +20,8 @@ public interface ServicioVeterinario { //servicio de veterinario
     public Long getVeterinariosActivosCount();
 
     public Long getVeterinariosInactivosCount();
+
+    public void UpdateState(long id);
     
 
 }
