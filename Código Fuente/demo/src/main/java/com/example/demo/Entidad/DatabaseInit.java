@@ -1,5 +1,6 @@
 package com.example.demo.Entidad;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -21,11 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
-import java.util.Date;
 import com.example.demo.Repositorio.ReporsitorioAdministrador;
 import com.example.demo.Repositorio.ReporsitorioCliente;
 import com.example.demo.Repositorio.ReporsitorioDroga;
@@ -196,11 +193,62 @@ public class DatabaseInit implements ApplicationRunner {
             String nombre = nombresDroga[i % nombresDroga.length];
             Double precio = preciosDroga[i % preciosDroga.length];
             Integer unidadesVendidas = unidadesDrogas[i % unidadesDrogas.length];
-
-            
         }
+        generarTratamientos();
+        asignarTratamientosExistente();
+        
 
     }
+
+    public void generarTratamientos() {
+        String[] nombresTratamientos = {
+            "RevitaPelaje",
+            "CaninoLimpio",
+            "RabiaShield",
+            "ParvoPrevención",
+            "PulgaStop",
+            "AntiparasitarioMax",
+            "DentalCare",
+            "VacunaVital",
+            "DigestiPlus",
+            "FelicidadCanina",
+            "CalmaTotal",
+            "PataSaludable",
+            "CorazónSeguro",
+            "OídoAlerta",
+            "VisiónClara",
+            "PeloBrillante",
+            "HuesoFuerte",
+            "AlientoFresco",
+            "EnergíaVital",
+            "SeniorVitalidad"
+        };
+    
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+        Random random = new Random();
+    
+        for (int i = 0; i < 20; i++) {  // Generar 20 tratamientos
+            String nombreTratamiento = nombresTratamientos[i];  // Asigna un nombre del array
+              // Genera un precio aleatorio entre 50,000 y 1,200,000
+    
+            int mes = random.nextInt(12) + 1;
+            int dia = random.nextInt(28) + 1; // Asegura no exceder los días del mes más corto
+            String fecha = dia + "-" + mes + "-2024"; // Fecha del tratamiento
+    
+            Tratamientos tratamiento = new Tratamientos();
+            tratamiento.setNombreTratamiento(nombreTratamiento); // Asigna el nombre al tratamiento
+             // Asigna el precio al tratamiento
+    
+            LocalDate fechaLocalDate = LocalDate.parse(fecha, formatter);
+            tratamiento.setFecha(fechaLocalDate);
+    
+            tratamientoR.save(tratamiento);  // Guarda el tratamiento en la base de datos
+        }
+    
+        System.out.println("Todos los tratamientos han sido generados y guardados correctamente.");
+    }
+    
+
     private void cargarDatosDesdeExcel() {
         System.out.println("Iniciando carga de datos...");
         try {
@@ -263,7 +311,6 @@ public class DatabaseInit implements ApplicationRunner {
             tratamiento.setPerro(perroAleatorio);
             tratamiento.setVeterinario(veterinarioAleatorio);
             tratamiento.setDroga(drogaAleatoria);
-
             tratamiento.setPrecioC(drogaAleatoria.getPrecioC()*drogaAleatoria.getUnidades_C()+50000);
     
             // Guarda el tratamiento actualizado en la base de datos
@@ -272,8 +319,5 @@ public class DatabaseInit implements ApplicationRunner {
     
         System.out.println("Todos los tratamientos han sido actualizados correctamente con perros, veterinarios y drogas.");
     }
-    
-    
-    
 
 }

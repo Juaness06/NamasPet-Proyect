@@ -28,17 +28,17 @@ public class Tratamientos {
     @Column(name = "fecha")
     private LocalDate fecha; // Cambiado a LocalDate
 
-    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "droga_id") // Nombre de la columna en la tabla Tratamientos que hace referencia a la tabla Droga
     private Droga droga;
     
 
-
+    @JsonIgnore
     @ManyToOne
     private Perro perro;
 
-    
+    @JsonIgnore
     @ManyToOne
     private Veterinario veterinario;
 
