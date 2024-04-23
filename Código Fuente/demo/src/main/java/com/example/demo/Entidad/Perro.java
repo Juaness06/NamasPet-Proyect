@@ -109,7 +109,7 @@ public class Perro {
         this.edad = edad;
     }
 
-    public boolean isActividad() {
+    public boolean getActividad() {
         return actividad;
     }
 

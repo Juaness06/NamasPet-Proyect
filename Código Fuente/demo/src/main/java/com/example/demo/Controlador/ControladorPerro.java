@@ -46,6 +46,8 @@ public class ControladorPerro {
          * model.addAttribute("perros", servicioPerro.SearchAll());
          * return "ListaPerros";
          */
+        List<Perro> perros = servicioPerro.SearchAll();
+        
         return servicioPerro.SearchAll();
     }
 
@@ -101,7 +103,7 @@ public class ControladorPerro {
     @DeleteMapping("/delete/{id}")
     public void BorrarPerro(@PathVariable("id") int id) {
         {
-            servicioPerro.DeleteByID(id);
+            servicioPerro.UpdateState(id);
         }
 
     }

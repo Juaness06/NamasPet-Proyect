@@ -139,7 +139,7 @@ public class DatabaseInit implements ApplicationRunner {
             String raza = razas[i % razas.length];
             int edad = ThreadLocalRandom.current().nextInt(1, 16);
             ;
-            boolean sexo = i % 2 == 0;
+            boolean sexo = true;
             double pesoRaw = 5.0 + (40.0 - 5.0) * ThreadLocalRandom.current().nextDouble();
             double peso = Math.round(pesoRaw * 10) / 10.0;
             int energia = (i % 3) + 1;

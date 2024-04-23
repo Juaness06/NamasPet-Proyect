@@ -23,4 +23,6 @@ public interface ServicioPerro { //servicio de perro
     
     public double calcularVentasDePerrosConTratamientos();
 
+    public void UpdateState(long id);
+
 }
