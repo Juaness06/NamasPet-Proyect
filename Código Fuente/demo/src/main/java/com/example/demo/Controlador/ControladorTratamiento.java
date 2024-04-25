@@ -14,18 +14,22 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Entidad.Droga;
 import com.example.demo.Entidad.Tratamientos;
+import com.example.demo.Entidad.Veterinario;
+import com.example.demo.Entidad.Perro;
 import com.example.demo.Servicio.ServicioDroga;
+import com.example.demo.Servicio.ServicioPerro;
+import com.example.demo.Servicio.ServicioVeterinario;
 import com.example.demo.Servicio.TratamientosService;
 
 import ch.qos.logback.core.model.Model;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/tratamiento")
@@ -38,7 +42,11 @@ public class ControladorTratamiento {
     @Autowired
     private ServicioDroga servicioDroga;
 
+    @Autowired
+    private ServicioPerro servicioPerro;
 
+    @Autowired
+    private ServicioVeterinario servicioVeterinario;
     
 
     // Endpoint para obtener todos los tratamientos
@@ -51,6 +59,25 @@ public class ControladorTratamiento {
     @GetMapping("/find/{id}")
     public Tratamientos mostrarInfoTratamiento(@PathVariable("id") Long id) {
         return servicioTratamiento.SearchById(id);
+    }
+
+
+    @PostMapping("/add/{idperro}/{iddroga}/{idveterinario}")
+    public void RegistrarPerroTratamiento(@RequestBody Tratamientos tratamientos, @PathVariable("idperro") Long idperro, @PathVariable("iddroga") Long iddroga, @PathVariable("idveterinario") Long idveterin) {
+        Droga droga = servicioDroga.SearchById(iddroga);
+        Perro perro = servicioPerro.SearchById(idperro);
+        Veterinario veterinario = servicioVeterinario.SearchById(idveterin);
+        System.out.println(tratamientos);
+        if (droga != null && perro != null && veterinario != null&& servicioTratamiento.SearchById(tratamientos.getId()) == null) {
+            tratamientos.setDroga(droga);
+            tratamientos.setPerro(perro);
+            tratamientos.setVeterinario(veterinario);
+            servicioTratamiento.Add(tratamientos);
+        }
+        else {
+            System.out.println("Error");
+        }
+        
     }
 
     @GetMapping("/count-ultimo-mes")
