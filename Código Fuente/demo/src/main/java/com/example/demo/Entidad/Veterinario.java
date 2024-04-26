@@ -23,6 +23,7 @@ public class Veterinario {
     @Column(name = "NAME")
     private String nombre;
 
+    private String contrasena;
     private String especialidad;
     private int atenciones;
     private String foto;
@@ -37,7 +38,7 @@ public class Veterinario {
 
     }
 
-    public Veterinario(String nombre, String especialidad, int atenciones, String foto, boolean activo) {
+    public Veterinario(String nombre,  String especialidad, int atenciones, String foto, boolean activo) {
         this.nombre = nombre;
         this.especialidad = especialidad;
         this.atenciones = atenciones;
