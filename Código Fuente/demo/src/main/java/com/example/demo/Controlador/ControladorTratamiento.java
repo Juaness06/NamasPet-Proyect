@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,8 +68,10 @@ public class ControladorTratamiento {
         Droga droga = servicioDroga.SearchById(iddroga);
         Perro perro = servicioPerro.SearchById(idperro);
         Veterinario veterinario = servicioVeterinario.SearchById(idveterin);
+        tratamientos.setFecha(LocalDate.now());
+        tratamientos.setId(servicioTratamiento.SearchAll().size() + 1);
         System.out.println(tratamientos);
-        if (droga != null && perro != null && veterinario != null&& servicioTratamiento.SearchById(tratamientos.getId()) == null) {
+        if (droga != null && perro != null && veterinario != null) {
             tratamientos.setDroga(droga);
             tratamientos.setPerro(perro);
             tratamientos.setVeterinario(veterinario);
@@ -121,7 +124,7 @@ public class ControladorTratamiento {
     return ResponseEntity.ok(tratamiento.getDroga());
 }
 
-@PostMapping("/addDroga/{tratamientoId}/{drogaId}")
+@PutMapping("/addDroga/{tratamientoId}/{drogaId}")
 public ResponseEntity<?> agregarDrogaATratamiento(@PathVariable long tratamientoId, @PathVariable long drogaId) {
     try {
         Tratamientos tratamiento = servicioTratamiento.SearchById(tratamientoId);
