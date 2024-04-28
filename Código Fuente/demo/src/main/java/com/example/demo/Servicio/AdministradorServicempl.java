@@ -39,4 +39,12 @@ public class AdministradorServicempl implements AdministradorService { // implem
         repo.save(p);
     }
 
+    @Override
+    public Administrador findByNombreAndContrasena(String nombre, String contrasena) {
+        Administrador administrador = repo.findByNombreAndContrasena(nombre, contrasena);
+        if (administrador == null) {
+            return null;
+        }
+        return administrador;
+    }
 }

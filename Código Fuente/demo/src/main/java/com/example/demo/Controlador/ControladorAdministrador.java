@@ -31,6 +31,12 @@ public class ControladorAdministrador {
         return admin;
     }
 
+    //www.localhost:8080/administrador/findByNombreAndContrasena/{nombre}/{contrasena}
+    @GetMapping("/findByNombreAndContrasena/{nombre}/{contrasena}")
+    public Administrador findByNombreAndContrasena(@PathVariable String nombre, @PathVariable String contrasena) {
+        return servicioAdministrador.findByNombreAndContrasena(nombre, contrasena);
+    }
+
     @GetMapping("/venta")
     public double obtenerVentasDePerrosConTratamientos() {
         return servicioPerro.calcularVentasDePerrosConTratamientos();

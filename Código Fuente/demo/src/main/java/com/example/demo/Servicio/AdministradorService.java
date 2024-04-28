@@ -17,4 +17,6 @@ public interface AdministradorService { // servicio de admnistrador
 
     public void Update(Administrador p);
 
+    public Administrador findByNombreAndContrasena(String nombre, String contrasena);
+
 }

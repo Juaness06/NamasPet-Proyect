@@ -10,4 +10,6 @@ public interface ReporsitorioAdministrador extends JpaRepository<Administrador, 
 
        Administrador findById(int id); // busca por id
 
+       Administrador findByNombreAndContrasena(String nombre, String contrasena);
+
 }
