@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Entidad.Administrador;
 import com.example.demo.Entidad.Veterinario;
 import com.example.demo.Servicio.ServicioVeterinario;
 
@@ -69,6 +70,12 @@ public class ControladorVeterinario {
     public ResponseEntity<Long> getVeterinariosInactivosCount() {
         Long count = servicioVeterinario.getVeterinariosInactivosCount();
         return ResponseEntity.ok(count);
+    }
+
+    //www.localhost:8090/administrador/findByNombreAndContrasena/1/1234
+    @GetMapping("/findByNombreAndContrasena/{id}/{contrasena}")
+    public Veterinario findByIdAndContrasena(@PathVariable int id, @PathVariable String contrasena) {
+        return servicioVeterinario.findByIdAndContrasena(id, contrasena);
     }
 
 }

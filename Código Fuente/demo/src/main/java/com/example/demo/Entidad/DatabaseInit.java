@@ -175,12 +175,13 @@ public class DatabaseInit implements ApplicationRunner {
 
                 for (int i = 0; i < 10; i++) {
                     String nombre = nombresVeterinarios[i % nombresVeterinarios.length];
+                    String contrasena = "1234";
                     String especialidad = especialidades[i % especialidades.length];
                     int atenciones = rand.nextInt(100);
                     String foto = fotosVeterinarios[i % fotosVeterinarios.length];
                     boolean disponible = true;  // Genera un booleano aleatorio para la disponibilidad
                 
-                    Veterinario veterinario = new Veterinario(nombre, especialidad, atenciones, foto, disponible); // Crea el veterinario con disponibilidad aleatoria
+                    Veterinario veterinario = new Veterinario(nombre, contrasena, especialidad, atenciones, foto, disponible); // Crea el veterinario con disponibilidad aleatoria
                     vet.save(veterinario); // Guarda el veterinario
                 }
                 

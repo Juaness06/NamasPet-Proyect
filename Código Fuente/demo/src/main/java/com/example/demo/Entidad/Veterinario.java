@@ -38,8 +38,9 @@ public class Veterinario {
 
     }
 
-    public Veterinario(String nombre,  String especialidad, int atenciones, String foto, boolean activo) {
+    public Veterinario(String nombre, String contrasena,  String especialidad, int atenciones, String foto, boolean activo) {
         this.nombre = nombre;
+        this.contrasena = contrasena;
         this.especialidad = especialidad;
         this.atenciones = atenciones;
         this.foto = foto;
@@ -61,6 +62,14 @@ public class Veterinario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getEspecialidad() {

@@ -22,6 +22,7 @@ public interface ServicioVeterinario { //servicio de veterinario
     public Long getVeterinariosInactivosCount();
 
     public void UpdateState(long id);
-    
 
+    Veterinario findByIdAndContrasena(int id, String contrasena);
+    
 }

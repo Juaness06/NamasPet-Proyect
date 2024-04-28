@@ -2,6 +2,8 @@ package com.example.demo.Servicio;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
+
+import com.example.demo.Entidad.Administrador;
 import com.example.demo.Entidad.Veterinario;
 import com.example.demo.Repositorio.ReporsitorioVeterinario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +60,13 @@ public class VeterinarioServiceImpl implements ServicioVeterinario {
         repo.save(p);
     }
 
+    @Override
+    public Veterinario findByIdAndContrasena(int id, String contrasena) {
+        Veterinario veterinario = repo.findByIdAndContrasena(id, contrasena);
+        if (veterinario == null) {
+            return null;
+        }
+        return veterinario;
+    }
 
 }

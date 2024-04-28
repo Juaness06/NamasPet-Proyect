@@ -16,5 +16,6 @@ public interface ReporsitorioVeterinario extends JpaRepository<Veterinario, Long
     @Query("SELECT COUNT(v) FROM Veterinario v WHERE v.activo = false")
     Long countVeterinariosInactivos();
 
+    Veterinario findByIdAndContrasena(int id, String contrasena);
 
 }
