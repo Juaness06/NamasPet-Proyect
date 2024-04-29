@@ -26,8 +26,8 @@ public class PerroServicempl implements ServicioPerro { // implementa el servici
     }
 
     @Override
-    public void Add(Perro p) {
-        repo.save(p);
+    public Perro Add(Perro p) {
+        return repo.save(p);
     }
 
     @Override

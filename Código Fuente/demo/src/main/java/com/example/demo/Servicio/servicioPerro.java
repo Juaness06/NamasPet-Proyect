@@ -11,7 +11,7 @@ public interface ServicioPerro { //servicio de perro
 
     public List<Perro> SearchAll();
 
-    public void Add(Perro p);
+    public Perro Add(Perro p);
 
     public void DeleteByID(long id);
 
