@@ -3,6 +3,7 @@ package com.example.demo.Controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,129 +32,106 @@ public class ControladorPerro {
 
     @Autowired
     private ServicioPerro servicioPerro;
-
     @Autowired
     ClienteService servicioCliente;
-
     @Autowired
     TratamientosService servicioTratamiento;
 
-    // http://localhost:8090/perro/all
+    // Shows all dogs
     @GetMapping("/all")
     @Operation(summary = "Muestra todos los perros")
     public List<Perro> mostrarPerros() {
-        /*
-         * model.addAttribute("perros", servicioPerro.SearchAll());
-         * return "ListaPerros";
-         */
-        List<Perro> perros = servicioPerro.SearchAll();
-        
         return servicioPerro.SearchAll();
     }
 
-    // http://localhost:8090/perro/find/1
+    // Finds a single dog by ID
     @GetMapping("/find/{id}")
-    public Perro mostrarinfoPerro(@PathVariable("id") int id) {
-
+    public ResponseEntity<Perro> mostrarinfoPerro(@PathVariable("id") int id) {
         Perro perro = servicioPerro.SearchById(id);
-        /*
-         * if (perro != null) {
-         * model.addAttribute("perro", servicioPerro.SearchById(id));
-         * } else {
-         * throw new NotFoundException(id);
-         * }
-         * 
-         * model.addAttribute("perro", servicioPerro.SearchById(id));
-         */
-
-        return perro;
+        if (perro != null) {
+            return ResponseEntity.ok(perro);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // http://localhost:8090/perro/targeton
-    @GetMapping("/targeton")
-    public List<Perro> TmostrarPerros() {
-        /*
-         * model.addAttribute("perros", servicioPerro.SearchAll());
-         * return "MostrarPerros";
-         */
-        return servicioPerro.SearchAll();
-    }
-
-    // http://localhost:8090/perro/index
+    // Returns a view name (not typically used in REST APIs)
     @GetMapping("")
     public String index() {
         return "index";
     }
 
-    // http://localhost:8090/perro/add
+    // Form display for adding a dog (not typically used in REST APIs)
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        Perro perro = new Perro("", 0, "", "", 0, false, 0.0, 0);
-        model.addAttribute("perro", perro);
-
+        model.addAttribute("perro", new Perro("", 0, "", "", 0, false, 0.0, 0));
         return "RegistrarPerro";
     }
 
+    // Adds a dog associated with a client ID
     @PostMapping("/agregar/{cedula}")
-    public void AgregarPerro(@RequestBody Perro perro, @PathVariable("cedula") long cedula) {
-        perro.setCliente(servicioCliente.SearchById(cedula));
-        servicioPerro.Add(perro);
+    public ResponseEntity<Perro> agregarPerro(@RequestBody Perro perro, @PathVariable("cedula") long cedula) {
+        Cliente cliente = servicioCliente.SearchById(cedula);
+        if (cliente != null) {  
+            perro.setCliente(cliente);
+            Perro addedPerro = servicioPerro.Add(perro);
+            return ResponseEntity.status(HttpStatus.CREATED).body(addedPerro);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
+    // Deletes a dog
     @DeleteMapping("/delete/{id}")
-    public void BorrarPerro(@PathVariable("id") int id) {
-        {
-            servicioPerro.UpdateState(id);
-        }
-
+    public ResponseEntity<Void> borrarPerro(@PathVariable("id") int id) {
+        servicioPerro.UpdateState(id);
+        return ResponseEntity.ok().build();
     }
 
+    // Updates a dog
     @PutMapping("/edit/{id}")
-    public void UpdateCliente(@RequestBody Perro perro, @PathVariable("id") long id) {
-
-        Perro a = servicioPerro.SearchById(perro.getId());
-        Cliente b = servicioCliente.SearchById(id);
-        if (a != null && b != null) {
-            perro.setCliente(b);
+    public ResponseEntity<Void> updateCliente(@RequestBody Perro perro, @PathVariable("id") long id) {
+        Perro existingPerro = servicioPerro.SearchById(perro.getId());
+        Cliente client = servicioCliente.SearchById(id);
+        if (existingPerro != null && client != null) {
+            perro.setCliente(client);
             servicioPerro.Update(perro);
+            return ResponseEntity.ok().build();
         } else {
-            throw new NotFoundException(id);
+            return ResponseEntity.notFound().build();
         }
-
     }
 
+    // Adds a treatment to a dog
     @PutMapping("/agregarTratamiento/{id}")
-    public void AgregarTratamiento(@RequestBody Perro perro, @PathVariable("id") long id) {
-        Perro a = servicioPerro.SearchById(perro.getId());
-        Tratamientos b = servicioTratamiento.SearchById(id);
-        List<Tratamientos> c = a.getTratamientos();
-        
-        if (a != null && b != null) {
-            c.add(b);
-            perro.setTratamientos(c);
-            servicioPerro.Update(perro);
+    public ResponseEntity<Void> agregarTratamiento(@RequestBody Perro perro, @PathVariable("id") long id) {
+        Perro dog = servicioPerro.SearchById(perro.getId());
+        Tratamientos treatment = servicioTratamiento.SearchById(id);
+        if (dog != null && treatment != null) {
+            dog.getTratamientos().add(treatment);
+            servicioPerro.Update(dog);
+            return ResponseEntity.ok().build();
         } else {
-            throw new NotFoundException(id);
+            return ResponseEntity.notFound().build();
         }
-
     }
 
-    // http://localhost:8090/perro/cliente/1
+    // Gets all dogs belonging to a client
     @GetMapping("/cliente/{id}")
     public List<Perro> Perro(@PathVariable("id") long id) {
         return servicioPerro.findByClienteCedula(id);
     }
 
+    // Counts total dogs
     @GetMapping("/perros")
     public ResponseEntity<Long> contarTotalPerros() {
-    int totalPerrosInt = servicioPerro.SearchAll().size(); // Obtiene el tamaño como int
-    Long totalPerros = Long.valueOf(totalPerrosInt); // Convierte int a Long
-    return ResponseEntity.ok(totalPerros);
-}
+        Long totalPerros = Long.valueOf(servicioPerro.SearchAll().size());
+        return ResponseEntity.ok(totalPerros);
+    }
 
+    // Counts active dogs
     @GetMapping("/activos")
     public Long contarMascotasActivas() {
         return servicioPerro.contarMascotasActivas();
     }
-
 }
