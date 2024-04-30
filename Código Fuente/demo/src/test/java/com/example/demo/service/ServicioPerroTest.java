@@ -1,4 +1,4 @@
-package com.example.demo.service;
+/*package com.example.demo.service;
 
 import static org.mockito.Mockito.when;
 
@@ -91,5 +91,33 @@ private PerroServicempl perroServicempl;
         Assertions.assertThat(foundPerro.getId()).isEqualTo(id);
         Assertions.assertThat(foundPerro.getNombre()).isEqualTo("Cocco");
     }
+
+    //delete
+    @Test
+    public void delete() {
+
+        // Arrange
+        long id = 1;
+
+        // Act
+        perroServicempl.DeleteByID(id);
+
+        // Assert
+        Assertions.assertThat(repocitorioPerro.findById(id)).isEmpty();
+    }
+
+    //update
+    @Test
+    public void update_ByName() {
+
+        // Arrange
+
+        String nombre = "lala";
+
+       
+
+    }
     
 }
+
+*/

@@ -27,62 +27,77 @@ public class PerroRepositoryTest {
 
     @BeforeEach
     void init() {
-        perroRepository.save(new Perro("Fido", 1, "Labrador", "Large", 5, true, 20.0, 1));
-        perroRepository.save(new Perro("Buddy", 2, "Beagle", "Medium", 3, false, 10.0, 2));
+        perroRepository.save(new Perro("lalala", 1, "Hermann", "Chiguagua", 5, true, 20.0, 1));
+        perroRepository.save(new Perro("lalala", 2, "Chamo", "Pug", 3, false, 10.0, 2));
     }
 
     @Test
     public void PerroRepository_save_Perro() {
-        // Arrange
+
+        
         Perro perro = new Perro("Rex", 3, "German Shepherd", "Large", 4, true, 30.0, 3);
 
-        // Act
+        
         Perro savedPerro = perroRepository.save(perro);
 
-        // Assert
+    
         Assertions.assertThat(savedPerro).isNotNull();
     }
 
     @Test
     public void PerroRepository_FindAll_NotEmptyList() {
-        // Act
+        
         List<Perro> perros = perroRepository.findAll();
 
-        // Assert
+        
         Assertions.assertThat(perros).isNotNull();
+
+
         Assertions.assertThat(perros.size()).isGreaterThan(0);
     }
 
     @Test
     public void PerroRepository_findById_FindWrongIndex() {
-        // Arrange
+        
         Long index = -1L;
 
-        // Act
+        
         Optional<Perro> perro = perroRepository.findById(index);
 
-        // Assert
+        
         Assertions.assertThat(perro).isEmpty();
     }
 
     @Test
     public void PerroRepository_deleteById_EmptyPerro() {
-        // Arrange
+        
         Long index = 1L;
 
-        // Act
+        
         perroRepository.deleteById(index);
 
-        // Assert
+        
         Assertions.assertThat(perroRepository.findById(index)).isEmpty();
     }
 
+    //! Consulta creada por nosotros
     @Test
     public void countMascotasActivas_returnsCorrectCount() {
-        // Act
+        
         Long count = perroRepository.countMascotasActivas();
 
-        // Assert
+        
         Assertions.assertThat(count).isEqualTo(2L);
     }
+
+    //! Consulta creada por nosotros
+    @Test
+    public void PerroRepository_sumarVentasDePerrosConTratamientos_returnsCorrectSum() {
+        
+        Double sum = perroRepository.sumarVentasDePerrosConTratamientos();
+
+        
+        Assertions.assertThat(sum).isEqualTo(30.0);
+    }
+
 }

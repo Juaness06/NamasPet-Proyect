@@ -73,7 +73,7 @@ public class ControladorVeterinario {
     }
 
     //www.localhost:8090/administrador/findByNombreAndContrasena/1/1234
-    @GetMapping("/findByNombreAndContrasena/{id}/{contrasena}")
+    @GetMapping("/findByIdAndContrasena/{id}/{contrasena}")
     public Veterinario findByIdAndContrasena(@PathVariable int id, @PathVariable String contrasena) {
         return servicioVeterinario.findByIdAndContrasena(id, contrasena);
     }
