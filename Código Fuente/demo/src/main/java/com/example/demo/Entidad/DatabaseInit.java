@@ -4,6 +4,7 @@ package com.example.demo.Entidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
 import java.io.FileInputStream;
@@ -34,6 +35,7 @@ import jakarta.transaction.Transactional;
 
 @Controller
 @Transactional
+@Profile("default")
 public class DatabaseInit implements ApplicationRunner {
 
     @Autowired

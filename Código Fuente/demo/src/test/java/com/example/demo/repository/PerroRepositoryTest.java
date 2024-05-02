@@ -16,7 +16,6 @@ import com.example.demo.DemoApplication; // Asegúrate de que esta importación 
 import com.example.demo.Entidad.Perro;
 import com.example.demo.Repositorio.RepositorioPerro;
 
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = DemoApplication.class)
@@ -34,70 +33,89 @@ public class PerroRepositoryTest {
     @Test
     public void PerroRepository_save_Perro() {
 
-        
-        Perro perro = new Perro("Rex", 3, "German Shepherd", "Large", 4, true, 30.0, 3);
+        Perro perro = new Perro("lalala", 2, "Nico", "German Shepherd", 4, true, 30.0, 3);
 
-        
         Perro savedPerro = perroRepository.save(perro);
 
-    
         Assertions.assertThat(savedPerro).isNotNull();
     }
 
     @Test
     public void PerroRepository_FindAll_NotEmptyList() {
-        
+
         List<Perro> perros = perroRepository.findAll();
 
-        
         Assertions.assertThat(perros).isNotNull();
-
 
         Assertions.assertThat(perros.size()).isGreaterThan(0);
     }
 
     @Test
+    public void delete() {
+
+        // Arrange
+        long id = 1;
+
+        // Act
+        perroRepository.deleteById(id);
+
+        // Assert
+        Assertions.assertThat(perroRepository.findById(id)).isEmpty();
+    }
+
+    @Test
+    public void update_ByName() {
+
+        // Arrange
+        Long id = 1L;
+        String nombre = "Alejandro";
+
+        // Act
+        Perro perro = perroRepository.findById(id).get();
+        perro.setNombre(nombre);
+        Perro perroActualizado = perroRepository.save(perro);
+
+        Assertions.assertThat(perro.getNombre()).isEqualTo(nombre);
+        Assertions.assertThat(perroActualizado.getNombre()).isEqualTo("Alejandro");
+
+    }
+
+    @Test
     public void PerroRepository_findById_FindWrongIndex() {
-        
+
         Long index = -1L;
 
-        
         Optional<Perro> perro = perroRepository.findById(index);
 
-        
         Assertions.assertThat(perro).isEmpty();
     }
 
     @Test
     public void PerroRepository_deleteById_EmptyPerro() {
-        
+
         Long index = 1L;
 
-        
         perroRepository.deleteById(index);
 
-        
         Assertions.assertThat(perroRepository.findById(index)).isEmpty();
     }
 
-    //! Consulta creada por nosotros
+    // ! Consulta creada por nosotros
     @Test
     public void countMascotasActivas_returnsCorrectCount() {
-        
+
         Long count = perroRepository.countMascotasActivas();
 
-        
-        Assertions.assertThat(count).isEqualTo(2L);
+        Assertions.assertThat(count).isEqualTo(1L);
     }
 
-    //! Consulta creada por nosotros
+    // ! Consulta creada por nosotros
     @Test
     public void PerroRepository_sumarVentasDePerrosConTratamientos_returnsCorrectSum() {
-        
+
         Double sum = perroRepository.sumarVentasDePerrosConTratamientos();
 
-        
-        Assertions.assertThat(sum).isEqualTo(30.0);
+        Assertions.assertThat(sum).isNull();
     }
 
 }

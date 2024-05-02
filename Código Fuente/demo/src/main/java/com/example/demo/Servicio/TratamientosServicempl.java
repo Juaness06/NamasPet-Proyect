@@ -1,13 +1,13 @@
 package com.example.demo.Servicio;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Entidad.Droga;
+
 import com.example.demo.Entidad.Tratamientos;
 
 import com.example.demo.Repositorio.RepositorioTratamientos;
@@ -29,9 +29,9 @@ public class TratamientosServicempl implements TratamientosService {
     }
 
     @Override
-    public void Add(Tratamientos p) {
+    public Tratamientos Add(Tratamientos p) {
 
-        repo.save(p);
+        return repo.save(p);
     }
 
     @Override
@@ -65,11 +65,6 @@ public class TratamientosServicempl implements TratamientosService {
     public Double obtenerGananciasTotales() {
         return repo.calcularGananciasTotales();
     }
-
-    
-    
-   
-
 
     /*
      * @Override

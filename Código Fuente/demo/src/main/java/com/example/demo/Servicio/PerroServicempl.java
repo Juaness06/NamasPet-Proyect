@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entidad.Perro;
-import com.example.demo.Entidad.Tratamientos;
 import com.example.demo.Repositorio.RepositorioPerro;
 
 @Service
