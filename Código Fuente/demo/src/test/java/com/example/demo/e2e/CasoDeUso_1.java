@@ -159,9 +159,9 @@ public class CasoDeUso_1 {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnMascotaspath)));
         WebElement btnMascotas = driver.findElement(By.xpath(btnMascotaspath));
         btnMascotas.click();
+        
 
         // *Agregar Mascota */
-
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("anchorAgregarMascota")));
         WebElement btnagregar = driver.findElement(By.id("anchorAgregarMascota"));
         btnagregar.click();
@@ -177,7 +177,7 @@ public class CasoDeUso_1 {
         // este se debe sacar algo tipo asi
         // listaIncial.size()+1
 
-        int iddueño = 101;
+        String iddueño = "101";
         inputNombreMas.sendKeys("Santi");
         inputRaza.sendKeys("Bulldog");
         inputedad.clear();
@@ -191,13 +191,30 @@ public class CasoDeUso_1 {
         inputimagen.sendKeys(
                 "https://media.istockphoto.com/id/1482199015/es/foto/feliz-cachorro-gal%C3%A9s-corgi-14-semanas-de-edad-perro-gui%C3%B1ando-un-ojo-jadeando-y-sentado-aislado.jpg?s=612x612&w=0&k=20&c=lX65jf64HFLnR8XDD7pphv5KVRMmBCNTQBvzggRvQ14=");
         inputdueno.clear();
-        inputdueno.sendKeys("5");
+        inputdueno.sendKeys(iddueño);
 
         String RegistrarMascota = "//html//body//app-root//app-agregar-mascotas//section[2]//div//form//div[7]//button";
         WebElement btnSubmitt = driver.findElement(By.xpath(RegistrarMascota));
         Actions actionss = new Actions(driver);
         actionss.moveToElement(btnSubmitt).perform();
         btnSubmitt.click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogin")));
+        WebElement btnLogin = driver.findElement(By.id("btnLogin"));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", btnLogin);
+
+        WebElement inputCedulaC = driver.findElement(By.id("cedula"));
+        inputCedulaC.sendKeys("101");
+
+        WebElement btnLogInC = driver.findElement(By.id("btnIngresar"));
+        btnLogInC.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card-image-container")));
+        WebElement btnMascotaCliente = driver.findElement(By.className("card-image-container"));
+        btnMascotaCliente.click();
+
 
     }
 
@@ -336,7 +353,7 @@ public class CasoDeUso_1 {
         // este se debe sacar algo tipo asi
         // listaIncial.size()+1
 
-        int iddueño = 101;
+        String idDueno = "101";
         inputNombreMas.sendKeys("Santi");
         inputRaza.sendKeys("Bulldog");
         inputedad.clear();
@@ -350,7 +367,7 @@ public class CasoDeUso_1 {
         inputimagen.sendKeys(
                 "https://media.istockphoto.com/id/1482199015/es/foto/feliz-cachorro-gal%C3%A9s-corgi-14-semanas-de-edad-perro-gui%C3%B1ando-un-ojo-jadeando-y-sentado-aislado.jpg?s=612x612&w=0&k=20&c=lX65jf64HFLnR8XDD7pphv5KVRMmBCNTQBvzggRvQ14=");
         inputdueno.clear();
-        inputdueno.sendKeys("5");
+        inputdueno.sendKeys(idDueno);
 
         String RegistrarMascota = "//html//body//app-root//app-agregar-mascotas//section[2]//div//form//div[7]//button";
         WebElement btnSubmit = driver.findElement(By.xpath(RegistrarMascota));
@@ -362,16 +379,39 @@ public class CasoDeUso_1 {
 
     @Test
     public void irIniciarSesionCliente() {
+
         driver.get(BASE_URL + "/mascotas/all");
-        String btnLogInPath = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[6]//button//a";
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnLogInPath)));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogin")));
+        WebElement btnLogin = driver.findElement(By.id("btnLogin"));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", btnLogin);
 
-        // Scroll hacia abajo para asegurarse de que el botón esté visible
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0, 250)");
+    }
 
-        WebElement btnLogIn = driver.findElement(By.xpath(btnLogInPath));
+    @Test
+    public void iniciarSesionCliente() {
+
+        driver.get(BASE_URL + "/login");
+
+        WebElement inputCedula = driver.findElement(By.id("cedula"));
+        inputCedula.sendKeys("101");
+
+        WebElement btnLogIn = driver.findElement(By.id("btnIngresar"));
         btnLogIn.click();
+
+        
+    }
+
+    @Test
+    public void mirarMascotaCliente(){
+
+        driver.get(BASE_URL + "/cliente/101/mascotas");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("card-image-container")));
+        WebElement btnMascotaCliente = driver.findElement(By.className("card-image-container"));
+        btnMascotaCliente.click();
+
+
     }
 
 }
