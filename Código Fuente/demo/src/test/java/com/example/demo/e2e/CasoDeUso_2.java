@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,8 +50,7 @@ public class CasoDeUso_2 {
     @Test
     public void casoDeUso2() {
 
-
-        //*Iniciar Sesion veterinario */
+        // *Iniciar Sesion veterinario */
         driver.get(BASE_URL + "/login");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogInAdministrador")));
         WebElement btnElement = driver.findElement(By.id("btnLogInAdministrador"));
@@ -67,14 +67,14 @@ public class CasoDeUso_2 {
         Alert alertC = wait.until(ExpectedConditions.alertIsPresent());
         alertC.accept();
 
-        //*Ingresar al modulo de tratamientos */
+        // *Ingresar al modulo de tratamientos */
 
         String btnTratamientos = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[2]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnTratamientos)));
         WebElement btnClientes = driver.findElement(By.xpath(btnTratamientos));
         btnClientes.click();
 
-        //* Agregar Tratamiento a una mascota */
+        // * Agregar Tratamiento a una mascota */
         String btnAdd = "//html//body//app-root//app-lista-drogas//main//section//div[2]//table//tbody//tr[1]//td[7]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnAdd)));
         WebElement btnAddi = driver.findElement(By.xpath(btnAdd));
@@ -100,12 +100,13 @@ public class CasoDeUso_2 {
         inputMascotaID.clear();
         inputMascotaID.sendKeys("1");
 
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnRegistrar1")));
-        WebElement btnRegistrarElement = driver.findElement(By.id("btnRegistrar1"));
-        btnRegistrarElement.click();
+        WebElement btnRegistrarElement1 = driver.findElement(By.id("btnRegistrar1"));
+        btnRegistrarElement1.click();
 
-
-        //*Ingresar al modulo de mascotas */
+        // *Ingresar al modulo de mascotas */
 
         String btnMascotaspath = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[3]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnMascotaspath)));
@@ -117,6 +118,8 @@ public class CasoDeUso_2 {
         btntargeton.click();
 
         // buscar el perro
+
+        //
         String btnHistorial = "btnAgregar";
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id(btnHistorial)));
@@ -125,12 +128,35 @@ public class CasoDeUso_2 {
 
         // verificar que este el tratamiento
 
-        String btnDashboard = "//html//body//app-root//app-historial-mascota//main//app-administrador-header//section//div[2]//nav//ul//li[4]//a";
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnDashboard)));
-        WebElement btnDashboardElement = driver.findElement(By.xpath(btnDashboard));
-        btnDashboardElement.click();
+        driver.get(BASE_URL + "/admin/login");
+
+        WebElement inputCedula1 = driver.findElement(By.id("nombre"));
+        WebElement inputContrasena1 = driver.findElement(By.id("contrasena"));
+        inputCedula1.sendKeys("grani");
+        inputContrasena1.sendKeys("cafu");
+
+        WebElement btnLogIn1 = driver.findElement(By.id("btnIngresar"));
+        btnLogIn1.click();
 
         // verfica la lista con el assertion
+
+    }
+
+    @Test
+    public void Dashboard() {
+        driver.get(BASE_URL + "/admin/login");
+
+        WebElement inputCedula = driver.findElement(By.id("nombre"));
+        WebElement inputContrasena = driver.findElement(By.id("contrasena"));
+        inputCedula.sendKeys("grani");
+        inputContrasena.sendKeys("cafu");
+
+        WebElement btnLogIn = driver.findElement(By.id("btnIngresar"));
+        btnLogIn.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnDashboard")));
+        WebElement btnDashboardElement = driver.findElement(By.id("btnDashboard"));
+        btnDashboardElement.click();
 
     }
 }
