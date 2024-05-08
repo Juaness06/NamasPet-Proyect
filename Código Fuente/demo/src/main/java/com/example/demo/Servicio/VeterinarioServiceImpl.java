@@ -3,7 +3,6 @@ package com.example.demo.Servicio;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-import com.example.demo.Entidad.Administrador;
 import com.example.demo.Entidad.Veterinario;
 import com.example.demo.Repositorio.ReporsitorioVeterinario;
 import org.springframework.beans.factory.annotation.Autowired;

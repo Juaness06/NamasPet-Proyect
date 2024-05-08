@@ -3,7 +3,6 @@ package com.example.demo.Entidad;
 import java.time.LocalDate; // Solo se necesita esta importación para la fecha
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
