@@ -73,9 +73,14 @@ public class CasoDeUso_2 {
         WebElement btnClientes = driver.findElement(By.xpath(btnTratamientos));
         btnClientes.click();
 
-        // Captura la lista inicial de tratamientos
-        List<WebElement> listaInicial = driver.findElements(By.cssSelector("tbody tr"));
+        
+        // Esperar hasta que la tabla esté presente
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#sectionTabla table tbody tr")));
 
+        // Capturar la lista inicial de tratamientos y verificar que haya 20 filas
+        List<WebElement> listaInicial = driver.findElements(By.cssSelector("#sectionTabla table tbody tr"));
+        
+        
         // *Agregar Tratamiento a una mascota*
         String btnAdd = "//html//body//app-root//app-lista-drogas//main//section//div[2]//table//tbody//tr[1]//td[7]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnAdd)));
@@ -108,14 +113,17 @@ public class CasoDeUso_2 {
         WebElement btnRegistrarElement1 = driver.findElement(By.id("btnRegistrar1"));
         btnRegistrarElement1.click();
 
-        // Espera hasta que el tamaño de la lista aumente
-        //wait.until(driver1 -> driver1.findElements(By.cssSelector("tbody tr")).size() == listaInicial.size() + 1);
+        //recargar la pagina
+        driver.navigate().refresh();
+        
+        //Espera hasta que el tamaño de la lista aumente
+        wait.until(driver1 -> driver1.findElements(By.cssSelector("tbody tr")).size() == listaInicial.size() + 1);
 
         // Captura la nueva lista de tratamientos
-       // List<WebElement> listaFinal = driver.findElements(By.cssSelector("tbody tr"));
+        List<WebElement> listaFinal = driver.findElements(By.cssSelector("tbody tr"));
 
         // Comprueba que el tamaño de la lista ha aumentado en uno
-       // Assertions.assertThat(listaFinal.size()).isEqualTo(listaInicial.size() + 1);
+       Assertions.assertThat(listaFinal.size()).isEqualTo(listaInicial.size() + 1);
 
         // *Ingresar al módulo de mascotas*
         String btnMascotaspath = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[3]//a";
