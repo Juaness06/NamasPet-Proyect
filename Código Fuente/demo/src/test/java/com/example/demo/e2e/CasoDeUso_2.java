@@ -2,6 +2,7 @@ package com.example.demo.e2e;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -37,10 +38,10 @@ public class CasoDeUso_2 {
     private WebDriver driver;
     private WebDriverWait wait;
     private TratamientosService servicioTratamiento;
-   
 
     @Autowired
-    private ServicioPerro servicioPerro;    
+    private ServicioPerro servicioPerro;
+
     @BeforeEach
     public void init() {
 
@@ -58,10 +59,35 @@ public class CasoDeUso_2 {
     @Test
     public void casoDeUso2() {
 
+        
+        driver.get(BASE_URL + "/admin/login");
+
+        WebElement inputCedula1i = driver.findElement(By.id("nombre"));
+        WebElement inputContrasena1i = driver.findElement(By.id("contrasena"));
+        inputCedula1i.sendKeys("grani");
+        inputContrasena1i.sendKeys("cafu");
+
+        WebElement btnLogIn1i = driver.findElement(By.id("btnIngresar"));
+        btnLogIn1i.click();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnDashboard")));
+        WebElement btnDashboardElementi = driver.findElement(By.id("btnDashboard"));
+        btnDashboardElementi.click();
+
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
+        WebElement ventasTotalesElementi = driver.findElement(By.id("ventas"));
+
+        // Capturar el valor y hacer la aserción
+        String ventasTotalesTexti = ventasTotalesElementi.getText().replace(",", "").trim();
+        double ventasTotalesi = Double.parseDouble(ventasTotalesTexti);
+
         driver.get(BASE_URL + "/login");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnLogInAdministrador")));
         WebElement btnElement = driver.findElement(By.id("btnLogInAdministrador"));
         btnElement.click();
+
+ 
 
         WebElement inputCedula = driver.findElement(By.id("id"));
         WebElement inputContrasena = driver.findElement(By.id("contrasena"));
@@ -73,7 +99,7 @@ public class CasoDeUso_2 {
 
         wait.until(ExpectedConditions.alertIsPresent()).accept();
 
-      //  Double ventasInicial = servicioPerro.calcularVentasDePerrosConTratamientos();
+        // Double ventasInicial = servicioPerro.calcularVentasDePerrosConTratamientos();
 
         // *Ingresar al modulo de tratamientos */
         String btnTratamientos = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[2]//a";
@@ -86,7 +112,6 @@ public class CasoDeUso_2 {
 
         // Capturar la lista inicial de tratamientos y verificar que haya 20 filas
         List<WebElement> listaInicial = driver.findElements(By.cssSelector("#sectionTabla table tbody tr"));
-        
 
         // *Agregar Tratamiento a una mascota*
         String btnAdd = "//html//body//app-root//app-lista-drogas//main//section//div[2]//table//tbody//tr[1]//td[7]//a";
@@ -120,14 +145,16 @@ public class CasoDeUso_2 {
         WebElement btnRegistrarElement1 = driver.findElement(By.id("btnRegistrar1"));
         btnRegistrarElement1.click();
 
-        //recargar la pagina
+        // recargar la pagina
+        driver.navigate().refresh();
+        driver.navigate().refresh();
         driver.navigate().refresh();
 
         // Captura la nueva lista de tratamientos
-        List<WebElement> listaFinal = driver.findElements(By.cssSelector("tbody tr"));
+        List<WebElement> listaFinal = driver.findElements(By.cssSelector("#sectionTabla table tbody tr"));
 
         // Comprueba que el tamaño de la lista ha aumentado en uno
-       Assertions.assertThat(listaFinal.size()).isEqualTo(listaInicial.size() + 1);
+        Assertions.assertThat(listaFinal.size()).isEqualTo(listaInicial.size() + 1);
 
         // *Ingresar al módulo de mascotas*
         String btnMascotaspath = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[3]//a";
@@ -169,19 +196,14 @@ public class CasoDeUso_2 {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
         WebElement ventasTotalesElement = driver.findElement(By.id("ventas"));
-    
+
         // Capturar el valor y hacer la aserción
         String ventasTotalesText = ventasTotalesElement.getText().replace(",", "").trim();
         double ventasTotales = Double.parseDouble(ventasTotalesText);
-    
-        double expectedVentasTotales = servicioPerro.calcularVentasDePerrosConTratamientos() + 100; // Reemplaza este valor con el esperado
-        Assertions.assertThat(ventasTotales).isEqualTo(expectedVentasTotales);
-        // Verificar la lista con el assertion
-       
 
+        Assertions.assertThat(ventasTotales).isEqualTo(ventasTotalesi+100);
         
     }
-
 
     @Test
     public void ingresarHistorial() {
@@ -203,7 +225,6 @@ public class CasoDeUso_2 {
         WebElement btnHistorialElement = driver.findElement(By.id("btnAgregar"));
         btnHistorialElement.click();
 
-
         driver.get(BASE_URL + "/admin/login");
 
         WebElement inputCedula1 = driver.findElement(By.id("nombre"));
@@ -218,12 +239,7 @@ public class CasoDeUso_2 {
         WebElement btnDashboardElement = driver.findElement(By.id("btnDashboard"));
         btnDashboardElement.click();
 
-
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-
-
-        
-
 
     }
 
@@ -243,17 +259,15 @@ public class CasoDeUso_2 {
         WebElement btnDashboardElement = driver.findElement(By.id("btnDashboard"));
         btnDashboardElement.click();
 
-
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
         WebElement ventasTotalesElement = driver.findElement(By.id("ventas"));
-    
+
         // Capturar el valor y hacer la aserción
         String ventasTotalesText = ventasTotalesElement.getText().replace(",", "").trim();
         double ventasTotales = Double.parseDouble(ventasTotalesText);
-    
+
         double expectedVentasTotales = 10047110; // Reemplaza este valor con el esperado
         Assertions.assertThat(ventasTotales).isEqualTo(expectedVentasTotales);
     }
-    
 
-    }
+}
