@@ -17,10 +17,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.example.demo.Servicio.PerroServicempl;
 import com.example.demo.Servicio.ServicioPerro;
 import com.example.demo.Servicio.TratamientosService;
 
@@ -35,8 +37,10 @@ public class CasoDeUso_2 {
     private WebDriver driver;
     private WebDriverWait wait;
     private TratamientosService servicioTratamiento;
-    private ServicioPerro servicioPerro;
-    
+   
+
+    @Autowired
+    private ServicioPerro servicioPerro;    
     @BeforeEach
     public void init() {
 
@@ -69,7 +73,7 @@ public class CasoDeUso_2 {
 
         wait.until(ExpectedConditions.alertIsPresent()).accept();
 
-        Double ventasInicial = servicioPerro.calcularVentasDePerrosConTratamientos();
+      //  Double ventasInicial = servicioPerro.calcularVentasDePerrosConTratamientos();
 
         // *Ingresar al modulo de tratamientos */
         String btnTratamientos = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[2]//a";
@@ -163,9 +167,17 @@ public class CasoDeUso_2 {
         btnDashboardElement.click();
 
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
+        WebElement ventasTotalesElement = driver.findElement(By.id("ventas"));
+    
+        // Capturar el valor y hacer la aserción
+        String ventasTotalesText = ventasTotalesElement.getText().replace(",", "").trim();
+        double ventasTotales = Double.parseDouble(ventasTotalesText);
+    
+        double expectedVentasTotales = servicioPerro.calcularVentasDePerrosConTratamientos() + 100; // Reemplaza este valor con el esperado
+        Assertions.assertThat(ventasTotales).isEqualTo(expectedVentasTotales);
         // Verificar la lista con el assertion
-
+       
 
         
     }
@@ -231,5 +243,17 @@ public class CasoDeUso_2 {
         WebElement btnDashboardElement = driver.findElement(By.id("btnDashboard"));
         btnDashboardElement.click();
 
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("ventas")));
+        WebElement ventasTotalesElement = driver.findElement(By.id("ventas"));
+    
+        // Capturar el valor y hacer la aserción
+        String ventasTotalesText = ventasTotalesElement.getText().replace(",", "").trim();
+        double ventasTotales = Double.parseDouble(ventasTotalesText);
+    
+        double expectedVentasTotales = 10047110; // Reemplaza este valor con el esperado
+        Assertions.assertThat(ventasTotales).isEqualTo(expectedVentasTotales);
     }
-}
+    
+
+    }
