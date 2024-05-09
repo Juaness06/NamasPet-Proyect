@@ -21,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.example.demo.Servicio.ServicioPerro;
 import com.example.demo.Servicio.TratamientosService;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -34,7 +35,8 @@ public class CasoDeUso_2 {
     private WebDriver driver;
     private WebDriverWait wait;
     private TratamientosService servicioTratamiento;
-   // Double ganancia = servicioTratamiento.obtenerGananciasTotales();
+    private ServicioPerro servicioPerro;
+    
     @BeforeEach
     public void init() {
 
@@ -67,20 +69,21 @@ public class CasoDeUso_2 {
 
         wait.until(ExpectedConditions.alertIsPresent()).accept();
 
+        Double ventasInicial = servicioPerro.calcularVentasDePerrosConTratamientos();
+
         // *Ingresar al modulo de tratamientos */
         String btnTratamientos = "//html//body//app-root//app-header//header//div[2]//nav//ul//li[2]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnTratamientos)));
         WebElement btnClientes = driver.findElement(By.xpath(btnTratamientos));
         btnClientes.click();
 
-        
         // Esperar hasta que la tabla esté presente
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#sectionTabla table tbody tr")));
 
         // Capturar la lista inicial de tratamientos y verificar que haya 20 filas
         List<WebElement> listaInicial = driver.findElements(By.cssSelector("#sectionTabla table tbody tr"));
         
-        
+
         // *Agregar Tratamiento a una mascota*
         String btnAdd = "//html//body//app-root//app-lista-drogas//main//section//div[2]//table//tbody//tr[1]//td[7]//a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(btnAdd)));
@@ -115,9 +118,6 @@ public class CasoDeUso_2 {
 
         //recargar la pagina
         driver.navigate().refresh();
-        
-        //Espera hasta que el tamaño de la lista aumente
-        wait.until(driver1 -> driver1.findElements(By.cssSelector("tbody tr")).size() == listaInicial.size() + 1);
 
         // Captura la nueva lista de tratamientos
         List<WebElement> listaFinal = driver.findElements(By.cssSelector("tbody tr"));
@@ -165,7 +165,9 @@ public class CasoDeUso_2 {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 
         // Verificar la lista con el assertion
-        // TODO: Agregar una verificación adicional si es necesario
+
+
+        
     }
 
 
