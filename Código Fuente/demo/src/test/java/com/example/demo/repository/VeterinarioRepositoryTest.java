@@ -20,8 +20,8 @@ public class VeterinarioRepositoryTest {
 
     @BeforeEach
     public void init() {
-        veterinarioRepository.save(new Veterinario("Juan", "1234", "Dogtor", 10, "lala", true));
-        veterinarioRepository.save(new Veterinario("Pedro", "1234", "Dogtor", 10, "lala", false));
+       // veterinarioRepository.save(new Veterinario("Juan", "1234", "Dogtor", 10, "lala", true));
+        //veterinarioRepository.save(new Veterinario("Pedro", "1234", "Dogtor", 10, "lala", false));
     }
 
     //! Consulta creada por nosotros

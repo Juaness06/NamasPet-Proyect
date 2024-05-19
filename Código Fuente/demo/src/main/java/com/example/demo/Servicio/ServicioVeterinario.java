@@ -11,11 +11,11 @@ public interface ServicioVeterinario { //servicio de veterinario
 
     public List<Veterinario> SearchAll();
 
-    public void Add(Veterinario v);
+    public Veterinario Add(Veterinario v);
 
     public void deleteById(Long id);
 
-    public void Update(Veterinario p);
+    public Veterinario Update(Veterinario p);
 
     public Long getVeterinariosActivosCount();
 
@@ -24,5 +24,7 @@ public interface ServicioVeterinario { //servicio de veterinario
     public void UpdateState(long id);
 
     Veterinario findByIdAndContrasena(int id, String contrasena);
+
+    
     
 }

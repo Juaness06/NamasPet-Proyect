@@ -1,10 +1,10 @@
 package com.example.demo.Entidad;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import java.io.FileInputStream;
@@ -22,15 +22,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 import java.io.File;
-import com.example.demo.Repositorio.ReporsitorioAdministrador;
-import com.example.demo.Repositorio.ReporsitorioCliente;
-import com.example.demo.Repositorio.ReporsitorioDroga;
-import com.example.demo.Repositorio.ReporsitorioVeterinario;
-import com.example.demo.Repositorio.RepositorioPerro;
-import com.example.demo.Repositorio.RepositorioTratamientos;
-
+import com.example.demo.Repositorio.*;
 import jakarta.transaction.Transactional;
 
 @Controller
@@ -39,7 +32,7 @@ import jakarta.transaction.Transactional;
 public class DatabaseInit implements ApplicationRunner {
 
     @Autowired
-    ReporsitorioCliente clienteR;
+    RepositorioCliente clienteR;
 
     @Autowired
     RepositorioPerro perroR;
@@ -53,19 +46,60 @@ public class DatabaseInit implements ApplicationRunner {
     @Autowired
     ReporsitorioDroga drog;
 
-
     @Autowired
     RepositorioTratamientos tratamientoR;
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception { //inicializa la base de datos con datos de prueba
-        
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
         Random rand = new Random();
 
         cargarDatosDesdeExcel();
-       
+        roleRepository.save(new Role("VETERINARIO"));
+        roleRepository.save(new Role("ADMINISTRADOR"));
+        roleRepository.save(new Role("CLIENTE"));
 
+        // Añadir roles y usuarios
+        CrearAdministrador();
+
+        // Crear datos de ejemplo para clientes y perros
+        crearClientes(rand); // Pasa rand como parámetro
+        crearPerros(rand);   // Pasa rand como parámetro
+
+        // Asignar perros a clientes
+        asignarPerrosAClientes();
+
+        // Crear veterinarios
+        crearVeterinarios(rand); // Pasa rand como parámetro
+
+        // Crear drogas
+        crearDrogas();
+
+        // Generar tratamientos
+        generarTratamientos();
+        asignarTratamientosExistente();
+    }
+
+    private void CrearAdministrador() {
+        Administrador administrador = new Administrador("nico", passwordEncoder.encode("123456"));
+        Administrador administrador2 = new Administrador("grani", passwordEncoder.encode("cafu"));
+        UserEntity userEntity1 = saveUserAdmin(administrador);
+        UserEntity userEntity2 = saveUserAdmin(administrador2);
+        administrador.setUser(userEntity1);
+        administrador2.setUser(userEntity2);
+        admin.save(administrador);
+        admin.save(administrador2);
+    }
+
+    private void crearClientes(Random rand) {
         String[] nombresClientes = { "Ana", "Beatriz", "Carlos", "David", "Elena", "Fernando", "Gabriela", "Héctor",
                 "Irene", "Jorge", "Alejandro", "Bruno", "Daniel", "Eduardo", "Francisco",
                 "Guillermo", "Hugo", "Íñigo", "Joaquín", "Leonardo",
@@ -93,11 +127,6 @@ public class DatabaseInit implements ApplicationRunner {
                 "Drift", "Echo", "Flame", "Glitch", "Hawk", "Iron", "Jester"
         };
 
-        Administrador administrador = new Administrador("nico", "123456");
-        Administrador administrador2 = new Administrador("grani", "cafu");
-        admin.save(administrador);
-        admin.save(administrador2);
-
         for (int i = 1; i <= 100; i++) {
             String nombre = nombresClientes[i % nombresClientes.length] + " " + apellidos[i % apellidos.length];
             String email = nombresClientes[i % nombresClientes.length] + apellidos[i % apellidos.length] + i
@@ -106,10 +135,14 @@ public class DatabaseInit implements ApplicationRunner {
             String usuario = apodos[i % apodos.length] + i;
             String contraseña = "" + i;
 
-            Cliente cliente = new Cliente(nombre, email, telefono, usuario, contraseña); //crea un nuevo cliente
-            clienteR.save(cliente); //guarda el cliente
+            Cliente cliente = new Cliente(nombre, email, telefono, usuario, passwordEncoder.encode(contraseña));
+            UserEntity userEntity = saveUserClient(cliente);
+            cliente.setUser(userEntity);
+            clienteR.save(cliente);
         }
+    }
 
+    private void crearPerros(Random rand) {
         String[] nombresPerros = {
                 "Max", "Bella", "Charlie", "Luna", "Rocky", "Molly", "Toby", "Lucy", "Coco", "Bailey",
                 "Daisy", "Oliver", "Sadie", "Maggie", "Buddy", "Oscar", "Lola", "Winston", "Ruby", "Bear",
@@ -137,120 +170,117 @@ public class DatabaseInit implements ApplicationRunner {
         for (int i = 1; i <= 100; i++) {
             String urlImagen = imagenes[i % imagenes.length];
             String nombre = nombresPerros[i % nombresPerros.length];
-            int id = i;
             String raza = razas[i % razas.length];
             int edad = ThreadLocalRandom.current().nextInt(1, 16);
-            ;
-            boolean sexo = true;
+            boolean actividad = true;
             double pesoRaw = 5.0 + (40.0 - 5.0) * ThreadLocalRandom.current().nextDouble();
             double peso = Math.round(pesoRaw * 10) / 10.0;
-            int energia = (i % 3) + 1;
+            int numeroAtenciones = (i % 3) + 1;
 
-            Perro perro = new Perro(urlImagen, nombre, id, raza, edad, sexo, peso, energia); //crea un nuevo perro
-            perroR.save(perro); //lo agrega a la base de datos
+            Perro perro = new Perro(urlImagen, nombre, raza, edad, actividad, peso, numeroAtenciones);
+            perroR.save(perro);
         }
+    }
 
-
+    private void asignarPerrosAClientes() {
         for (int i = 1; i <= 100; i++) {
-            Perro perroCliente = perroR.findById((long) i).get(); //busca el perro en la base de datos
-            perroCliente.setCliente(clienteR.findById((long) i).get()); //asigna el cliente
-            perroR.save(perroCliente); //guarda el perro
+            Perro perroCliente = perroR.findById((long) i).orElse(null);
+            if (perroCliente != null) {
+                perroCliente.setCliente(clienteR.findById((long) i).orElse(null));
+                perroR.save(perroCliente);
+            }
         }
+    }
 
-        String[] nombresVeterinarios = { "Dr. Smith", "Dr. Johnson", "Dr. Davis", "Dra. Anderson", "Dra. Wilson",
-                "Dra. Brown", "Dr. Hernandez", "Dr. Shepard", "Dr. Burk", "Dr. Roberts" };
+    private void crearVeterinarios(Random rand) {
+        String[] nombresVeterinarios = {
+            "Dr. Smith", "Dr. Johnson", "Dr. Davis", "Dra. Anderson", "Dra. Wilson",
+            "Dra. Brown", "Dr. Hernandez", "Dr. Shepard", "Dr. Burk", "Dr. Roberts"
+        };
 
-        String[] especialidades = { "Cirugía", "Dermatología", "Oftalmología", "Oncología", "Cardiología", "Neurología",
-                "Endocrinología", "Gastroenterología", "Nefrología", "Hematología" };
+        String[] especialidades = {
+            "Cirugía", "Dermatología", "Oftalmología", "Oncología", "Cardiología", "Neurología",
+            "Endocrinología", "Gastroenterología", "Nefrología", "Hematología"
+        };
 
         String[] fotosVeterinarios = {
-                "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg",
-                "https://img.freepik.com/foto-gratis/doctor-sonriente-estetoscopio-aislado-gris_651396-974.jpg",
-                "https://thumbs.dreamstime.com/z/enfermera-de-sexo-femenino-linda-doctor-trabajador-m%C3%A9dico-1548876.jpg",
-                "https://www.shutterstock.com/image-photo/happy-smiling-young-indian-doctor-260nw-2047862279.jpg",
-                "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=sph",
-                "https://img.freepik.com/foto-gratis/hermosa-joven-doctora-mirando-camara-oficina_1301-7807.jpg",
-                "https://img.freepik.com/fotos-premium/joven-medico-hospital-medicina-medica-salud-clinica-oficina-retrato-gafas-hombre-estetoscopio-especialista_772720-5257.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=sph",
-                "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg",
-                "https://img.freepik.com/foto-gratis/joven-medico-apoyando-su-paciente_1098-2237.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1710028800&semt=sph",
-                "https://img.freepik.com/fotos-premium/apuesto-joven-medico-clinica-veterinaria-apuntando-dedo-arriba-sonriendo-impresionado-pie-junto-lindo-perro-pug-negro-blanco_1258-32774.jpg" };
+            "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg",
+            "https://img.freepik.com/foto-gratis/doctor-sonriente-estetoscopio-aislado-gris_651396-974.jpg",
+            "https://thumbs.dreamstime.com/z/enfermera-de-sexo-femenino-linda-doctor-trabajador-m%C3%A9dico-1548876.jpg",
+            "https://www.shutterstock.com/image-photo/happy-smiling-young-indian-doctor-260nw-2047862279.jpg",
+            "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=sph",
+            "https://img.freepik.com/foto-gratis/hermosa-joven-doctora-mirando-camara-oficina_1301-7807.jpg",
+            "https://img.freepik.com/fotos-premium/joven-medico-hospital-medicina-medica-salud-clinica-oficina-retrato-gafas-hombre-estetoscopio-especialista_772720-5257.jpg?size=626&ext=jpg&ga=GA1.1.117944100.1710028800&semt=sph",
+            "https://images.ecestaticos.com/ciN9hN7qsu5JOcrGdMngWhCHs8Y=/0x70:1716x1040/1200x1200/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F8db%2F8b6%2Faa5%2F8db8b6aa54b585253e15f79a68447aeb.jpg",
+            "https://img.freepik.com/foto-gratis/joven-medico-apoyando-su-paciente_1098-2237.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1710028800&semt=sph",
+            "https://img.freepik.com/fotos-premium/apuesto-joven-medico-clinica-veterinaria-apuntando-dedo-arriba-sonriendo-impresionado-pie-junto-lindo-perro-pug-negro-blanco_1258-32774.jpg"
+        };
 
-                for (int i = 0; i < 10; i++) {
-                    String nombre = nombresVeterinarios[i % nombresVeterinarios.length];
-                    String contrasena = "1234";
-                    String especialidad = especialidades[i % especialidades.length];
-                    int atenciones = rand.nextInt(100);
-                    String foto = fotosVeterinarios[i % fotosVeterinarios.length];
-                    boolean disponible = true;  // Genera un booleano aleatorio para la disponibilidad
-                
-                    Veterinario veterinario = new Veterinario(nombre, contrasena, especialidad, atenciones, foto, disponible); // Crea el veterinario con disponibilidad aleatoria
-                    vet.save(veterinario); // Guarda el veterinario
-                }
-                
+        for (int i = 0; i < 10; i++) {
+            String nombre = nombresVeterinarios[i % nombresVeterinarios.length];
+            String contrasena = passwordEncoder.encode("1234");
+            String especialidad = especialidades[i % especialidades.length];
+            int atenciones = rand.nextInt(100);
+            String foto = fotosVeterinarios[i % fotosVeterinarios.length];
+            boolean disponible = true;
 
+            Veterinario veterinario = Veterinario.builder()
+                    .nombre(nombre)
+                    .contrasena(contrasena)
+                    .especialidad(especialidad)
+                    .atenciones(atenciones)
+                    .foto(foto)
+                    .activo(disponible)
+                    .build();
+            UserEntity userEntity = saveUserVeterinario(veterinario);
+            veterinario.setUser(userEntity);
+            vet.save(veterinario);
+        }
+    }
+
+    private void crearDrogas() {
         String[] nombresDroga = { "Bayer", "Beaphar", "Chemie", "Drag Pharma", "Labyes", "Merial Pharma", "Micro", "Msd" };
         Double[] preciosDroga = { 100.0, 200.0, 300.0, 400.0, 500.0, 600.0, 700.0, 800.0 };
         Integer[] unidadesDrogas = { 100, 250, 340, 40, 250, 160, 270, 380 };
 
         for (int i = 0; i < 8; i++) {
             String nombre = nombresDroga[i % nombresDroga.length];
-            Double precio = preciosDroga[i % preciosDroga.length];
-            Integer unidadesVendidas = unidadesDrogas[i % unidadesDrogas.length];
-        }
-        generarTratamientos();
-        asignarTratamientosExistente();
-        
+            Double precioV = preciosDroga[i % preciosDroga.length];
+            Double precioC = precioV * 0.8;
+            Integer unidadesC = unidadesDrogas[i % unidadesDrogas.length];
+            Integer unidadesV = unidadesC / 2;
 
+            Droga droga = new Droga(nombre, precioV, precioC, unidadesC, unidadesV);
+            drog.save(droga);
+        }
     }
 
     public void generarTratamientos() {
         String[] nombresTratamientos = {
-            "RevitaPelaje",
-            "CaninoLimpio",
-            "RabiaShield",
-            "ParvoPrevención",
-            "PulgaStop",
-            "AntiparasitarioMax",
-            "DentalCare",
-            "VacunaVital",
-            "DigestiPlus",
-            "FelicidadCanina",
-            "CalmaTotal",
-            "PataSaludable",
-            "CorazónSeguro",
-            "OídoAlerta",
-            "VisiónClara",
-            "PeloBrillante",
-            "HuesoFuerte",
-            "AlientoFresco",
-            "EnergíaVital",
-            "SeniorVitalidad"
+            "RevitaPelaje", "CaninoLimpio", "RabiaShield", "ParvoPrevención", "PulgaStop", 
+            "AntiparasitarioMax", "DentalCare", "VacunaVital", "DigestiPlus", "FelicidadCanina",
+            "CalmaTotal", "PataSaludable", "CorazónSeguro", "OídoAlerta", "VisiónClara", 
+            "PeloBrillante", "HuesoFuerte", "AlientoFresco", "EnergíaVital", "SeniorVitalidad"
         };
     
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
         Random random = new Random();
     
-        for (int i = 0; i < 20; i++) {  // Generar 20 tratamientos
-            String nombreTratamiento = nombresTratamientos[i];  // Asigna un nombre del array
-              // Genera un precio aleatorio entre 50,000 y 1,200,000
-    
+        for (int i = 0; i < 20; i++) {
+            String nombreTratamiento = nombresTratamientos[i % nombresTratamientos.length];
+            double precioC = 50000 + random.nextDouble() * 1150000;
             int mes = random.nextInt(12) + 1;
-            int dia = random.nextInt(28) + 1; // Asegura no exceder los días del mes más corto
-            String fecha = dia + "-" + mes + "-2024"; // Fecha del tratamiento
-    
-            Tratamientos tratamiento = new Tratamientos();
-            tratamiento.setNombreTratamiento(nombreTratamiento); // Asigna el nombre al tratamiento
-             // Asigna el precio al tratamiento
+            int dia = random.nextInt(28) + 1;
+            String fecha = dia + "-" + mes + "-2024";
     
             LocalDate fechaLocalDate = LocalDate.parse(fecha, formatter);
-            tratamiento.setFecha(fechaLocalDate);
+            Tratamientos tratamiento = new Tratamientos(nombreTratamiento, precioC, fechaLocalDate);
     
-            tratamientoR.save(tratamiento);  // Guarda el tratamiento en la base de datos
+            tratamientoR.save(tratamiento);
         }
     
         System.out.println("Todos los tratamientos han sido generados y guardados correctamente.");
     }
-    
 
     private void cargarDatosDesdeExcel() {
         System.out.println("Iniciando carga de datos...");
@@ -260,13 +290,12 @@ public class DatabaseInit implements ApplicationRunner {
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rows = sheet.iterator();
-    
+
             if (rows.hasNext()) {
                 Row headerRow = rows.next(); // Salta el encabezado
                 System.out.println("Encabezado omitido: " + headerRow.getCell(0).getStringCellValue()); // Esto imprimirá la primera celda del encabezado
             }
             System.out.println("Procesando filas del archivo Excel...");
-            int i = 0;
             while (rows.hasNext()) {
                 Row row = rows.next();
                 String nombre = row.getCell(0).getStringCellValue();
@@ -274,11 +303,9 @@ public class DatabaseInit implements ApplicationRunner {
                 double precioCompra = row.getCell(2).getNumericCellValue();
                 int unidadesDisponibles = (int) row.getCell(3).getNumericCellValue();
                 int unidadesVendidas = (int) row.getCell(4).getNumericCellValue();
-    
-                Droga tratamiento = new Droga(i, nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
-                System.out.println("Guardando tratamiento: " + nombre + " con ID: " + i);
-                drog.save(tratamiento);
-                i++;
+
+                Droga droga = new Droga(nombre, precioVenta, precioCompra, unidadesDisponibles, unidadesVendidas);
+                drog.save(droga);
             }
             workbook.close();
             file.close();
@@ -293,8 +320,8 @@ public class DatabaseInit implements ApplicationRunner {
             e.printStackTrace();
         }
     }
+
     public void asignarTratamientosExistente() {
-        // Obtén todas las listas necesarias
         List<Perro> perros = perroR.findAll();
         List<Veterinario> veterinarios = vet.findAll();
         List<Droga> drogas = drog.findAll();
@@ -310,17 +337,40 @@ public class DatabaseInit implements ApplicationRunner {
             Veterinario veterinarioAleatorio = veterinarios.get(rand.nextInt(totalVeterinarios));
             Droga drogaAleatoria = drogas.get(rand.nextInt(totalDrogas));
     
-            // Asigna un perro, veterinario y droga aleatorios a cada tratamiento
             tratamiento.setPerro(perroAleatorio);
             tratamiento.setVeterinario(veterinarioAleatorio);
             tratamiento.setDroga(drogaAleatoria);
-            tratamiento.setPrecioC(drogaAleatoria.getPrecioC()*drogaAleatoria.getUnidades_C()+50000);
+            tratamiento.setPrecioC(drogaAleatoria.getPrecioC() * drogaAleatoria.getUnidades_C() + 50000);
             
-            // Guarda el tratamiento actualizado en la base de datos
             tratamientoR.save(tratamiento);
         }
     
         System.out.println("Todos los tratamientos han sido actualizados correctamente con perros, veterinarios y drogas.");
     }
 
+    private UserEntity saveUserClient(Cliente cliente) {
+        UserEntity user = new UserEntity();
+        user.setUsername(cliente.getCorreo());
+        user.setPassword(passwordEncoder.encode("123"));
+        Role roles = roleRepository.findByName("CLIENTE").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
+
+    private UserEntity saveUserVeterinario(Veterinario veterinario) {
+        UserEntity user = new UserEntity();
+        user.setUsername(veterinario.getNombre());
+        user.setPassword(passwordEncoder.encode(veterinario.getContrasena()));
+        Role roles = roleRepository.findByName("VETERINARIO").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
+    private UserEntity saveUserAdmin(Administrador admin) {
+        UserEntity user = new UserEntity();
+        user.setUsername(admin.getNombre());
+        user.setPassword(passwordEncoder.encode(admin.getContrasena()));
+        Role roles = roleRepository.findByName("ADMINISTRADOR").get();
+        user.setRoles(List.of(roles));
+        return userRepository.save(user);
+    }
 }

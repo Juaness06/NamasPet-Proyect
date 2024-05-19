@@ -16,7 +16,7 @@ public class PerroServicempl implements ServicioPerro { // implementa el servici
 
     @Override
     public Perro SearchById(long id) {
-        return repo.findById(id).get();
+        return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -41,7 +41,6 @@ public class PerroServicempl implements ServicioPerro { // implementa el servici
 
     @Override
     public List<Perro> findByClienteCedula(long id) {
-
         return repo.findByClienteCedula(id);
     }
 
@@ -58,13 +57,10 @@ public class PerroServicempl implements ServicioPerro { // implementa el servici
 
     @Override
     public void UpdateState(long id) {  
-        Perro p = repo.findById(id).get();
-        if( p.getActividad()==true)
-            p.setActividad(false);
-        else
-            p.setActividad(true);
-
-        repo.save(p);
+        Perro p = repo.findById(id).orElse(null);
+        if (p != null) {
+            p.setActividad(!p.isActividad());
+            repo.save(p);
+        }
     }
 }
-

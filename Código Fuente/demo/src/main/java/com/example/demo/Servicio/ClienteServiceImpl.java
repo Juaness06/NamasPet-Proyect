@@ -1,24 +1,22 @@
 package com.example.demo.Servicio;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.Entidad.Cliente;
 import com.example.demo.Entidad.Perro;
-import com.example.demo.Repositorio.ReporsitorioCliente;
+import com.example.demo.Repositorio.RepositorioCliente;
 
 @Service
-public class ClienteServicempl implements ClienteService { //implementa el servicio de cliente
+public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
-    ReporsitorioCliente repo;
+    private RepositorioCliente repo;
 
     @Override
     public Cliente SearchById(Long id) {
-        return repo.findById(id).get();
+        return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -27,32 +25,25 @@ public class ClienteServicempl implements ClienteService { //implementa el servi
     }
 
     @Override
-    public void Add(Cliente p) {
-        
-        repo.save(p);
+    public Cliente Add(Cliente p) {
+        return repo.save(p);
     }
 
-
     @Override
-    public void Update(Cliente p) {
-        
-        repo.save(p);
+    public Cliente Update(Cliente p) {
+        return repo.save(p);
     }
 
     @Override
     public void deleteById(Long id) {
-        
         repo.deleteById(id);
     }
 
     @Override
     public Cliente Cuenta(Long cedula) {
-        
         return repo.findByCedula(cedula);
     }
 
-
-    
     @Override
     public List<Perro> PerrosClientePerros(long cedula) {
         Cliente cliente = repo.findByCedula(cedula);
@@ -61,8 +52,10 @@ public class ClienteServicempl implements ClienteService { //implementa el servi
         } else {
             return new ArrayList<>();
         }
-    }    
-    
+    }
 
-
+    @Override
+    public Cliente findByCorreo(String correo) {
+        return repo.findByCorreo(correo);
+    }
 }

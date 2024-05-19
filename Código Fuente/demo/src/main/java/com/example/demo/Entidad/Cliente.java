@@ -4,109 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "cliente") // nombre de la tabla
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cliente {
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
+
     @Id
-    @GeneratedValue // id autoincremental
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // id autoincremental
     private long cedula;
 
-    @Column(name = "NAME") // columna
+    @Column(name = "nombre")
     private String nombre;
 
     private String correo;
     private long celular;
-    private String Usuario;
+    private String usuario;
     private String contrasena;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // relacion uno a muchos
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true) // relación uno a muchos
     private List<Perro> listaPerros = new ArrayList<>();
 
-    public Cliente(long cedula, String nombre, String correo, long celular, String usuario, String contrasena) { // constructor
-        this.cedula = cedula;
+    // Constructor sin la propiedad "cedula"
+    public Cliente(String nombre, String correo, long celular, String usuario, String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
         this.celular = celular;
-        this.Usuario = usuario;
+        this.usuario = usuario;
         this.contrasena = contrasena;
-    }
-
-    public Cliente(String nombre, String correo, long celular, String usuario, String contrasena) { // constructor
-        this.nombre = nombre;
-        this.correo = correo;
-        this.celular = celular;
-        this.Usuario = usuario;
-        this.contrasena = contrasena;
-    }
-
-    public Cliente() { // constructor vacio
-
-    }
-
-    public long getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(long cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public long getCelular() {
-        return celular;
-    }
-
-    public void setCelular(long celular) {
-        this.celular = celular;
-    }
-
-    public String getUsuario() {
-        return Usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        Usuario = usuario;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public List<Perro> getListaPerros() {
-        return listaPerros;
-    }
-
-    public void setListaPerros(List<Perro> listaPerros) {
-        this.listaPerros = listaPerros;
     }
 }

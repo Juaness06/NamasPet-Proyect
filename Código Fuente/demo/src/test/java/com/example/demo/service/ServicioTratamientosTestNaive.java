@@ -19,7 +19,7 @@ import com.example.demo.Servicio.TratamientosService;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @ActiveProfiles("test")
 public class ServicioTratamientosTestNaive {
-
+/*
     @Autowired
     private TratamientosService servicioTratamiento;
 

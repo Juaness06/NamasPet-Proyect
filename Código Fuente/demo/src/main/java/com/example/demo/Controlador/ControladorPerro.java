@@ -64,7 +64,7 @@ public class ControladorPerro {
     // Form display for adding a dog (not typically used in REST APIs)
     @GetMapping("/add")
     public String MostrarFormularioAdd(Model model) {
-        model.addAttribute("perro", new Perro("", 0, "", "", 0, false, 0.0, 0));
+        model.addAttribute("perro", new Perro("", "", "", 0, false, 0.0, 0));
         return "RegistrarPerro";
     }
 

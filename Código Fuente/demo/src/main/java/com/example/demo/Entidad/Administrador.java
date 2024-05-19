@@ -4,51 +4,36 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import jakarta.persistence.Transient;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "administrador") // nombre de la tabla
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Administrador {
 
     @Id
     @GeneratedValue
     private int id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserEntity user;
+
     @Column(name = "NAME")
     private String nombre;
     private String contrasena;
 
-    public Administrador() { // constructor vacio
-
-    }
-
-    public Administrador(String nombre, String contrasena) { // constructor con parámetros
+    // Constructor sin la propiedad "id"
+    public Administrador(String nombre, String contrasena) {
         this.nombre = nombre;
         this.contrasena = contrasena;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
 }
