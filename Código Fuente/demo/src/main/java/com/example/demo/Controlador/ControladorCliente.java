@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.DTO.ClienteDTO;
@@ -88,4 +89,24 @@ public class ControladorCliente {
         List<Perro> perros = servicioCliente.PerrosClientePerros(cedula);
         return new ResponseEntity<>(perros, HttpStatus.OK);
     }
+
+    @GetMapping("/details")
+public ResponseEntity<Cliente> buscarCliente() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    Long cedula;
+    try {
+        cedula = Long.parseLong(username);
+    } catch (NumberFormatException e) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    Cliente cliente = servicioCliente.SearchById(cedula);
+
+    if (cliente == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    return new ResponseEntity<>(cliente, HttpStatus.OK);
+}
+
 }

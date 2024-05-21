@@ -19,6 +19,7 @@ public class ClienteServiceImpl implements ClienteService {
         return repo.findById(id).orElse(null);
     }
 
+  
     @Override
     public List<Cliente> SearchAll() {
         return repo.findAll();

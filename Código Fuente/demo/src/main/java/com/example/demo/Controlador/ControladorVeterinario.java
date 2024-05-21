@@ -125,5 +125,31 @@ public class ControladorVeterinario {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        
+        
     }
+
+    @GetMapping("/details")
+public ResponseEntity<VeterinarioDTO> buscarVeterinario() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    Long cedula;
+    try {
+        cedula = Long.parseLong(username);
+    } catch (NumberFormatException e) {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    Veterinario veterinario = servicioVeterinario.SearchById(cedula);
+    if (veterinario == null) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    VeterinarioDTO veterinarioDTO = VeterinarioMapper.INSTANCE.convert(veterinario);
+    return new ResponseEntity<>(veterinarioDTO, HttpStatus.OK);
 }
+
+
+
+}
+

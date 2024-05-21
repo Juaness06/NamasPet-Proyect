@@ -33,7 +33,8 @@ public class SecurityConfig {
                 .requestMatchers("/h2/**").permitAll()
                 .requestMatchers("/perro").permitAll()
                 .requestMatchers("/perro/**").permitAll()
-                .requestMatchers("/cliente/**").permitAll()
+                .requestMatchers("/cliente/details").hasAnyAuthority("CLIENTE")
+                .requestMatchers("/veterinario/**").permitAll()
                 .anyRequest().permitAll()
             )
             .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthEntryPoint));
