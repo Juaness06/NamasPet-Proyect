@@ -20,37 +20,28 @@ public class VeterinarioRepositoryTest {
 
     @BeforeEach
     public void init() {
-       // veterinarioRepository.save(new Veterinario("Juan", "1234", "Dogtor", 10, "lala", true));
-        //veterinarioRepository.save(new Veterinario("Pedro", "1234", "Dogtor", 10, "lala", false));
+        veterinarioRepository.save(new Veterinario(null, 0L, "Juan", "1234", "Dogtor", 10, "lala", true, null));
+        veterinarioRepository.save(new Veterinario(null, 0L, "Pedro", "1234", "Dogtor", 10, "lala", false, null));
     }
 
-    //! Consulta creada por nosotros
+    // Consulta creada por nosotros
     @Test
     public void veterinarioRepository_countVeterinarios_Activos() {
-
         Long count = veterinarioRepository.countVeterinariosActivos();
-
         Assertions.assertThat(count).isEqualTo(1L);
-        
     }
 
-    //! Consulta creada por nosotros
+    // Consulta creada por nosotros
     @Test
     public void veterinarioRepository_countVeterinarios_Inactivos() {
-
         Long count = veterinarioRepository.countVeterinariosInactivos();
-
         Assertions.assertThat(count).isEqualTo(1L);
     }
 
-    //! Consulta creada por nosotros
+    // Consulta creada por nosotros
     @Test
     public void veterinarioRepository_findByIdAndContrasena() {
-
         String contrasena = "1234";
-
         Assertions.assertThat(veterinarioRepository.findByIdAndContrasena(1, contrasena)).isNotNull();
-
     }
-
 }

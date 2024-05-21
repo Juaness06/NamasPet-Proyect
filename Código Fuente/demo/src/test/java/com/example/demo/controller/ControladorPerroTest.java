@@ -46,13 +46,13 @@ public class ControladorPerroTest {
 
     @Test
     public void agregarPerro_addsPerroAndReturnsStatus() throws Exception {
-       // Perro perro = new Perro("Fido", 1, "Labrador", "Large", 5, true, 20.0, 1);
-       // when(servicioPerro.Add(any(Perro.class))).thenReturn(perro);
+        Perro perro = new Perro("imagen1.jpg", "Fido", "Labrador", 5, true, 20.0, 1);
+        when(servicioPerro.Add(any(Perro.class))).thenReturn(perro);
 
         ResultActions response = mockMvc.perform(
             post("/perro/agregar")
             .contentType(MediaType.APPLICATION_JSON)
-           // .content(objectMapper.writeValueAsString(perro))
+            .content(objectMapper.writeValueAsString(perro))
         );
 
         response.andExpect(status().isCreated())
@@ -62,13 +62,13 @@ public class ControladorPerroTest {
 
     @Test
     public void mostrarPerros_returnsPerrosList() throws Exception {
-        //when(servicioPerro.SearchAll()).thenReturn(
-           /*  List.of(
-                new Perro("Fido", 1, "Labrador", "Large", 5, true, 20.0, 1),
-                new Perro("Buddy", 2, "Golden Retriever", "Large", 3, true, 30.0, 2)
+        when(servicioPerro.SearchAll()).thenReturn(
+             List.of(
+                new Perro("imagen1.jpg", "Fido", "Labrador", 5, true, 20.0, 1),
+                new Perro("imagen2.jpg", "Buddy", "Golden Retriever", 3, true, 30.0, 2)
             )
-           */
- //       );
+           
+        );
 
         ResultActions response = mockMvc.perform(get("/perro/all"));
 
@@ -81,8 +81,8 @@ public class ControladorPerroTest {
 
     @Test
     public void mostrarPerro_returnsPerroDetails() throws Exception {
-       // Perro perro = new Perro("Fido", 1, "Labrador", "Large", 5, true, 20.0, 1);
-        //when(servicioPerro.SearchById(anyLong())).thenReturn(perro);
+        Perro perro = new Perro("imagen1.jpg", "Fido", "Labrador", 5, true, 20.0, 1);
+        when(servicioPerro.SearchById(anyLong())).thenReturn(perro);
 
         ResultActions response = mockMvc.perform(
             get("/perro/find/{id}", 1)

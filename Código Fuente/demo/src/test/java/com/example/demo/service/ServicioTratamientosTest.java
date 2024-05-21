@@ -27,35 +27,30 @@ public class ServicioTratamientosTest {
     @InjectMocks
     private TratamientosServicempl tratamientosService;
 
-    /*
-
     @Test
     public void addTratamiento() {
         // Arrange
-        //Tratamientos tratamiento = new Tratamientos(1L, "Vacuna Rabia", 50.0, LocalDate.now());
+        Tratamientos tratamiento = new Tratamientos("Vacuna Rabia", 50.0, LocalDate.now());
 
         when(repositorioTratamientos.save(tratamiento)).thenReturn(tratamiento);
 
         // Act
-        tratamientosService.Add(tratamiento);
+        Tratamientos addedTratamiento = tratamientosService.Add(tratamiento);
 
         // Assert
-        Assertions.assertThat(tratamiento).isNotNull();
-        Assertions.assertThat(tratamiento.getNombreTratamiento()).isEqualTo("Vacuna Rabia");
+        Assertions.assertThat(addedTratamiento).isNotNull();
+        Assertions.assertThat(addedTratamiento.getNombreTratamiento()).isEqualTo("Vacuna Rabia");
     }
 
     @Test
     public void findAllTratamientos() {
         // Arrange
-        /*
         when(repositorioTratamientos.findAll()).thenReturn(
             List.of(
-                new Tratamientos(1L, "Vacuna Rabia", 50.0, LocalDate.now()),
-                new Tratamientos(2L, "Vacuna Parvovirus", 60.0, LocalDate.now())
+                new Tratamientos("Vacuna Rabia", 50.0, LocalDate.now()),
+                new Tratamientos("Vacuna Parvovirus", 60.0, LocalDate.now())
             )
-            
         );
-        
 
         // Act
         List<Tratamientos> tratamientos = tratamientosService.SearchAll();
@@ -69,7 +64,8 @@ public class ServicioTratamientosTest {
     public void findById() {
         // Arrange
         long id = 1L;
-        Tratamientos expectedTratamiento = new Tratamientos(id, "Vacuna Rabia", 50.0, LocalDate.now());
+        Tratamientos expectedTratamiento = new Tratamientos("Vacuna Rabia", 50.0, LocalDate.now());
+        expectedTratamiento.setId(id);
         when(repositorioTratamientos.findById(id)).thenReturn(Optional.of(expectedTratamiento));
 
         // Act
@@ -80,7 +76,8 @@ public class ServicioTratamientosTest {
         Assertions.assertThat(foundTratamiento.getId()).isEqualTo(id);
         Assertions.assertThat(foundTratamiento.getNombreTratamiento()).isEqualTo("Vacuna Rabia");
     }
-@Test
+
+    @Test
     public void deleteById() {
         // Arrange
         long id = 1L;
@@ -129,8 +126,8 @@ public class ServicioTratamientosTest {
         // Arrange
         Long perroId = 1L;
         List<Tratamientos> expectedTratamientos = List.of(
-            new Tratamientos(1L, "Vacuna Rabia", 50.0, LocalDate.now()),
-            new Tratamientos(2L, "Antipulgas", 30.0, LocalDate.now())
+            new Tratamientos("Vacuna Rabia", 50.0, LocalDate.now()),
+            new Tratamientos("Antipulgas", 30.0, LocalDate.now())
         );
         when(repositorioTratamientos.findByPerroId(perroId)).thenReturn(expectedTratamientos);
 
@@ -154,6 +151,4 @@ public class ServicioTratamientosTest {
         // Assert
         Assertions.assertThat(ganancias).isEqualTo(expectedGanancias);
     }
-    */
-
 }
